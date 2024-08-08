@@ -100,7 +100,6 @@ int main(void)
   {
     /* USER CODE END WHILE */
 
-		
     /* USER CODE BEGIN 3 */
 		CAN_cmd_classis(PID_Calculate(&PID_position1, 456, actual_value));
 		HAL_Delay(50);
