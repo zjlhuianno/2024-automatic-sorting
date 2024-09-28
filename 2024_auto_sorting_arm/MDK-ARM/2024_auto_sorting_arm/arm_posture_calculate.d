@@ -49,6 +49,7 @@
 2024_auto_sorting_arm\arm_posture_calculate.o: ../Middlewares/Third_Party/FreeRTOS/Source/include/event_groups.h
 2024_auto_sorting_arm\arm_posture_calculate.o: D:\keil\ARM\ARMCC\Bin\..\include\math.h
 2024_auto_sorting_arm\arm_posture_calculate.o: ../Core/Inc/tim.h
+2024_auto_sorting_arm\arm_posture_calculate.o: D:\keil\ARM\ARMCC\Bin\..\include\stdlib.h
 2024_auto_sorting_arm\arm_posture_calculate.o: ../user/configs/configs.h
 2024_auto_sorting_arm\arm_posture_calculate.o: ../Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS/cmsis_os.h
 2024_auto_sorting_arm\arm_posture_calculate.o: ../user/PID/PID.h
@@ -64,3 +65,4 @@
 2024_auto_sorting_arm\arm_posture_calculate.o: ../Core/Inc/usart.h
 2024_auto_sorting_arm\arm_posture_calculate.o: D:\keil\ARM\ARMCC\Bin\..\include\stdio.h
 2024_auto_sorting_arm\arm_posture_calculate.o: D:\keil\ARM\ARMCC\Bin\..\include\stdarg.h
+2024_auto_sorting_arm\arm_posture_calculate.o: ../user/LED/bsp_led.h

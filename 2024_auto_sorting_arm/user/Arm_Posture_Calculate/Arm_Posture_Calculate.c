@@ -31,7 +31,7 @@ float re_dis(float x1,float y1,float x2,float y2)
     return pow(pow(x1-x2,2)+pow(y1-y2,2),0.5);
 }
 
-void arms_js(float* data_ref,float x1,float y1,float alphas,float l1,float l2,float l3)
+void arms_js(float* data_ref,float x1,float y1,float alphas,float l1,float l2,float l3)//单位cm。
 {
 	float temps1=0.0f,x2=0.0f,y2=0.0f,x3=0.0f,y3=0.0f,x4=0.0f,y4=0.0f,bd=0.0f,ad=0.0f,ab=0.0f,bc=0.0f,co=0.0f,ob=0.0f,ao=0.0f,alpha_s=0.0f,alpha1=0.0f,alpha2=0.0f,alpha3=0.0f,alpha4=0.0f,alpha5=0.0f,alpha6=0.0f,alpha7=0.0f,kbc=0.0f,kbc_f=0.0f,flag=0;
 	float real_alpha1 = 0.0f, real_alpha2 = 0.0f, real_alpha3 = 0.0f;
@@ -100,9 +100,9 @@ void arms_js(float* data_ref,float x1,float y1,float alphas,float l1,float l2,fl
 	real_alpha3 = 55.0f+180-alpha3;//DM4340转过的角度。
 	
 	//角度限制。
-	if(real_alpha1>90)
+	if(real_alpha1>100)
 	{
-		real_alpha1=90;
+		real_alpha1=100;
 	}
 	else if(real_alpha1<0)
 	{

@@ -1,5 +1,7 @@
 #include "Includes.h"
 
+
+
 //**************PID参数******************//
 
 	//速度环PI控制。
@@ -64,6 +66,17 @@ float Servo_target_angle;		//机械臂舵机的目标位置。
 int DM4310_target_pos_int;  //DM4310的目标位置。(int型。)
 int DM4340_target_pos_int;  //DM4340的目标位置。(int型。)
 
+float target_x_follow; 	//目标x坐标的追随值。
+float target_y_follow;		//目标y坐标的追随值。
+float target_angle_follow;//目标角度的追随值。
+
 float target_x;			//机械臂解算时输入的目标x坐标。
 float target_y;			//机械臂解算时输入的目标y坐标。
 float target_angle;	//机械臂解算时输入的目标角度。
+
+int DM4310_delta_enc = 0;//在task里面一直记录DM4310编码器的p_int与last_p_int的差值。
+int last_DM4310_delta_enc = 0;//上一次的DM4310_delta_enc。
+
+//标志位。（1为是，0为否。）
+uint8_t flag_z=0;										//检测程序是否卡在了这里。
+uint8_t force_sensing_flag = 0;	//是否进行力控感知。

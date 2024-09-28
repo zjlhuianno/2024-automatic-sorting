@@ -22,7 +22,7 @@ void Servo_Init(void)
 }
 
 //将目标角度转换为机械臂第三级的舵机的pwm值。
-float Servo_1_angle_to_pwm(int16_t angle)
+float Servo_arm_angle_to_pwm(int16_t angle)
 {
 	//angle为γ = ∠B'CD。
 	float pwm = 0.0f;
@@ -31,7 +31,7 @@ float Servo_1_angle_to_pwm(int16_t angle)
 	{
 		pwm = 500;
 	}
-	if (pwm > 1800)//100度左右。
+	if (pwm > 1800)//1800 100度左右。
 	{
 		pwm = 1800;
 	}	
@@ -39,28 +39,29 @@ float Servo_1_angle_to_pwm(int16_t angle)
 }
 
 //控制机械臂第三级的舵机。
-void Servo_Ctrl_1(int16_t angle_for_1)
+void Servo_Ctrl_arm(int16_t angle_for_servo_arm)
 {
 	//pwm=700时，第三级机械臂水平。
-	__HAL_TIM_SET_COMPARE(&htim1,TIM_CHANNEL_1,Servo_1_angle_to_pwm(angle_for_1));
+	__HAL_TIM_SET_COMPARE(&htim1,TIM_CHANNEL_1,Servo_arm_angle_to_pwm(angle_for_servo_arm));
 }
 
 //控制机械臂夹爪的舵机。
-//ctrl_flag：	0：机械爪闭合，pwm = 1500。
-//						1：机械爪张开，pwm = 1500。
-//						2：机械爪抓取，pwm = 1500。
-void Servo_Ctrl_2(uint8_t ctrl_flag)
+//ctrl_flag：	0：机械爪闭合，pwm = 1550。
+//						1：机械爪张开，pwm = 1000。
+//						2：机械爪抓取方块，pwm = 1500。
+//						3：机械爪抓取甜甜圈，pwm = 1450。或1400。
+void Servo_Ctrl_claw(uint8_t ctrl_flag)
 {
 	switch (ctrl_flag)
 	{
 		case 0:
 		{
-			__HAL_TIM_SET_COMPARE(&htim1,TIM_CHANNEL_2,1500);
+			__HAL_TIM_SET_COMPARE(&htim1,TIM_CHANNEL_2,1550);
 			break;			
 		}
 		case 1:
 		{
-			__HAL_TIM_SET_COMPARE(&htim1,TIM_CHANNEL_2,1500);
+			__HAL_TIM_SET_COMPARE(&htim1,TIM_CHANNEL_2,1000);
 			break;			
 		}
 		case 2:
@@ -68,13 +69,18 @@ void Servo_Ctrl_2(uint8_t ctrl_flag)
 			__HAL_TIM_SET_COMPARE(&htim1,TIM_CHANNEL_2,1500);
 			break;			
 		}		
+		case 3:
+		{
+			__HAL_TIM_SET_COMPARE(&htim1,TIM_CHANNEL_2,1450);
+			break;			
+		}				
 		default:
 			break;
 	}
 }
 
 //控制仓库下方出口的舵机。
-//ctrl_flag：	0：出口闭合，pwm = 1800。//未标定。
+//ctrl_flag：	0：出口闭合，pwm = 1650。
 //						1：出口打开，pwm = 850。
 //						2：出口半打开，pwm = 1500。
 void Servo_Ctrl_3(uint8_t ctrl_flag)
@@ -83,7 +89,7 @@ void Servo_Ctrl_3(uint8_t ctrl_flag)
 	{
 		case 0:
 		{
-			__HAL_TIM_SET_COMPARE(&htim1, TIM_CHANNEL_3, 1800);
+			__HAL_TIM_SET_COMPARE(&htim1, TIM_CHANNEL_3, 1650);
 			break;
 		}
 		case 1:

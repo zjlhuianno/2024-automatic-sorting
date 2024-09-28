@@ -47,7 +47,7 @@ typedef struct
   float vel;//float类型的速度。
   float torq;//float类型的转矩。
 	
-	float last_p_int;//上一次位置(int型)。
+	int last_p_int;//上一次位置(int型)。
 	float last_vel;//上一次速度。
 	
 	float target_torq;//目标转矩。
@@ -62,6 +62,7 @@ float radian_to_degree(float radian);
 float Inferior_arc_treatment(float ref,float set,float max);
 
 void DM_PID_Init(void);
+void DM_Data_Init(void);
 void Enable_DM_Motor(CAN_HandleTypeDef* hcan,uint8_t ID);
 void MIT_Ctrl_DM_Motor(CAN_HandleTypeDef* hcan,uint16_t ID, float _pos, float _vel,float _KP, float _KD, float _torq);
 void PosSpeed_CtrlMotor(CAN_HandleTypeDef* hcan, uint16_t ID, float _pos, float _vel);
@@ -70,6 +71,7 @@ void Get_DM4340_Data(DM_Motor_t *DM4340_Data, uint8_t* Rx_Data);
 void Get_DM4310_Data(DM_Motor_t *DM4310_Data, uint8_t* Rx_Data);
 void DM_PID_Speed_Ctrl(uint8_t ID, float DM_target_speed);
 void DM_PID_Pos_Speed_Ctrl(uint8_t ID, float DM_target_pos);
+void ramp_function(float *data_follow,float data_target,float k);
 void Arm_Ctrl(float target_x, float target_y, float target_angle);
 
 #endif

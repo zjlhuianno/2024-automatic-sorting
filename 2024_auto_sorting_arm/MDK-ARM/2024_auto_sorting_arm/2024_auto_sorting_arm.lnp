@@ -47,6 +47,7 @@
 "2024_auto_sorting_arm\arm_posture_calculate.o"
 "2024_auto_sorting_arm\servo.o"
 "2024_auto_sorting_arm\vofa.o"
+"2024_auto_sorting_arm\bsp_led.o"
 --library_type=microlib --strict --scatter "2024_auto_sorting_arm\2024_auto_sorting_arm.sct"
 --summary_stderr --info summarysizes --map --load_addr_map_info --xref --callgraph --symbols
 --info sizes --info totals --info unused --info veneers

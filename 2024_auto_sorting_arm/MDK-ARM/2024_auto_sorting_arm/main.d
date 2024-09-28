@@ -53,6 +53,7 @@
 2024_auto_sorting_arm\main.o: ../user/Inlcudes/Includes.h
 2024_auto_sorting_arm\main.o: ../Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS/cmsis_os.h
 2024_auto_sorting_arm\main.o: D:\keil\ARM\ARMCC\Bin\..\include\math.h
+2024_auto_sorting_arm\main.o: D:\keil\ARM\ARMCC\Bin\..\include\stdlib.h
 2024_auto_sorting_arm\main.o: ../user/configs/configs.h
 2024_auto_sorting_arm\main.o: ../Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS/cmsis_os.h
 2024_auto_sorting_arm\main.o: ../user/PID/PID.h
@@ -66,3 +67,4 @@
 2024_auto_sorting_arm\main.o: ../user/VOFA/VOFA.h
 2024_auto_sorting_arm\main.o: D:\keil\ARM\ARMCC\Bin\..\include\stdio.h
 2024_auto_sorting_arm\main.o: D:\keil\ARM\ARMCC\Bin\..\include\stdarg.h
+2024_auto_sorting_arm\main.o: ../user/LED/bsp_led.h

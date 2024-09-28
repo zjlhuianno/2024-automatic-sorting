@@ -8,6 +8,7 @@
 #include "stm32f4xx_hal.h"
 #include "math.h"
 #include "tim.h"
+#include "stdlib.h"
 
 #include "configs.h"
 #include "DM_Control.h"
@@ -19,5 +20,6 @@
 #include "Arm_Posture_Calculate.h"
 #include "Servo.h"
 #include "VOFA.h"
+#include "bsp_led.h"
 
 #endif

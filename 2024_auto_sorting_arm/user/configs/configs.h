@@ -13,7 +13,6 @@ extern osThreadId total_taskHandle;
 
 
 //自己变量的申明。
-
 extern float DM4340_speed_kp;
 extern float DM4340_speed_ki;
 extern float DM4340_speed_kd;
@@ -51,9 +50,15 @@ extern float arms_js_data[4];
 extern float Servo_target_angle;
 extern int DM4310_target_pos_int;
 extern int DM4340_target_pos_int;
+extern float target_x_follow;
+extern float target_y_follow;
+extern float target_angle_follow;
 extern float target_x;
 extern float target_y;
 extern float target_angle;
-
+extern int DM4310_delta_enc;
+extern int last_DM4310_delta_enc;
+extern uint8_t flag_z;
+extern uint8_t force_sensing_flag;	
 
 #endif

@@ -1,18 +1,17 @@
 #include "Includes.h"
 
-float target_speed = 18.0f;
-float target_angle_4340 = 103.946274;//145.0度时，4340关节竖直。//55.0度时，4340关节水平。
-float target_angle_4310 = 229.227997;//33.0度时，4310关节水平。
-float now_angle_4310 = 0.0f;
-float now_angle_4340 = 0.0f;
-float pwm = 700;//700舵机关节直立。
+int DM_ctrl_cnt = 0;
 
-int i = 0;
 void Arm_Task(void const * argument)
 {
 	while(1)
 	{	
 		Arm_Ctrl(target_x,target_y, target_angle);
+//		DM_ctrl_cnt++;
+		
+		
+//		DM4310_delta_enc = DM4310_Data.p_int - DM4310_Data.last_p_int;
+//		last_DM4310_delta_enc = DM4310_delta_enc;
 		
 		osDelay(1);
 	}
@@ -25,6 +24,14 @@ void Arm_Task(void const * argument)
 
 
 //以下是测试程序。
+
+//float target_speed = 18.0f;
+//float target_angle_4340 = 103.946274;//145.0度时，4340关节竖直。//55.0度时，4340关节水平。
+//float target_angle_4310 = 229.227997;//33.0度时，4310关节水平。
+//float now_angle_4310 = 0.0f;
+//float now_angle_4340 = 0.0f;
+//float pwm = 700;//700舵机关节直立。
+//int i = 0;
 
 		//测试DM4310速度环。
 //		VOFA(2, target_speed, DM4310_Data.vel);

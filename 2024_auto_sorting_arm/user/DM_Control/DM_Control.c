@@ -102,6 +102,31 @@ void DM_PID_Init(void)
 	
 }
 
+void DM_Data_Init(void)
+{
+	DM4310_Data.state=0;
+	DM4310_Data.p_int=0;
+	DM4310_Data.v_int=0;
+	DM4310_Data.t_int=0;
+	DM4310_Data.pos=0.0f;
+	DM4310_Data.vel=0.0f;
+	DM4310_Data.torq=0.0f;
+	DM4310_Data.last_p_int=0;
+	DM4310_Data.last_vel=0.0f;
+	DM4310_Data.target_torq=0.0f;
+	
+	DM4340_Data.state=0;
+	DM4340_Data.p_int=0;
+	DM4340_Data.v_int=0;
+	DM4340_Data.t_int=0;
+	DM4340_Data.pos=0.0f;
+	DM4340_Data.vel=0.0f;
+	DM4340_Data.torq=0.0f;
+	DM4340_Data.last_p_int=0;
+	DM4340_Data.last_vel=0.0f;
+	DM4340_Data.target_torq=0.0f;
+}
+
 /**
  * @brief  MIT模式控下控制帧
  * @param  hcan   CAN的句柄
@@ -375,10 +400,37 @@ void DM_PID_Pos_Speed_Ctrl(uint8_t ID, float DM_target_pos_int)
 	}
 }
 
+//机械臂斜坡函数，使得机械臂两个动作之间衔接得流畅。
+//k：步进的幅度，结合task里面的osDelay可以计算出每秒data_follow会向data_target逼近多少。
+void ramp_function(float *data_follow,float data_target,float k)
+{
+	if(data_target!=*data_follow)
+	{
+		if(fabs(data_target-*data_follow)<k/10.0f)
+		{
+			*data_follow=data_target;
+		}
+		else
+		{
+			*data_follow += k * (data_target - *data_follow>0 ? 1.0f : -1.0f);
+		}
+	}
+}
+
+extern int DM_ctrl_cnt;
+
 void Arm_Ctrl(float target_x, float target_y, float target_angle)
 {
-	arms_js(arms_js_data, target_x, target_y, target_angle, 16.0f, 17.0f, 16.0f);
+	//斜坡控制。
+	//在k==0.01,osDelay(1)的情况下，每1ms，target_x_follow逼近target_x的大小为0.01，即1s步进10。
+	ramp_function(&target_x_follow, target_x, 0.01);
+	ramp_function(&target_y_follow, target_y, 0.01);
+	ramp_function(&target_angle_follow, target_angle, 0.01);
 	
+	//机械臂解算。
+	arms_js(arms_js_data, target_x_follow, target_y_follow, target_angle_follow, 16.0f, 17.0f, 16.0f);
+	
+	//结算结果赋值。
 	if (arms_js_data[3] == 0)//解算没有出问题。
 	{
 		Servo_target_angle = arms_js_data[0];
@@ -392,7 +444,15 @@ void Arm_Ctrl(float target_x, float target_y, float target_angle)
 		DM4340_target_pos_int =  DM4340_angle_to_enc_p_int(61.055054);
 	}
 	
-	Servo_Ctrl_1(Servo_target_angle);
+	//关节舵机电机控制。
+//	Servo_Ctrl_arm(Servo_target_angle);
+//	if (DM_ctrl_cnt == 1000)
+//	{
+//		DM_ctrl_cnt = 0;
+//		DM_PID_Pos_Speed_Ctrl(DM4310_ID, DM4310_target_pos_int);
+//		DM_PID_Pos_Speed_Ctrl(DM4340_ID, DM4340_target_pos_int);		
+//	}
 	DM_PID_Pos_Speed_Ctrl(DM4310_ID, DM4310_target_pos_int);
-	DM_PID_Pos_Speed_Ctrl(DM4340_ID, DM4340_target_pos_int);
+	DM_PID_Pos_Speed_Ctrl(DM4340_ID, DM4340_target_pos_int);		
+
 }
