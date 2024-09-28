@@ -417,7 +417,6 @@ void ramp_function(float *data_follow,float data_target,float k)
 	}
 }
 
-extern int DM_ctrl_cnt;
 
 void Arm_Ctrl(float target_x, float target_y, float target_angle)
 {

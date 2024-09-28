@@ -1,13 +1,31 @@
 #include "Includes.h"
 
-int DM_ctrl_cnt = 0;
+int arm_catch_flag = 0;
 
 void Arm_Task(void const * argument)
 {
+	osDelay(3000); 
 	while(1)
 	{	
+		
 		Arm_Ctrl(target_x,target_y, target_angle);
-//		DM_ctrl_cnt++;
+		
+		if (arm_catch_flag == 0)//机械爪闭合
+		{
+			Servo_Ctrl_claw(0);
+		}		
+		if (arm_catch_flag == 1)//机械爪张开
+		{
+			Servo_Ctrl_claw(1);
+		}
+		if (arm_catch_flag == 2)//机械爪抓取方块
+		{
+			Servo_Ctrl_claw(2);
+		}
+		if (arm_catch_flag == 3)//机械爪抓取甜甜圈
+		{
+			Servo_Ctrl_claw(3);
+		}
 		
 		
 //		DM4310_delta_enc = DM4310_Data.p_int - DM4310_Data.last_p_int;

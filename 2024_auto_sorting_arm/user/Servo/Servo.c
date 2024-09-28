@@ -61,7 +61,7 @@ void Servo_Ctrl_claw(uint8_t ctrl_flag)
 		}
 		case 1:
 		{
-			__HAL_TIM_SET_COMPARE(&htim1,TIM_CHANNEL_2,1000);
+			__HAL_TIM_SET_COMPARE(&htim1,TIM_CHANNEL_2,1200);
 			break;			
 		}
 		case 2:
