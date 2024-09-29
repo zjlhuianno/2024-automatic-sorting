@@ -47,9 +47,10 @@ void Servo_Ctrl_arm(int16_t angle_for_servo_arm)
 
 //控制机械臂夹爪的舵机。
 //ctrl_flag：	0：机械爪闭合，pwm = 1550。
-//						1：机械爪张开，pwm = 1000。
+//						1：机械爪张开，pwm = 1200。
 //						2：机械爪抓取方块，pwm = 1500。
 //						3：机械爪抓取甜甜圈，pwm = 1450。或1400。
+//						4：机械爪拨球，pwm = 1000。
 void Servo_Ctrl_claw(uint8_t ctrl_flag)
 {
 	switch (ctrl_flag)
@@ -73,7 +74,12 @@ void Servo_Ctrl_claw(uint8_t ctrl_flag)
 		{
 			__HAL_TIM_SET_COMPARE(&htim1,TIM_CHANNEL_2,1450);
 			break;			
-		}				
+		}	
+		case 4:
+		{
+			__HAL_TIM_SET_COMPARE(&htim1,TIM_CHANNEL_2,1000);
+			break;			
+		}		
 		default:
 			break;
 	}

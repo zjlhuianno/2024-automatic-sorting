@@ -26,7 +26,10 @@ void Arm_Task(void const * argument)
 		{
 			Servo_Ctrl_claw(3);
 		}
-		
+		if (arm_catch_flag == 4)//»úÐµ×¦²¦Çò
+		{
+			Servo_Ctrl_claw(4);
+		}		
 		
 //		DM4310_delta_enc = DM4310_Data.p_int - DM4310_Data.last_p_int;
 //		last_DM4310_delta_enc = DM4310_delta_enc;

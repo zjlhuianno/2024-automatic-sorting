@@ -7,6 +7,7 @@
 
 int i = 0;
 int ii = 0;
+int iii = 0;//用于控制爪的频率。
 
 extern int arm_catch_flag;
 void Total_Task(void const * argument)
@@ -15,11 +16,13 @@ void Total_Task(void const * argument)
 	osDelay(1500); 
 	while(1)
 	{
-//			target_x = 10.0f;
-//			target_y = 30.5f;
-//			target_angle = 40;
-//			Servo_Ctrl_arm(40.0f);
-//			arm_catch_flag=1;
+//			target_x = 44.0f;
+//			target_y = 21.5f;
+//			target_angle = 23.300053;
+//			Servo_Ctrl_arm(10.0f);
+//			arm_catch_flag=0;
+		
+		Servo_Ctrl_arm(0.0f);
 		
 		
 		//catch_object(0);
@@ -167,6 +170,7 @@ void Total_Task(void const * argument)
 		
 		
 		//高平台抓放甜甜圈。
+		/*
 		if (i == 0)//机械臂伸到高缓冲处，爪闭合。
 		{
 			target_x = 38.0f;
@@ -257,9 +261,167 @@ void Total_Task(void const * argument)
 			osDelay(2000);
 			arm_catch_flag=1;			
 		}		
+		*/
 		
 		
-
+		//立桩抓放球。
+		/*
+		if (i == 0)//机械臂伸到高缓冲处，爪闭合。
+		{
+			target_x = 38.0f;
+			target_y = 30.0f;
+			target_angle = 30;
+			Servo_Ctrl_arm(5.0f);
+			osDelay(1000);
+			arm_catch_flag=0;//爪闭合。
+			
+			if (abs(arms_js_data[1] == DM4310_enc_p_int_to_angle(DM4310_Data.p_int)) < 0.1 && abs(arms_js_data[2] == DM4340_enc_p_int_to_angle(DM4340_Data.p_int)) < 0.1)
+			{
+				ii++;
+				if (ii == 10)
+				{
+					i = 1;
+					ii=0;
+				}
+			}
+			
+		}
+		
+		else if (i == 1)//机械臂伸到立桩，识别openmv。
+		{
+			target_x = 40.0f;
+			target_y = 21.5f;
+			target_angle = 20;
+			Servo_Ctrl_arm(10.0f);
+			osDelay(1500);
+			arm_catch_flag=3;//爪取球。
+			if (abs(arms_js_data[1] == DM4310_enc_p_int_to_angle(DM4310_Data.p_int)) < 0.1 && abs(arms_js_data[2] == DM4340_enc_p_int_to_angle(DM4340_Data.p_int)) < 0.1)
+			{
+				ii++;
+				if (ii == 10)
+				{
+					i = 2;
+					ii=0;
+				}
+			}		
+			
+		}		
+		
+		else if (i == 1)//机械臂伸到高平台，爪取球。
+		{
+			arm_catch_flag=1;//爪张开。
+			
+			target_x = 40.0f;
+			target_y = 21.5f;
+			target_angle = 20;
+			Servo_Ctrl_arm(10.0f);
+			osDelay(1500);
+			arm_catch_flag=3;//爪取球。
+			if (abs(arms_js_data[1] == DM4310_enc_p_int_to_angle(DM4310_Data.p_int)) < 0.1 && abs(arms_js_data[2] == DM4340_enc_p_int_to_angle(DM4340_Data.p_int)) < 0.1)
+			{
+				ii++;
+				if (ii == 10)
+				{
+					i = 2;
+					ii=0;
+				}
+			}		
+			
+		}
+		
+		else if (i==2)//机械臂伸到低缓冲区，爪放球。
+		{
+			target_x = 10.0f;
+			target_y = 30.5f;
+			target_angle = 40;
+			Servo_Ctrl_arm(40.0f);
+			osDelay(1000);
+			arm_catch_flag=1;//爪放球。
+			if (abs(arms_js_data[1] == DM4310_enc_p_int_to_angle(DM4310_Data.p_int)) < 0.2 && abs(arms_js_data[2] == DM4340_enc_p_int_to_angle(DM4340_Data.p_int)) < 0.2)
+			{
+				ii++;
+				if (ii == 5)
+				{
+					i = 3;
+					ii=0;
+				}
+			}		
+						
+		}		
+		*/
+		
+		
+		//圆盘机拨球。
+		/*
+		if (i == 0)//机械臂伸到高缓冲处，爪闭合。
+		{
+			target_x = 38.0f;
+			target_y = 30.0f;
+			target_angle = 30;
+			Servo_Ctrl_arm(5.0f);
+			osDelay(1000);
+			arm_catch_flag=0;//爪闭合。
+			
+			if (abs(arms_js_data[1] == DM4310_enc_p_int_to_angle(DM4310_Data.p_int)) < 0.1 && abs(arms_js_data[2] == DM4340_enc_p_int_to_angle(DM4340_Data.p_int)) < 0.1)
+			{
+				ii++;
+				if (ii == 10)
+				{
+					i = 1;
+					ii=0;
+				}
+			}
+			
+		}
+		else if (i == 1)//机械臂伸到圆盘机，爪拨球。
+		{
+			iii++;
+			target_x = 41.0f;
+			target_y = 21.5f;
+			target_angle = 20;
+			Servo_Ctrl_arm(0.0f);
+			osDelay(500);
+			
+			if (iii %= 1500)
+			{
+				arm_catch_flag=4;//爪拨球。
+				osDelay(500);
+				arm_catch_flag=0;//爪闭合。
+				
+				iii=0;
+			}			
+			if (abs(arms_js_data[1] == DM4310_enc_p_int_to_angle(DM4310_Data.p_int)) < 0.1 && abs(arms_js_data[2] == DM4340_enc_p_int_to_angle(DM4340_Data.p_int)) < 0.1)
+			{
+				ii++;
+				if (ii == 3000)
+				{
+					i = 2;
+					ii=0;
+				}
+			}		
+			
+		}
+		
+		else if (i==2)//机械臂缩到低缓冲区，结束拨球。
+		{
+			target_x = 10.0f;
+			target_y = 30.5f;
+			target_angle = 40;
+			Servo_Ctrl_arm(40.0f);
+			osDelay(1000);
+			arm_catch_flag=0;//爪闭合。
+			if (abs(arms_js_data[1] == DM4310_enc_p_int_to_angle(DM4310_Data.p_int)) < 0.2 && abs(arms_js_data[2] == DM4340_enc_p_int_to_angle(DM4340_Data.p_int)) < 0.2)
+			{
+				ii++;
+				if (ii == 5)
+				{
+					i = 3;
+					ii=0;
+				}
+			}		
+						
+		}		
+		*/
 		
 		//舵机位置标定。
 //		Servo_Ctrl_claw(2);
