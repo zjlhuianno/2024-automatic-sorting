@@ -15,7 +15,7 @@
 	//位置环PD控制。
 	float DM4340_pos_kp=0.06f;//22.0f//0.00025f
 	float DM4340_pos_ki=0.0f;
-	float DM4340_pos_kd=0.055f;//1500.0f//0.049f
+	float DM4340_pos_kd=0.20f;//1500.0f//0.049f//最新0.09
 	float DM4340_pos_max_out=28.0f;
 	float DM4340_pos_max_iout=28.0f;
 	float DM4340_pos_PID[3];
@@ -34,7 +34,7 @@
 	//位置环PD控制。
 	float DM4310_pos_kp=0.0045f;
 	float DM4310_pos_ki=0.0f;
-	float DM4310_pos_kd=2.0f;
+	float DM4310_pos_kd=3.05f;//最新3.05
 	float DM4310_pos_max_out=35.0f;
 	float DM4310_pos_max_iout=35.0f;
 	float DM4310_pos_PID[3];
