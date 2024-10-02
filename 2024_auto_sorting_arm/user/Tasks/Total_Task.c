@@ -9,6 +9,8 @@ int i = 0;
 int ii = 0;
 int iii = 0;//用于控制爪的频率。
 
+int flag_mode = 0;
+
 extern int arm_catch_flag;
 void Total_Task(void const * argument)
 {
@@ -25,79 +27,247 @@ void Total_Task(void const * argument)
 		
 		
 		//catch_object(0);
-		
-		//低平台抓放方块。
-		
-		if (i == 0)//机械臂伸到高缓冲处，爪张开。
+		if (flag_mode == 1)
 		{
-			target_x = 38.0f;
-			target_y = 30.0f;
-			target_angle = 30.0f;
-			Servo_Ctrl_arm(5);
-			osDelay(1000); 
+			//低平台抓放方块。
 			
-			
-			if (abs(arms_js_data[1] == DM4310_enc_p_int_to_angle(DM4310_Data.p_int)) < 0.1 && abs(arms_js_data[2] == DM4340_enc_p_int_to_angle(DM4340_Data.p_int)) < 0.1)
+			if (i == 0)//机械臂伸到高缓冲处，爪张开。
 			{
-				ii++;
-				if (ii == 10)
+				target_x = 38.0f;
+				target_y = 30.0f;
+				target_angle = 30.0f;
+				Servo_Ctrl_arm(5);
+				osDelay(1000); 
+				
+				
+				if (abs(arms_js_data[1] == DM4310_enc_p_int_to_angle(DM4310_Data.p_int)) < 0.1 && abs(arms_js_data[2] == DM4340_enc_p_int_to_angle(DM4340_Data.p_int)) < 0.1)
 				{
-					arm_catch_flag=1;//爪张开。
-					i = 1;
-					ii=0;
+					ii++;
+					if (ii == 10)
+					{
+						arm_catch_flag=1;//爪张开。
+						i = 1;
+						ii=0;
+					}
 				}
+				
+			}
+			else if (i == 1)//机械臂伸到低平台，爪取方块。
+			{
+				target_x = 38.0f;
+				target_y = 6.0f;
+				target_angle = 40;
+				Servo_Ctrl_arm(5.0f);
+				osDelay(1000);
+				
+				if (abs(arms_js_data[1] == DM4310_enc_p_int_to_angle(DM4310_Data.p_int)) < 0.1 && abs(arms_js_data[2] == DM4340_enc_p_int_to_angle(DM4340_Data.p_int)) < 0.1)
+				{
+					ii++;
+					if (ii == 3)
+					{
+						arm_catch_flag=2;//爪取方块。
+						i = 2;
+						ii=0;
+					}
+				}		
+				
+			}
+			else if (i==2)//机械臂伸到低平台的较高处，爪仍保持抓方块的姿态，为的是防止爪放方块时方块会搓到阶梯平台。
+			{
+				target_x = 43.0f;
+				target_y = 18.9f;
+				target_angle = 40;
+				Servo_Ctrl_arm(10.0f);
+				osDelay(1000);
+				
+				if (abs(arms_js_data[1] == DM4310_enc_p_int_to_angle(DM4310_Data.p_int)) < 0.1 && abs(arms_js_data[2] == DM4340_enc_p_int_to_angle(DM4340_Data.p_int)) < 0.1)
+				{
+					ii++;
+					if (ii == 3)
+					{
+						arm_catch_flag=2;//爪取方块。
+						i = 3;
+						ii=0;
+					}
+				}		
+							
 			}
 			
-		}
-		else if (i == 1)//机械臂伸到低平台，爪取方块。
-		{
-			target_x = 38.0f;
-			target_y = 6.0f;
-			target_angle = 40;
-			Servo_Ctrl_arm(5.0f);
-			osDelay(1000);
-			
-			if (abs(arms_js_data[1] == DM4310_enc_p_int_to_angle(DM4310_Data.p_int)) < 0.1 && abs(arms_js_data[2] == DM4340_enc_p_int_to_angle(DM4340_Data.p_int)) < 0.1)
+			else if (i==3)//机械臂缩到方块仓库的上方，爪放方块。
 			{
-				ii++;
-				if (ii == 3)
+				target_x = 20.0f;
+				target_y = 25.5f;
+				target_angle = 40;
+				Servo_Ctrl_arm(5);
+				osDelay(2000);
+				arm_catch_flag=1;
+				i=0;flag_mode =0;
+			}			
+		}
+
+		else if (flag_mode == 2)
+		{
+					//立桩抓放球。
+			
+			if (i == 0)//机械臂伸到高缓冲处，爪闭合。
+			{
+				target_x = 38.0f;
+				target_y = 30.0f;
+				target_angle = 30;
+				Servo_Ctrl_arm(5.0f);
+				osDelay(1000);
+				
+				
+				if (abs(arms_js_data[1] == DM4310_enc_p_int_to_angle(DM4310_Data.p_int)) < 0.1 && abs(arms_js_data[2] == DM4340_enc_p_int_to_angle(DM4340_Data.p_int)) < 0.1)
 				{
-					arm_catch_flag=2;//爪取方块。
-					i = 2;
-					ii=0;
+					ii++;
+					if (ii == 10)
+					{
+						arm_catch_flag=0;//爪闭合。
+						i = 1;
+						ii=0;
+					}
 				}
+				
+			}
+			
+			else if (i == 1)//机械臂伸到立桩，识别openmv。
+			{
+				target_x = 42.0f;
+				target_y = 21.5f;
+				target_angle = 10;
+				Servo_Ctrl_arm(20.0f);
+				
+				if (abs(arms_js_data[1] == DM4310_enc_p_int_to_angle(DM4310_Data.p_int)) < 0.1 && abs(arms_js_data[2] == DM4340_enc_p_int_to_angle(DM4340_Data.p_int)) < 0.1)
+				{
+					ii++;
+					if (ii == 10)
+					{
+						arm_catch_flag=0;//爪闭合。
+						i = 2;
+						ii=0;
+					}
+				}		
+				
 			}		
 			
-		}
-		else if (i==2)//机械臂伸到低平台的较高处，爪仍保持抓方块的姿态，为的是防止爪放方块时方块会搓到阶梯平台。
-		{
-			target_x = 43.0f;
-			target_y = 18.9f;
-			target_angle = 40;
-			Servo_Ctrl_arm(10.0f);
-			osDelay(1000);
-			
-			if (abs(arms_js_data[1] == DM4310_enc_p_int_to_angle(DM4310_Data.p_int)) < 0.1 && abs(arms_js_data[2] == DM4340_enc_p_int_to_angle(DM4340_Data.p_int)) < 0.1)
+			else if (i == 2)//机械臂伸到高平台，爪取球。
 			{
-				ii++;
-				if (ii == 3)
+				arm_catch_flag=1;//爪张开。
+				
+				target_x = 40.0f;
+				target_y = 21.5f;
+				target_angle = 20;
+				Servo_Ctrl_arm(10.0f);
+				osDelay(1500);
+				
+				if (abs(arms_js_data[1] == DM4310_enc_p_int_to_angle(DM4310_Data.p_int)) < 0.1 && abs(arms_js_data[2] == DM4340_enc_p_int_to_angle(DM4340_Data.p_int)) < 0.1)
 				{
-					arm_catch_flag=2;//爪取方块。
-					i = 3;
-					ii=0;
-				}
-			}		
-						
+					ii++;
+					if (ii == 10)
+					{
+						arm_catch_flag=3;//爪取球。
+						i = 3;
+						ii=0;
+					}
+				}		
+				
+			}
+			
+			else if (i==3)//机械臂伸到低缓冲区，爪放球。
+			{
+				target_x = 10.0f;
+				target_y = 30.5f;
+				target_angle = 40;
+				Servo_Ctrl_arm(40.0f);
+				osDelay(2000);
+				
+				if (abs(arms_js_data[1] == DM4310_enc_p_int_to_angle(DM4310_Data.p_int)) < 0.2 && abs(arms_js_data[2] == DM4340_enc_p_int_to_angle(DM4340_Data.p_int)) < 0.2)
+				{
+					ii++;
+					if (ii == 2)
+					{
+						arm_catch_flag=1;//爪放球。
+						i = 0;
+						ii=0;flag_mode =0;	
+					}
+				}		
+							
+			}				
 		}
-		
-		else if (i==3)//机械臂缩到方块仓库的上方，爪放方块。
+
+		else if (flag_mode == 3)
 		{
-			target_x = 20.0f;
-			target_y = 25.5f;
-			target_angle = 40;
-			Servo_Ctrl_arm(5);
-			osDelay(2000);
-			arm_catch_flag=1;			
+			//圆盘机拨球。
+			
+			if (i == 0)//机械臂伸到圆盘机特定的高缓冲处，爪闭合。
+			{
+				target_x = 38.0f;
+				target_y = 28.5f;
+				target_angle = 20;
+				Servo_Ctrl_arm(10.0f);
+				osDelay(1000);
+				arm_catch_flag=0;//爪闭合。
+				
+				if (abs(arms_js_data[1] == DM4310_enc_p_int_to_angle(DM4310_Data.p_int)) < 0.1 && abs(arms_js_data[2] == DM4340_enc_p_int_to_angle(DM4340_Data.p_int)) < 0.1)
+				{
+					ii++;
+					if (ii == 10)
+					{
+						i = 1;
+						ii=0;
+					}
+				}
+				
+			}
+			else if (i == 1)//机械臂伸到圆盘机，爪拨球。
+			{
+				iii++;
+				target_x = 41.0f;
+				target_y = 21.5f;
+				target_angle = 20;
+				Servo_Ctrl_arm(10.0f);
+				osDelay(500);
+				
+				if (iii %= 1500)
+				{
+					arm_catch_flag=4;//爪拨球。
+					osDelay(500);
+					arm_catch_flag=0;//爪闭合。
+					
+					iii=0;
+				}			
+				if (abs(arms_js_data[1] == DM4310_enc_p_int_to_angle(DM4310_Data.p_int)) < 0.1 && abs(arms_js_data[2] == DM4340_enc_p_int_to_angle(DM4340_Data.p_int)) < 0.1)
+				{
+					ii++;
+					if (ii == 20)
+					{
+						i = 2;
+						ii=0;
+					}
+				}		
+				
+			}
+			
+			else if (i==2)//机械臂缩到低缓冲区，结束拨球。
+			{
+				target_x = 10.0f;
+				target_y = 30.5f;
+				target_angle = 40;
+				Servo_Ctrl_arm(40.0f);
+				osDelay(1000);
+				arm_catch_flag=0;//爪闭合。
+				if (abs(arms_js_data[1] == DM4310_enc_p_int_to_angle(DM4310_Data.p_int)) < 0.2 && abs(arms_js_data[2] == DM4340_enc_p_int_to_angle(DM4340_Data.p_int)) < 0.2)
+				{
+					ii++;
+					if (ii == 5)
+					{
+						i = 3;
+						ii=0;flag_mode =0;
+					}
+				}					
+							
+			}		
 		}
 		
 		
@@ -354,77 +524,10 @@ void Total_Task(void const * argument)
 		*/
 		
 		
-		//圆盘机拨球。
-		/*
-		if (i == 0)//机械臂伸到圆盘机特定的高缓冲处，爪闭合。
-		{
-			target_x = 38.0f;
-			target_y = 28.5f;
-			target_angle = 20;
-			Servo_Ctrl_arm(10.0f);
-			osDelay(1000);
-			arm_catch_flag=0;//爪闭合。
-			
-			if (abs(arms_js_data[1] == DM4310_enc_p_int_to_angle(DM4310_Data.p_int)) < 0.1 && abs(arms_js_data[2] == DM4340_enc_p_int_to_angle(DM4340_Data.p_int)) < 0.1)
-			{
-				ii++;
-				if (ii == 10)
-				{
-					i = 1;
-					ii=0;
-				}
-			}
-			
-		}
-		else if (i == 1)//机械臂伸到圆盘机，爪拨球。
-		{
-			iii++;
-			target_x = 41.0f;
-			target_y = 21.5f;
-			target_angle = 20;
-			Servo_Ctrl_arm(10.0f);
-			osDelay(500);
-			
-			if (iii %= 1500)
-			{
-				arm_catch_flag=4;//爪拨球。
-				osDelay(500);
-				arm_catch_flag=0;//爪闭合。
-				
-				iii=0;
-			}			
-			if (abs(arms_js_data[1] == DM4310_enc_p_int_to_angle(DM4310_Data.p_int)) < 0.1 && abs(arms_js_data[2] == DM4340_enc_p_int_to_angle(DM4340_Data.p_int)) < 0.1)
-			{
-				ii++;
-				if (ii == 20)
-				{
-					i = 2;
-					ii=0;
-				}
-			}		
-			
-		}
+
+
+
 		
-		else if (i==2)//机械臂缩到低缓冲区，结束拨球。
-		{
-			target_x = 10.0f;
-			target_y = 30.5f;
-			target_angle = 40;
-			Servo_Ctrl_arm(40.0f);
-			osDelay(1000);
-			arm_catch_flag=0;//爪闭合。
-			if (abs(arms_js_data[1] == DM4310_enc_p_int_to_angle(DM4310_Data.p_int)) < 0.2 && abs(arms_js_data[2] == DM4340_enc_p_int_to_angle(DM4340_Data.p_int)) < 0.2)
-			{
-				ii++;
-				if (ii == 5)
-				{
-					i = 3;
-					ii=0;
-				}
-			}		
-						
-		}		
-		*/
 		
 		
 		//舵机位置标定。

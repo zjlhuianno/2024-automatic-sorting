@@ -1,5 +1,6 @@
 赵俊霖的代码。
 
+机械臂代码：
 V0.0.1
 增加了斜坡函数，力馈感应。
 
@@ -13,3 +14,6 @@ V0.0.4
 1.优化了DM电机的PID参数。
 2.把arm_catch_flag的赋值放在了if (abs(arms_js_data[1] == DM4310_enc_p_int_to_angle(DM4310_Data.p_int)) < 0.1 && abs(arms_js_data[2] == DM4340_enc_p_int_to_angle(DM4340_Data.p_int)) < 0.1)内，保证机械臂动作到位以后爪再执行动作。
 3.优化了除甜甜圈外的其他抓取动作，使其变得更丝滑和稳定。
+
+V0.0.5
+没有什么更新的内容，实时保存最新的修改。
