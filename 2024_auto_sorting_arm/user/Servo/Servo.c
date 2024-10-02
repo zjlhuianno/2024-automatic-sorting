@@ -114,14 +114,23 @@ void Servo_Ctrl_3(uint8_t ctrl_flag)
 }
 
 //控制仓库上方进口的舵机。
-//ctrl_flag：	0：接球，pwm = 1500。
-//						1：接方块，pwm = 1500。
+//ctrl_flag：	0：接球，pwm = 650。
+//						1：接方块，pwm = 1200。
 void Servo_Ctrl_4(uint8_t ctrl_flag)
 {
 	switch (ctrl_flag)
 	{
 		case 0:
+		{
+			__HAL_TIM_SET_COMPARE(&htim1, TIM_CHANNEL_4, 650);
 			break;
+		}
+		case 1:
+		{
+			__HAL_TIM_SET_COMPARE(&htim1, TIM_CHANNEL_4, 1200);
+			break;
+		}		
+			
 		default:
 			break;		
 	}
@@ -136,12 +145,12 @@ void Servo_Ctrl_5(uint8_t ctrl_flag)
 	{
 		case 0:
 		{
-			__HAL_TIM_SET_COMPARE(&htim8, TIM_CHANNEL_1, 1800);
+			__HAL_TIM_SET_COMPARE(&htim8, TIM_CHANNEL_1, 2500);//失败。
 			break;
 		}
 		case 1:
 		{
-			__HAL_TIM_SET_COMPARE(&htim8, TIM_CHANNEL_1, 1100);
+			__HAL_TIM_SET_COMPARE(&htim8, TIM_CHANNEL_1, 2200);
 			break;
 		}
 		default:

@@ -10,23 +10,23 @@ void Arm_Task(void const * argument)
 		
 		Arm_Ctrl(target_x,target_y, target_angle);
 		
-		if (arm_catch_flag == 0)//机械爪闭合
+		if (arm_catch_flag == 0)//机械爪闭合。
 		{
 			Servo_Ctrl_claw(0);
 		}		
-		if (arm_catch_flag == 1)//机械爪张开
+		if (arm_catch_flag == 1)//机械爪张开。
 		{
 			Servo_Ctrl_claw(1);
 		}
-		if (arm_catch_flag == 2)//机械爪抓取方块
+		if (arm_catch_flag == 2)//机械爪抓取方块。
 		{
 			Servo_Ctrl_claw(2);
 		}
-		if (arm_catch_flag == 3)//机械爪抓取甜甜圈
+		if (arm_catch_flag == 3)//机械爪抓取甜甜圈。
 		{
 			Servo_Ctrl_claw(3);
 		}
-		if (arm_catch_flag == 4)//机械爪拨球
+		if (arm_catch_flag == 4)//机械爪拨球。
 		{
 			Servo_Ctrl_claw(4);
 		}		
