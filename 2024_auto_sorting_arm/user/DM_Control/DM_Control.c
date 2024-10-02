@@ -48,7 +48,7 @@ int DM4310_angle_to_enc_p_int(float angle)
 float DM4310_enc_p_int_to_angle(int enc)
 {
 	float angle = ((float)enc*360.0f)/DM4310_MAX_P_INT;
-	//return 360 - angle;
+	//return 360 - angle;//因为4310需要反转。
 	return angle;
 }
 
@@ -319,7 +319,7 @@ void HAL_CAN_RxFifo0MsgPendingCallback(CAN_HandleTypeDef *hcan)
 					Get_DM4310_Data(&DM4310_Data, Rx_Data);
 					break;			
 				}	
-				default://如果err位出错，即电机初始化有问题，则重新初始化电机。
+				default://如果err位出错，即电机初始化有问题，则失能电机。
 				{
 					Disable_DM_Motor(&hcan2,DM4340_ID);
 					Disable_DM_Motor(&hcan2,DM4310_ID);
@@ -335,9 +335,11 @@ void Get_DM4340_Data(DM_Motor_t *DM4340_Data, uint8_t* Rx_Data)
 {
 	DM4340_Data->state = (Rx_Data[0] & 0x10) >> 4;
 	
-	DM4340_Data->p_int=(Rx_Data[1]<<8 | Rx_Data[2])-DM4340_ZERO_POS_OFFSET;//减去一个偏置。
+	DM4340_Data->p_int=(Rx_Data[1]<<8 | Rx_Data[2]);
 	DM4340_Data->v_int=(Rx_Data[3]<<4 | Rx_Data[4]>>4);
 	DM4340_Data->t_int=(((Rx_Data[4]&0xF)<<8)|(Rx_Data[5]));
+	
+	DM4340_Data->p_int-=DM4340_ZERO_POS_OFFSET;//减去一个偏置。
 
 	//数据处理，把p_int限制在0到DM4340_MAX_P_INT之间。
 	if(DM4340_Data->p_int<0)
@@ -366,9 +368,14 @@ void Get_DM4310_Data(DM_Motor_t *DM4310_Data, uint8_t* Rx_Data)
 {
 	DM4310_Data->state = (Rx_Data[0] & 0x10) >> 4;
 	
-	DM4310_Data->p_int=((Rx_Data[1]<<8)|Rx_Data[2])-DM4310_ZERO_POS_OFFSET;//减去一个偏置。
+	DM4310_Data->p_int=((Rx_Data[1]<<8)|Rx_Data[2]);
 	DM4310_Data->v_int=(Rx_Data[3]<<4)|(Rx_Data[4]>>4);
 	DM4310_Data->t_int=((Rx_Data[4]&0xF)<<8)|Rx_Data[5];
+	
+	DM4310_Data->p_int-=DM4310_ZERO_POS_OFFSET;//减去一个偏置。
+	
+	//数据处理，由于4310需要反转，所以要做以下处理。
+	DM4310_Data->p_int=DM4310_MAX_P_INT-DM4310_Data->p_int;
 	
 	//数据处理，把p_int限制在0到DM4310_MAX_P_INT之间。
 	if(DM4310_Data->p_int<0)
@@ -380,7 +387,7 @@ void Get_DM4310_Data(DM_Motor_t *DM4310_Data, uint8_t* Rx_Data)
 		DM4310_Data->p_int%=DM4310_MAX_P_INT;
 	}
 	
-	DM4310_Data->pos = uint_to_float(DM4310_Data->p_int, P_MIN, P_MAX, 16);	
+	DM4310_Data->pos = uint_to_float(DM4310_Data->p_int, P_MIN, P_MAX, 16);
 	DM4310_Data->vel = uint_to_float(DM4310_Data->v_int, V_MIN, V_MAX, 12);
 	DM4310_Data->torq = uint_to_float(DM4310_Data->t_int, T_MIN, T_MAX, 12);
 	
@@ -423,6 +430,7 @@ void DM_PID_Pos_Speed_Ctrl(uint8_t ID, float DM_target_pos_int)
 	{
 																									//零点溢出处理。		
 		DM4310_target_speed=PID_calc(&DM4310_pos_pid,Inferior_arc_treatment(DM4310_Data.p_int, DM_target_pos_int, DM4310_MAX_P_INT),DM_target_pos_int);
+		DM4310_target_speed = -DM4310_target_speed;//因为DM4310要反转。
 		DM4310_Data.target_torq=PID_calc(&DM4310_speed_pid,DM4310_Data.vel,DM4310_target_speed);
 		
 		MIT_Ctrl_DM_Motor(&hcan2,DM4310_ID,0,0,0,0,DM4310_Data.target_torq);		

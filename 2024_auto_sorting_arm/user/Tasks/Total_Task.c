@@ -54,7 +54,7 @@ void catch_object(uint8_t mode)
 //		while(force_sensing_flag)
 //		{
 //			target_y-=0.03f;
-//			if(target_y<130)
+//			if(target_y<5)
 //			{
 //				break;
 //			}
@@ -65,13 +65,14 @@ void catch_object(uint8_t mode)
 //					force_sensing_cnt++;
 //					if(force_sensing_cnt==15)
 //					{
-//						target_y+=10;
+//						target_y+=1;
 //						force_sensing_flag=0;
 //					}
 //				}
 //				else
 //				{
 //					force_sensing_cnt=0;
+
 //				}
 //			}
 //			osDelay(1);			

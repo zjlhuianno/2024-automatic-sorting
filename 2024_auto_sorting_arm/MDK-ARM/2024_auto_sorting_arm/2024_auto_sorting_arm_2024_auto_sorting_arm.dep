@@ -1,7 +1,7 @@
 Dependencies for Project '2024_auto_sorting_arm', Target '2024_auto_sorting_arm': (DO NOT MODIFY !)
 CompilerVersion: 5060960::V5.06 update 7 (build 960)::.\ARMCC
 F (startup_stm32f407xx.s)(0x66FD1A64)(--cpu Cortex-M4.fp.sp -g --apcs=interwork --pd "__MICROLIB SETA 1" -I ../Core/Inc-I.\RTE\_2024_auto_sorting_arm-ID:\keil\ARM\PACK\ARM\CMSIS\6.1.0\CMSIS\Core\Include-ID:\keil\ARM\PACK\Keil\STM32F4xx_DFP\2.17.1\Drivers\CMSIS\Device\ST\STM32F4xx\Include--pd "__UVISION_VERSION SETA 540" --pd "STM32F407xx SETA 1" --pd "_RTE_ SETA 1"--list startup_stm32f407xx.lst --xref -o 2024_auto_sorting_arm\startup_stm32f407xx.o --depend 2024_auto_sorting_arm\startup_stm32f407xx.d)
-F (../Core/Src/main.c)(0x66F5A83D)(--c99 -c --cpu Cortex-M4.fp.sp -D__MICROLIB -g -O0 --apcs=interwork --split_sections -I ../Core/Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I ../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I ../Drivers/CMSIS/Include -I ../Middlewares/Third_Party/FreeRTOS/Source/include -I ../Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS -I ../Middlewares/Third_Party/FreeRTOS/Source/portable/RVDS/ARM_CM4F -I ../user/Tasks -I ../user/Inlcudes -I ../user/configs -I ../user/Bsp -I ../user/DM_Control -I ../user/PID -I ../user/Arm_Posture_Calculate -I ../user/Servo -I ../user/VOFA -I ../user/LED-I.\RTE\_2024_auto_sorting_arm-ID:\keil\ARM\PACK\ARM\CMSIS\6.1.0\CMSIS\Core\Include-ID:\keil\ARM\PACK\Keil\STM32F4xx_DFP\2.17.1\Drivers\CMSIS\Device\ST\STM32F4xx\Include-D__UVISION_VERSION="540" -DSTM32F407xx -D_RTE_ -DUSE_HAL_DRIVER -DSTM32F407xx-o 2024_auto_sorting_arm\main.o --omf_browse 2024_auto_sorting_arm\main.crf --depend 2024_auto_sorting_arm\main.d)
+F (../Core/Src/main.c)(0x66FD5038)(--c99 -c --cpu Cortex-M4.fp.sp -D__MICROLIB -g -O0 --apcs=interwork --split_sections -I ../Core/Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I ../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I ../Drivers/CMSIS/Include -I ../Middlewares/Third_Party/FreeRTOS/Source/include -I ../Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS -I ../Middlewares/Third_Party/FreeRTOS/Source/portable/RVDS/ARM_CM4F -I ../user/Tasks -I ../user/Inlcudes -I ../user/configs -I ../user/Bsp -I ../user/DM_Control -I ../user/PID -I ../user/Arm_Posture_Calculate -I ../user/Servo -I ../user/VOFA -I ../user/LED-I.\RTE\_2024_auto_sorting_arm-ID:\keil\ARM\PACK\ARM\CMSIS\6.1.0\CMSIS\Core\Include-ID:\keil\ARM\PACK\Keil\STM32F4xx_DFP\2.17.1\Drivers\CMSIS\Device\ST\STM32F4xx\Include-D__UVISION_VERSION="540" -DSTM32F407xx -D_RTE_ -DUSE_HAL_DRIVER -DSTM32F407xx-o 2024_auto_sorting_arm\main.o --omf_browse 2024_auto_sorting_arm\main.crf --depend 2024_auto_sorting_arm\main.d)
 I (../Core/Inc/main.h)(0x66FD1A62)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal.h)(0x6611F5D4)
 I (../Core/Inc/stm32f4xx_hal_conf.h)(0x66E6CE85)
@@ -57,7 +57,7 @@ I (D:\keil\ARM\ARMCC\include\math.h)(0x60252378)
 I (D:\keil\ARM\ARMCC\include\stdlib.h)(0x60252374)
 I (../user/configs/configs.h)(0x66F6CF71)
 I (../user/PID/PID.h)(0x66EECDBD)
-I (../user/DM_Control/DM_Control.h)(0x66F6BAE7)
+I (../user/DM_Control/DM_Control.h)(0x66FD5ED0)
 I (../user/Bsp/Bsp_can.h)(0x66CC3D06)
 I (../user/Tasks/Start_Task.h)(0x66CC1AFB)
 I (../user/Tasks/Arm_Task.h)(0x66CC1C77)
@@ -1124,7 +1124,7 @@ I (../Core/Inc/tim.h)(0x66F5A83C)
 I (D:\keil\ARM\ARMCC\include\stdlib.h)(0x60252374)
 I (../user/configs/configs.h)(0x66F6CF71)
 I (../user/PID/PID.h)(0x66EECDBD)
-I (../user/DM_Control/DM_Control.h)(0x66F6BAE7)
+I (../user/DM_Control/DM_Control.h)(0x66FD5ED0)
 I (../user/Bsp/Bsp_can.h)(0x66CC3D06)
 I (../Core/Inc/can.h)(0x66C85430)
 I (../user/Tasks/Start_Task.h)(0x66CC1AFB)
@@ -1139,7 +1139,7 @@ I (D:\keil\ARM\ARMCC\include\stdarg.h)(0x60252376)
 I (../user/LED/bsp_led.h)(0x66F5A94A)
 I (../user/Bsp/bsp_key.h)(0x66FD1E36)
 F (..\user\Tasks\Start_Task.h)(0x66CC1AFB)()
-F (..\user\Tasks\Arm_Task.c)(0x66FD488B)(--c99 -c --cpu Cortex-M4.fp.sp -D__MICROLIB -g -O0 --apcs=interwork --split_sections -I ../Core/Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I ../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I ../Drivers/CMSIS/Include -I ../Middlewares/Third_Party/FreeRTOS/Source/include -I ../Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS -I ../Middlewares/Third_Party/FreeRTOS/Source/portable/RVDS/ARM_CM4F -I ../user/Tasks -I ../user/Inlcudes -I ../user/configs -I ../user/Bsp -I ../user/DM_Control -I ../user/PID -I ../user/Arm_Posture_Calculate -I ../user/Servo -I ../user/VOFA -I ../user/LED-I.\RTE\_2024_auto_sorting_arm-ID:\keil\ARM\PACK\ARM\CMSIS\6.1.0\CMSIS\Core\Include-ID:\keil\ARM\PACK\Keil\STM32F4xx_DFP\2.17.1\Drivers\CMSIS\Device\ST\STM32F4xx\Include-D__UVISION_VERSION="540" -DSTM32F407xx -D_RTE_ -DUSE_HAL_DRIVER -DSTM32F407xx-o 2024_auto_sorting_arm\arm_task.o --omf_browse 2024_auto_sorting_arm\arm_task.crf --depend 2024_auto_sorting_arm\arm_task.d)
+F (..\user\Tasks\Arm_Task.c)(0x66FD6086)(--c99 -c --cpu Cortex-M4.fp.sp -D__MICROLIB -g -O0 --apcs=interwork --split_sections -I ../Core/Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I ../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I ../Drivers/CMSIS/Include -I ../Middlewares/Third_Party/FreeRTOS/Source/include -I ../Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS -I ../Middlewares/Third_Party/FreeRTOS/Source/portable/RVDS/ARM_CM4F -I ../user/Tasks -I ../user/Inlcudes -I ../user/configs -I ../user/Bsp -I ../user/DM_Control -I ../user/PID -I ../user/Arm_Posture_Calculate -I ../user/Servo -I ../user/VOFA -I ../user/LED-I.\RTE\_2024_auto_sorting_arm-ID:\keil\ARM\PACK\ARM\CMSIS\6.1.0\CMSIS\Core\Include-ID:\keil\ARM\PACK\Keil\STM32F4xx_DFP\2.17.1\Drivers\CMSIS\Device\ST\STM32F4xx\Include-D__UVISION_VERSION="540" -DSTM32F407xx -D_RTE_ -DUSE_HAL_DRIVER -DSTM32F407xx-o 2024_auto_sorting_arm\arm_task.o --omf_browse 2024_auto_sorting_arm\arm_task.crf --depend 2024_auto_sorting_arm\arm_task.d)
 I (../user/Inlcudes/Includes.h)(0x66FD1E0B)
 I (../Core/Inc/main.h)(0x66FD1A62)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal.h)(0x6611F5D4)
@@ -1192,7 +1192,7 @@ I (../Core/Inc/tim.h)(0x66F5A83C)
 I (D:\keil\ARM\ARMCC\include\stdlib.h)(0x60252374)
 I (../user/configs/configs.h)(0x66F6CF71)
 I (../user/PID/PID.h)(0x66EECDBD)
-I (../user/DM_Control/DM_Control.h)(0x66F6BAE7)
+I (../user/DM_Control/DM_Control.h)(0x66FD5ED0)
 I (../user/Bsp/Bsp_can.h)(0x66CC3D06)
 I (../Core/Inc/can.h)(0x66C85430)
 I (../user/Tasks/Start_Task.h)(0x66CC1AFB)
@@ -1207,7 +1207,7 @@ I (D:\keil\ARM\ARMCC\include\stdarg.h)(0x60252376)
 I (../user/LED/bsp_led.h)(0x66F5A94A)
 I (../user/Bsp/bsp_key.h)(0x66FD1E36)
 F (..\user\Tasks\Arm_Task.h)(0x66CC1C77)()
-F (..\user\Tasks\Total_Task.c)(0x66FD4A83)(--c99 -c --cpu Cortex-M4.fp.sp -D__MICROLIB -g -O0 --apcs=interwork --split_sections -I ../Core/Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I ../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I ../Drivers/CMSIS/Include -I ../Middlewares/Third_Party/FreeRTOS/Source/include -I ../Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS -I ../Middlewares/Third_Party/FreeRTOS/Source/portable/RVDS/ARM_CM4F -I ../user/Tasks -I ../user/Inlcudes -I ../user/configs -I ../user/Bsp -I ../user/DM_Control -I ../user/PID -I ../user/Arm_Posture_Calculate -I ../user/Servo -I ../user/VOFA -I ../user/LED-I.\RTE\_2024_auto_sorting_arm-ID:\keil\ARM\PACK\ARM\CMSIS\6.1.0\CMSIS\Core\Include-ID:\keil\ARM\PACK\Keil\STM32F4xx_DFP\2.17.1\Drivers\CMSIS\Device\ST\STM32F4xx\Include-D__UVISION_VERSION="540" -DSTM32F407xx -D_RTE_ -DUSE_HAL_DRIVER -DSTM32F407xx-o 2024_auto_sorting_arm\total_task.o --omf_browse 2024_auto_sorting_arm\total_task.crf --depend 2024_auto_sorting_arm\total_task.d)
+F (..\user\Tasks\Total_Task.c)(0x66FD6089)(--c99 -c --cpu Cortex-M4.fp.sp -D__MICROLIB -g -O0 --apcs=interwork --split_sections -I ../Core/Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I ../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I ../Drivers/CMSIS/Include -I ../Middlewares/Third_Party/FreeRTOS/Source/include -I ../Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS -I ../Middlewares/Third_Party/FreeRTOS/Source/portable/RVDS/ARM_CM4F -I ../user/Tasks -I ../user/Inlcudes -I ../user/configs -I ../user/Bsp -I ../user/DM_Control -I ../user/PID -I ../user/Arm_Posture_Calculate -I ../user/Servo -I ../user/VOFA -I ../user/LED-I.\RTE\_2024_auto_sorting_arm-ID:\keil\ARM\PACK\ARM\CMSIS\6.1.0\CMSIS\Core\Include-ID:\keil\ARM\PACK\Keil\STM32F4xx_DFP\2.17.1\Drivers\CMSIS\Device\ST\STM32F4xx\Include-D__UVISION_VERSION="540" -DSTM32F407xx -D_RTE_ -DUSE_HAL_DRIVER -DSTM32F407xx-o 2024_auto_sorting_arm\total_task.o --omf_browse 2024_auto_sorting_arm\total_task.crf --depend 2024_auto_sorting_arm\total_task.d)
 I (../user/Inlcudes/Includes.h)(0x66FD1E0B)
 I (../Core/Inc/main.h)(0x66FD1A62)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal.h)(0x6611F5D4)
@@ -1260,7 +1260,7 @@ I (../Core/Inc/tim.h)(0x66F5A83C)
 I (D:\keil\ARM\ARMCC\include\stdlib.h)(0x60252374)
 I (../user/configs/configs.h)(0x66F6CF71)
 I (../user/PID/PID.h)(0x66EECDBD)
-I (../user/DM_Control/DM_Control.h)(0x66F6BAE7)
+I (../user/DM_Control/DM_Control.h)(0x66FD5ED0)
 I (../user/Bsp/Bsp_can.h)(0x66CC3D06)
 I (../Core/Inc/can.h)(0x66C85430)
 I (../user/Tasks/Start_Task.h)(0x66CC1AFB)
@@ -1329,7 +1329,7 @@ I (../Core/Inc/tim.h)(0x66F5A83C)
 I (D:\keil\ARM\ARMCC\include\stdlib.h)(0x60252374)
 I (../user/configs/configs.h)(0x66F6CF71)
 I (../user/PID/PID.h)(0x66EECDBD)
-I (../user/DM_Control/DM_Control.h)(0x66F6BAE7)
+I (../user/DM_Control/DM_Control.h)(0x66FD5ED0)
 I (../user/Bsp/Bsp_can.h)(0x66CC3D06)
 I (../Core/Inc/can.h)(0x66C85430)
 I (../user/Tasks/Start_Task.h)(0x66CC1AFB)
@@ -1344,7 +1344,7 @@ I (D:\keil\ARM\ARMCC\include\stdarg.h)(0x60252376)
 I (../user/LED/bsp_led.h)(0x66F5A94A)
 I (../user/Bsp/bsp_key.h)(0x66FD1E36)
 F (..\user\configs\configs.h)(0x66F6CF71)()
-F (..\user\Bsp\Bsp_can.c)(0x66E68CDB)(--c99 -c --cpu Cortex-M4.fp.sp -D__MICROLIB -g -O0 --apcs=interwork --split_sections -I ../Core/Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I ../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I ../Drivers/CMSIS/Include -I ../Middlewares/Third_Party/FreeRTOS/Source/include -I ../Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS -I ../Middlewares/Third_Party/FreeRTOS/Source/portable/RVDS/ARM_CM4F -I ../user/Tasks -I ../user/Inlcudes -I ../user/configs -I ../user/Bsp -I ../user/DM_Control -I ../user/PID -I ../user/Arm_Posture_Calculate -I ../user/Servo -I ../user/VOFA -I ../user/LED-I.\RTE\_2024_auto_sorting_arm-ID:\keil\ARM\PACK\ARM\CMSIS\6.1.0\CMSIS\Core\Include-ID:\keil\ARM\PACK\Keil\STM32F4xx_DFP\2.17.1\Drivers\CMSIS\Device\ST\STM32F4xx\Include-D__UVISION_VERSION="540" -DSTM32F407xx -D_RTE_ -DUSE_HAL_DRIVER -DSTM32F407xx-o 2024_auto_sorting_arm\bsp_can.o --omf_browse 2024_auto_sorting_arm\bsp_can.crf --depend 2024_auto_sorting_arm\bsp_can.d)
+F (..\user\Bsp\Bsp_can.c)(0x66FD540B)(--c99 -c --cpu Cortex-M4.fp.sp -D__MICROLIB -g -O0 --apcs=interwork --split_sections -I ../Core/Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I ../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I ../Drivers/CMSIS/Include -I ../Middlewares/Third_Party/FreeRTOS/Source/include -I ../Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS -I ../Middlewares/Third_Party/FreeRTOS/Source/portable/RVDS/ARM_CM4F -I ../user/Tasks -I ../user/Inlcudes -I ../user/configs -I ../user/Bsp -I ../user/DM_Control -I ../user/PID -I ../user/Arm_Posture_Calculate -I ../user/Servo -I ../user/VOFA -I ../user/LED-I.\RTE\_2024_auto_sorting_arm-ID:\keil\ARM\PACK\ARM\CMSIS\6.1.0\CMSIS\Core\Include-ID:\keil\ARM\PACK\Keil\STM32F4xx_DFP\2.17.1\Drivers\CMSIS\Device\ST\STM32F4xx\Include-D__UVISION_VERSION="540" -DSTM32F407xx -D_RTE_ -DUSE_HAL_DRIVER -DSTM32F407xx-o 2024_auto_sorting_arm\bsp_can.o --omf_browse 2024_auto_sorting_arm\bsp_can.crf --depend 2024_auto_sorting_arm\bsp_can.d)
 I (..\user\Bsp\bsp_can.h)(0x66CC3D06)
 I (../Core/Inc/can.h)(0x66C85430)
 I (../Core/Inc/main.h)(0x66FD1A62)
@@ -1429,7 +1429,7 @@ I (../Middlewares/Third_Party/FreeRTOS/Source/include/queue.h)(0x6611F5D5)
 I (../Middlewares/Third_Party/FreeRTOS/Source/include/semphr.h)(0x6611F5D5)
 I (../Middlewares/Third_Party/FreeRTOS/Source/include/event_groups.h)(0x6611F5D5)
 F (..\user\Bsp\bsp_key.h)(0x66FD1E36)()
-F (..\user\DM_Control\DM_Control.c)(0x66FD21DB)(--c99 -c --cpu Cortex-M4.fp.sp -D__MICROLIB -g -O0 --apcs=interwork --split_sections -I ../Core/Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I ../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I ../Drivers/CMSIS/Include -I ../Middlewares/Third_Party/FreeRTOS/Source/include -I ../Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS -I ../Middlewares/Third_Party/FreeRTOS/Source/portable/RVDS/ARM_CM4F -I ../user/Tasks -I ../user/Inlcudes -I ../user/configs -I ../user/Bsp -I ../user/DM_Control -I ../user/PID -I ../user/Arm_Posture_Calculate -I ../user/Servo -I ../user/VOFA -I ../user/LED-I.\RTE\_2024_auto_sorting_arm-ID:\keil\ARM\PACK\ARM\CMSIS\6.1.0\CMSIS\Core\Include-ID:\keil\ARM\PACK\Keil\STM32F4xx_DFP\2.17.1\Drivers\CMSIS\Device\ST\STM32F4xx\Include-D__UVISION_VERSION="540" -DSTM32F407xx -D_RTE_ -DUSE_HAL_DRIVER -DSTM32F407xx-o 2024_auto_sorting_arm\dm_control.o --omf_browse 2024_auto_sorting_arm\dm_control.crf --depend 2024_auto_sorting_arm\dm_control.d)
+F (..\user\DM_Control\DM_Control.c)(0x66FD5B87)(--c99 -c --cpu Cortex-M4.fp.sp -D__MICROLIB -g -O0 --apcs=interwork --split_sections -I ../Core/Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I ../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I ../Drivers/CMSIS/Include -I ../Middlewares/Third_Party/FreeRTOS/Source/include -I ../Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS -I ../Middlewares/Third_Party/FreeRTOS/Source/portable/RVDS/ARM_CM4F -I ../user/Tasks -I ../user/Inlcudes -I ../user/configs -I ../user/Bsp -I ../user/DM_Control -I ../user/PID -I ../user/Arm_Posture_Calculate -I ../user/Servo -I ../user/VOFA -I ../user/LED-I.\RTE\_2024_auto_sorting_arm-ID:\keil\ARM\PACK\ARM\CMSIS\6.1.0\CMSIS\Core\Include-ID:\keil\ARM\PACK\Keil\STM32F4xx_DFP\2.17.1\Drivers\CMSIS\Device\ST\STM32F4xx\Include-D__UVISION_VERSION="540" -DSTM32F407xx -D_RTE_ -DUSE_HAL_DRIVER -DSTM32F407xx-o 2024_auto_sorting_arm\dm_control.o --omf_browse 2024_auto_sorting_arm\dm_control.crf --depend 2024_auto_sorting_arm\dm_control.d)
 I (../user/Inlcudes/Includes.h)(0x66FD1E0B)
 I (../Core/Inc/main.h)(0x66FD1A62)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal.h)(0x6611F5D4)
@@ -1482,7 +1482,7 @@ I (../Core/Inc/tim.h)(0x66F5A83C)
 I (D:\keil\ARM\ARMCC\include\stdlib.h)(0x60252374)
 I (../user/configs/configs.h)(0x66F6CF71)
 I (../user/PID/PID.h)(0x66EECDBD)
-I (../user/DM_Control/DM_Control.h)(0x66F6BAE7)
+I (../user/DM_Control/DM_Control.h)(0x66FD5ED0)
 I (../user/Bsp/Bsp_can.h)(0x66CC3D06)
 I (../Core/Inc/can.h)(0x66C85430)
 I (../user/Tasks/Start_Task.h)(0x66CC1AFB)
@@ -1496,7 +1496,7 @@ I (D:\keil\ARM\ARMCC\include\stdio.h)(0x60252374)
 I (D:\keil\ARM\ARMCC\include\stdarg.h)(0x60252376)
 I (../user/LED/bsp_led.h)(0x66F5A94A)
 I (../user/Bsp/bsp_key.h)(0x66FD1E36)
-F (..\user\DM_Control\DM_Control.h)(0x66F6BAE7)()
+F (..\user\DM_Control\DM_Control.h)(0x66FD5ED0)()
 F (..\user\PID\PID.c)(0x66EEFF74)(--c99 -c --cpu Cortex-M4.fp.sp -D__MICROLIB -g -O0 --apcs=interwork --split_sections -I ../Core/Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I ../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I ../Drivers/CMSIS/Include -I ../Middlewares/Third_Party/FreeRTOS/Source/include -I ../Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS -I ../Middlewares/Third_Party/FreeRTOS/Source/portable/RVDS/ARM_CM4F -I ../user/Tasks -I ../user/Inlcudes -I ../user/configs -I ../user/Bsp -I ../user/DM_Control -I ../user/PID -I ../user/Arm_Posture_Calculate -I ../user/Servo -I ../user/VOFA -I ../user/LED-I.\RTE\_2024_auto_sorting_arm-ID:\keil\ARM\PACK\ARM\CMSIS\6.1.0\CMSIS\Core\Include-ID:\keil\ARM\PACK\Keil\STM32F4xx_DFP\2.17.1\Drivers\CMSIS\Device\ST\STM32F4xx\Include-D__UVISION_VERSION="540" -DSTM32F407xx -D_RTE_ -DUSE_HAL_DRIVER -DSTM32F407xx-o 2024_auto_sorting_arm\pid.o --omf_browse 2024_auto_sorting_arm\pid.crf --depend 2024_auto_sorting_arm\pid.d)
 I (../Core/Inc/main.h)(0x66FD1A62)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal.h)(0x6611F5D4)
@@ -1533,7 +1533,7 @@ I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_uart.h)(0x6611F5D4)
 I (..\user\PID\PID.h)(0x66EECDBD)
 I (D:\keil\ARM\ARMCC\include\math.h)(0x60252378)
 F (..\user\PID\PID.h)(0x66EECDBD)()
-F (..\user\Arm_Posture_Calculate\Arm_Posture_Calculate.c)(0x66FD132E)(--c99 -c --cpu Cortex-M4.fp.sp -D__MICROLIB -g -O0 --apcs=interwork --split_sections -I ../Core/Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I ../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I ../Drivers/CMSIS/Include -I ../Middlewares/Third_Party/FreeRTOS/Source/include -I ../Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS -I ../Middlewares/Third_Party/FreeRTOS/Source/portable/RVDS/ARM_CM4F -I ../user/Tasks -I ../user/Inlcudes -I ../user/configs -I ../user/Bsp -I ../user/DM_Control -I ../user/PID -I ../user/Arm_Posture_Calculate -I ../user/Servo -I ../user/VOFA -I ../user/LED-I.\RTE\_2024_auto_sorting_arm-ID:\keil\ARM\PACK\ARM\CMSIS\6.1.0\CMSIS\Core\Include-ID:\keil\ARM\PACK\Keil\STM32F4xx_DFP\2.17.1\Drivers\CMSIS\Device\ST\STM32F4xx\Include-D__UVISION_VERSION="540" -DSTM32F407xx -D_RTE_ -DUSE_HAL_DRIVER -DSTM32F407xx-o 2024_auto_sorting_arm\arm_posture_calculate.o --omf_browse 2024_auto_sorting_arm\arm_posture_calculate.crf --depend 2024_auto_sorting_arm\arm_posture_calculate.d)
+F (..\user\Arm_Posture_Calculate\Arm_Posture_Calculate.c)(0x66FD6066)(--c99 -c --cpu Cortex-M4.fp.sp -D__MICROLIB -g -O0 --apcs=interwork --split_sections -I ../Core/Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I ../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I ../Drivers/CMSIS/Include -I ../Middlewares/Third_Party/FreeRTOS/Source/include -I ../Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS -I ../Middlewares/Third_Party/FreeRTOS/Source/portable/RVDS/ARM_CM4F -I ../user/Tasks -I ../user/Inlcudes -I ../user/configs -I ../user/Bsp -I ../user/DM_Control -I ../user/PID -I ../user/Arm_Posture_Calculate -I ../user/Servo -I ../user/VOFA -I ../user/LED-I.\RTE\_2024_auto_sorting_arm-ID:\keil\ARM\PACK\ARM\CMSIS\6.1.0\CMSIS\Core\Include-ID:\keil\ARM\PACK\Keil\STM32F4xx_DFP\2.17.1\Drivers\CMSIS\Device\ST\STM32F4xx\Include-D__UVISION_VERSION="540" -DSTM32F407xx -D_RTE_ -DUSE_HAL_DRIVER -DSTM32F407xx-o 2024_auto_sorting_arm\arm_posture_calculate.o --omf_browse 2024_auto_sorting_arm\arm_posture_calculate.crf --depend 2024_auto_sorting_arm\arm_posture_calculate.d)
 I (../user/Inlcudes/Includes.h)(0x66FD1E0B)
 I (../Core/Inc/main.h)(0x66FD1A62)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal.h)(0x6611F5D4)
@@ -1586,7 +1586,7 @@ I (../Core/Inc/tim.h)(0x66F5A83C)
 I (D:\keil\ARM\ARMCC\include\stdlib.h)(0x60252374)
 I (../user/configs/configs.h)(0x66F6CF71)
 I (../user/PID/PID.h)(0x66EECDBD)
-I (../user/DM_Control/DM_Control.h)(0x66F6BAE7)
+I (../user/DM_Control/DM_Control.h)(0x66FD5ED0)
 I (../user/Bsp/Bsp_can.h)(0x66CC3D06)
 I (../Core/Inc/can.h)(0x66C85430)
 I (../user/Tasks/Start_Task.h)(0x66CC1AFB)
@@ -1654,7 +1654,7 @@ I (../Core/Inc/tim.h)(0x66F5A83C)
 I (D:\keil\ARM\ARMCC\include\stdlib.h)(0x60252374)
 I (../user/configs/configs.h)(0x66F6CF71)
 I (../user/PID/PID.h)(0x66EECDBD)
-I (../user/DM_Control/DM_Control.h)(0x66F6BAE7)
+I (../user/DM_Control/DM_Control.h)(0x66FD5ED0)
 I (../user/Bsp/Bsp_can.h)(0x66CC3D06)
 I (../Core/Inc/can.h)(0x66C85430)
 I (../user/Tasks/Start_Task.h)(0x66CC1AFB)

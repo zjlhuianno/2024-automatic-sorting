@@ -20,7 +20,7 @@
 #define DM4310_MAX_P_INT 	16383	//DM4340编码器转过一圈以后的最大编码值。//16383//32767
 
 #define DM4340_ZERO_POS_OFFSET		2850	//DM4340的编码器值p_int的零位置偏置，每次拆开后重装须更改。
-#define DM4310_ZERO_POS_OFFSET		991	//DM4310的编码器值p_int的零位置偏置，每次拆开后重装须更改。
+#define DM4310_ZERO_POS_OFFSET		2947-5894-192+16	//DM4310的编码器值p_int的零位置偏置，每次拆开后重装须更改。
 
 //电机结构体
 typedef struct

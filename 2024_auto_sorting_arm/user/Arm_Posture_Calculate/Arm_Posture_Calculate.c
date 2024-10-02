@@ -101,8 +101,8 @@ void arms_js(float* data_ref,float x1,float y1,float alphas,float l1,float l2,fl
 	alpha3= rtod(alpha3);
 	
 	real_alpha1 = alpha1;//机械臂舵机转过的角度。
-	real_alpha2 = 33.0f+90+(180-alpha2);//DM4310转过的角度。
-	real_alpha3 = 55.0f+180-alpha3;//DM4340转过的角度。
+	real_alpha2 = alpha2-(180.0f-137.9f);//DM4310转过的角度。
+	real_alpha3 = 55.0f+180.0f-alpha3;//DM4340转过的角度。
 	
 	//角度限制。
 	if(real_alpha1>100)
