@@ -1,0 +1,16 @@
+automated_sorting_robot_2024\interpolationfunctionsf16.o: D:/KeilMDK/ARM/PACK/ARM/CMSIS-DSP/1.15.0/Source/InterpolationFunctions/InterpolationFunctionsF16.c
+automated_sorting_robot_2024\interpolationfunctionsf16.o: D:/KeilMDK/ARM/PACK/ARM/CMSIS-DSP/1.15.0/Source/InterpolationFunctions/arm_bilinear_interp_f16.c
+automated_sorting_robot_2024\interpolationfunctionsf16.o: D:\KeilMDK\ARM\PACK\ARM\CMSIS-DSP\1.15.0\Include\dsp/interpolation_functions_f16.h
+automated_sorting_robot_2024\interpolationfunctionsf16.o: D:\KeilMDK\ARM\PACK\ARM\CMSIS-DSP\1.15.0\Include\arm_math_types_f16.h
+automated_sorting_robot_2024\interpolationfunctionsf16.o: D:\KeilMDK\ARM\PACK\ARM\CMSIS-DSP\1.15.0\Include\arm_math_types.h
+automated_sorting_robot_2024\interpolationfunctionsf16.o: ../Drivers/CMSIS/Include/cmsis_compiler.h
+automated_sorting_robot_2024\interpolationfunctionsf16.o: D:\KeilMDK\ARM\ARMCC\Bin\..\include\stdint.h
+automated_sorting_robot_2024\interpolationfunctionsf16.o: ../Drivers/CMSIS/Include/cmsis_armcc.h
+automated_sorting_robot_2024\interpolationfunctionsf16.o: D:\KeilMDK\ARM\ARMCC\Bin\..\include\string.h
+automated_sorting_robot_2024\interpolationfunctionsf16.o: D:\KeilMDK\ARM\ARMCC\Bin\..\include\math.h
+automated_sorting_robot_2024\interpolationfunctionsf16.o: D:\KeilMDK\ARM\ARMCC\Bin\..\include\float.h
+automated_sorting_robot_2024\interpolationfunctionsf16.o: D:\KeilMDK\ARM\ARMCC\Bin\..\include\limits.h
+automated_sorting_robot_2024\interpolationfunctionsf16.o: D:\KeilMDK\ARM\PACK\ARM\CMSIS-DSP\1.15.0\Include\arm_math_memory.h
+automated_sorting_robot_2024\interpolationfunctionsf16.o: D:\KeilMDK\ARM\PACK\ARM\CMSIS-DSP\1.15.0\Include\dsp/none.h
+automated_sorting_robot_2024\interpolationfunctionsf16.o: D:\KeilMDK\ARM\PACK\ARM\CMSIS-DSP\1.15.0\Include\dsp/utils.h
+automated_sorting_robot_2024\interpolationfunctionsf16.o: D:/KeilMDK/ARM/PACK/ARM/CMSIS-DSP/1.15.0/Source/InterpolationFunctions/arm_linear_interp_f16.c
