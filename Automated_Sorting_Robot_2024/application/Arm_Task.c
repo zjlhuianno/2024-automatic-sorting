@@ -7,6 +7,7 @@
 #include "ins_task.h"
 
 
+
 int arm_init_flag = 0;
 
 void Arm_Task(void const * argument)
