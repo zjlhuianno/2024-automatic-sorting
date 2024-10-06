@@ -52,6 +52,8 @@
 
 /* USER CODE BEGIN PV */
 
+extern uint8_t rx_buffer[4];
+
 /* USER CODE END PV */
 
 /* Private function prototypes -----------------------------------------------*/
@@ -110,6 +112,7 @@ int main(void)
 	can_filter_init();
 	HAL_TIM_PWM_Start(&htim10, TIM_CHANNEL_1);
 	delay_init();
+	HAL_UART_Receive_IT(&huart1, &rx_buffer[0], 1);
   /* USER CODE END 2 */
 
   /* Call init function for freertos objects (in cmsis_os2.c) */

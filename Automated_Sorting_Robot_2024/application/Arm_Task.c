@@ -1,12 +1,13 @@
 #include "main.h"
 #include "cmsis_os.h"
-#include "configs.h"
 #include "Servo.h"
 #include "DM_Control.h"
 #include "bsp_can.h"
 #include "ins_task.h"
+#include "usart.h"
+#include "configs.h"
 
-
+extern uint8_t mode;
 
 int arm_init_flag = 0;
 
@@ -22,38 +23,39 @@ void Arm_Task(void const * argument)
 		
 		vTaskDelay(1000);
 		
-		do
-		{
-			Enable_DM_Motor(&hcan2,DM4340_ID);
-			Enable_DM_Motor(&hcan2,DM4310_ID);
-			osDelay(1);
-		} while(DM4340_Data.state == 0 || DM4310_Data.state == 0);
+//		do
+//		{
+//			Enable_DM_Motor(&hcan2,DM4340_ID);
+//			Enable_DM_Motor(&hcan2,DM4310_ID);
+//			osDelay(1);
+//		} while(DM4340_Data.state == 0 || DM4310_Data.state == 0);
 		
 		arm_init_flag=1;
 	}
 	
 	while(1)
 	{	
+		//Servo_Ctrl_5(0);
+		//Arm_Ctrl(target_x,target_y, target_angle);
+		 HAL_UART_Transmit_IT(&huart1,&mode,1);
 		
-		Arm_Ctrl(target_x,target_y, target_angle);
-		
-		if (arm_catch_flag == 0)//��еצ�պϡ�
+		if (arm_catch_flag == 0)//机械爪闭合
 		{
 			Servo_Ctrl_claw(0);
 		}		
-		if (arm_catch_flag == 1)//��еצ�ſ���
+		if (arm_catch_flag == 1)//机械爪张开
 		{
 			Servo_Ctrl_claw(1);
 		}
-		if (arm_catch_flag == 2)//��еצץȡ���顣
+		if (arm_catch_flag == 2)//机械爪抓取方块
 		{
 			Servo_Ctrl_claw(2);
 		}
-		if (arm_catch_flag == 3)//��еצץȡ����Ȧ��
+		if (arm_catch_flag == 3)//机械爪抓取甜甜圈
 		{
 			Servo_Ctrl_claw(3);
 		}
-		if (arm_catch_flag == 4)//��еצ����
+		if (arm_catch_flag == 4)//机械爪拨球
 		{
 			Servo_Ctrl_claw(4);
 		}		

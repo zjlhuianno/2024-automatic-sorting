@@ -49,38 +49,38 @@ void Servo_Ctrl_arm(int16_t angle_for_servo_arm)
 }
 
 //控制机械臂夹爪的舵机。
-//ctrl_flag：	0：机械爪闭合，pwm = 1550。
-//						1：机械爪张开，pwm = 1200。
-//						2：机械爪抓取方块，pwm = 1500。
-//						3：机械爪抓取甜甜圈，pwm = 1450。或1400。
-//						4：机械爪拨球，pwm = 1000。
+//ctrl_flag：	0：机械爪闭合，pwm = 2400。
+//						1：机械爪张开，pwm = 2000。
+//						2：机械爪抓取方块，pwm = 2350。
+//						3：机械爪抓取甜甜圈，pwm = 2200。
+//						4：机械爪拨球，pwm = 1900。
 void Servo_Ctrl_claw(uint8_t ctrl_flag)
 {
 	switch (ctrl_flag)
 	{
 		case 0:
 		{
-			__HAL_TIM_SET_COMPARE(&htim1,TIM_CHANNEL_2,1550);
+			__HAL_TIM_SET_COMPARE(&htim1,TIM_CHANNEL_2,2400);
 			break;			
 		}
 		case 1:
 		{
-			__HAL_TIM_SET_COMPARE(&htim1,TIM_CHANNEL_2,1200);
+			__HAL_TIM_SET_COMPARE(&htim1,TIM_CHANNEL_2,2000);
 			break;			
 		}
 		case 2:
 		{
-			__HAL_TIM_SET_COMPARE(&htim1,TIM_CHANNEL_2,1500);
+			__HAL_TIM_SET_COMPARE(&htim1,TIM_CHANNEL_2,2350);
 			break;			
 		}		
 		case 3:
 		{
-			__HAL_TIM_SET_COMPARE(&htim1,TIM_CHANNEL_2,1450);
+			__HAL_TIM_SET_COMPARE(&htim1,TIM_CHANNEL_2,2200);
 			break;			
 		}	
 		case 4:
 		{
-			__HAL_TIM_SET_COMPARE(&htim1,TIM_CHANNEL_2,1000);
+			__HAL_TIM_SET_COMPARE(&htim1,TIM_CHANNEL_2,1900);
 			break;			
 		}		
 		default:
@@ -148,7 +148,7 @@ void Servo_Ctrl_5(uint8_t ctrl_flag)
 	{
 		case 0:
 		{
-			__HAL_TIM_SET_COMPARE(&htim8, TIM_CHANNEL_1, 2500);//失败。
+			__HAL_TIM_SET_COMPARE(&htim8, TIM_CHANNEL_1, 1800);
 			break;
 		}
 		case 1:

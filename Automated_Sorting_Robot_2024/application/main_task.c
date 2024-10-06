@@ -19,8 +19,11 @@ void main_task(void const * argument)
 	while(1)
 	{
 		while(!ins_init_flag)
+		{
 			osDelay(1);
-		catch_object(0);
+		}
+		
+		//catch_object(0);
 		osDelay(1);
 	}
 	

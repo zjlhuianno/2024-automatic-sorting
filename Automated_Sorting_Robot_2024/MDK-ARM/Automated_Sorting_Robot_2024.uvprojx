@@ -799,6 +799,11 @@
               <FileType>1</FileType>
               <FilePath>..\components\support\VOFA.c</FilePath>
             </File>
+            <File>
+              <FileName>usart_receive.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\components\support\usart_receive.c</FilePath>
+            </File>
           </Files>
         </Group>
         <Group>

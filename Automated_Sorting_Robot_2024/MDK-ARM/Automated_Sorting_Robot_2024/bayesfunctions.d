@@ -1,0 +1,17 @@
+automated_sorting_robot_2024\bayesfunctions.o: D:/keil/ARM/PACK/ARM/CMSIS-DSP/1.15.0/Source/BayesFunctions/BayesFunctions.c
+automated_sorting_robot_2024\bayesfunctions.o: D:/keil/ARM/PACK/ARM/CMSIS-DSP/1.15.0/Source/BayesFunctions/arm_gaussian_naive_bayes_predict_f32.c
+automated_sorting_robot_2024\bayesfunctions.o: D:\keil\ARM\PACK\ARM\CMSIS-DSP\1.15.0\Include\dsp/bayes_functions.h
+automated_sorting_robot_2024\bayesfunctions.o: D:\keil\ARM\PACK\ARM\CMSIS-DSP\1.15.0\Include\arm_math_types.h
+automated_sorting_robot_2024\bayesfunctions.o: ../Drivers/CMSIS/Include/cmsis_compiler.h
+automated_sorting_robot_2024\bayesfunctions.o: D:\keil\ARM\ARMCC\Bin\..\include\stdint.h
+automated_sorting_robot_2024\bayesfunctions.o: ../Drivers/CMSIS/Include/cmsis_armcc.h
+automated_sorting_robot_2024\bayesfunctions.o: D:\keil\ARM\ARMCC\Bin\..\include\string.h
+automated_sorting_robot_2024\bayesfunctions.o: D:\keil\ARM\ARMCC\Bin\..\include\math.h
+automated_sorting_robot_2024\bayesfunctions.o: D:\keil\ARM\ARMCC\Bin\..\include\float.h
+automated_sorting_robot_2024\bayesfunctions.o: D:\keil\ARM\ARMCC\Bin\..\include\limits.h
+automated_sorting_robot_2024\bayesfunctions.o: D:\keil\ARM\PACK\ARM\CMSIS-DSP\1.15.0\Include\arm_math_memory.h
+automated_sorting_robot_2024\bayesfunctions.o: D:\keil\ARM\PACK\ARM\CMSIS-DSP\1.15.0\Include\dsp/none.h
+automated_sorting_robot_2024\bayesfunctions.o: D:\keil\ARM\PACK\ARM\CMSIS-DSP\1.15.0\Include\dsp/utils.h
+automated_sorting_robot_2024\bayesfunctions.o: D:\keil\ARM\PACK\ARM\CMSIS-DSP\1.15.0\Include\dsp/statistics_functions.h
+automated_sorting_robot_2024\bayesfunctions.o: D:\keil\ARM\PACK\ARM\CMSIS-DSP\1.15.0\Include\dsp/basic_math_functions.h
+automated_sorting_robot_2024\bayesfunctions.o: D:\keil\ARM\PACK\ARM\CMSIS-DSP\1.15.0\Include\dsp/fast_math_functions.h
