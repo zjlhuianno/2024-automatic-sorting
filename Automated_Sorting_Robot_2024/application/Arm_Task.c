@@ -23,12 +23,12 @@ void Arm_Task(void const * argument)
 		
 		vTaskDelay(1000);
 		
-//		do
-//		{
-//			Enable_DM_Motor(&hcan2,DM4340_ID);
-//			Enable_DM_Motor(&hcan2,DM4310_ID);
-//			osDelay(1);
-//		} while(DM4340_Data.state == 0 || DM4310_Data.state == 0);
+		do
+		{
+			Enable_DM_Motor(&hcan2,DM4340_ID);
+			Enable_DM_Motor(&hcan2,DM4310_ID);
+			osDelay(1);
+		} while(DM4340_Data.state == 0 || DM4310_Data.state == 0);
 		
 		arm_init_flag=1;
 	}
@@ -36,8 +36,8 @@ void Arm_Task(void const * argument)
 	while(1)
 	{	
 		//Servo_Ctrl_5(0);
-		//Arm_Ctrl(target_x,target_y, target_angle);
-		 HAL_UART_Transmit_IT(&huart1,&mode,1);
+		Arm_Ctrl(target_x,target_y, target_angle);
+		 //HAL_UART_Transmit_IT(&huart1,&mode,1);
 		
 		if (arm_catch_flag == 0)//机械爪闭合
 		{

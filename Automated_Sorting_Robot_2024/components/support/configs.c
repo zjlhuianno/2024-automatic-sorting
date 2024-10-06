@@ -71,17 +71,17 @@ int arm_flag_ok=0;
 //**************PID参数******************//
 
 	//速度环PI控制。
-	float DM4340_speed_kp=0.21300000012f;//0.85f
-	float DM4340_speed_ki=0.000106123481f;//0.08f
+	float DM4340_speed_kp=0.21300000012f;
+	float DM4340_speed_ki=0.000106123481f;
 	float DM4340_speed_kd=0.0f;
 	float DM4340_speed_max_out=10.0f;
 	float DM4340_speed_max_iout=12.0f;
 	float DM4340_speed_PID[3];
 
 	//位置环PD控制。
-	float DM4340_pos_kp=0.06f;//22.0f//0.00025f
+	float DM4340_pos_kp=0.30f;//0.06f;
 	float DM4340_pos_ki=0.0f;
-	float DM4340_pos_kd=0.20f;//1500.0f//0.049f//最新0.09
+	float DM4340_pos_kd=0.20f;
 	float DM4340_pos_max_out=28.0f;
 	float DM4340_pos_max_iout=28.0f;
 	float DM4340_pos_PID[3];
@@ -98,9 +98,9 @@ int arm_flag_ok=0;
 	float DM4310_speed_PID[3];
 
 	//位置环PD控制。
-	float DM4310_pos_kp=0.0045f;
+	float DM4310_pos_kp=0.70f;//0.0045f;
 	float DM4310_pos_ki=0.0f;
-	float DM4310_pos_kd=3.05f;//最新3.05
+	float DM4310_pos_kd=10.0f;
 	float DM4310_pos_max_out=35.0f;
 	float DM4310_pos_max_iout=35.0f;
 	float DM4310_pos_PID[3];

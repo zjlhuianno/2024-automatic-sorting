@@ -5,6 +5,8 @@
 #include "stdlib.h"
 #include "configs.h"
 #include "ins_task.h"
+
+
 int pos_frame_cnt = 0;//位置帧计步器。
 int pos_stable_cnt = 0;//姿态稳定计时器。
 int claw_freq_cnt = 0;//爪频率计时器。
@@ -14,15 +16,13 @@ int arm_move_mode = 0;//机械臂动作模式。
 
 void main_task(void const * argument)
 {
-	//首先写红方情况
-	//
+	while(!ins_init_flag)
+			osDelay(1);
+	
 	while(1)
 	{
-		while(!ins_init_flag)
-		{
-			osDelay(1);
-		}
 		
+		set_arm_pos_param(38.0f, 30.0f, 30.0f, 5.0f);
 		//catch_object(0);
 		osDelay(1);
 	}

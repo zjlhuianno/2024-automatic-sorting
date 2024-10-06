@@ -426,9 +426,9 @@ void Arm_Ctrl(float target_x, float target_y, float target_angle)
 {
 	//斜坡控制。
 	//在k==0.01,osDelay(1)的情况下，每1ms，target_x_follow逼近target_x的大小为0.01，即1s步进10。
-	ramp_function(&target_x_follow, target_x, 0.01);
-	ramp_function(&target_y_follow, target_y, 0.01);
-	ramp_function(&target_angle_follow, target_angle, 0.01);
+	ramp_function(&target_x_follow, target_x, 0.02);
+	ramp_function(&target_y_follow, target_y, 0.02);
+	ramp_function(&target_angle_follow, target_angle, 0.02);
 	
 	//机械臂解算。
 	arms_js(arms_js_data, target_x_follow, target_y_follow, target_angle_follow, 16.085f, 17.514f, 16.454f);

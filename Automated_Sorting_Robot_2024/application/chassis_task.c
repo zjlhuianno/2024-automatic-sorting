@@ -9,12 +9,12 @@ float m_z = 0.0f;
 
 void Chassis_task(void const * argument)
 {
-
+while(!ins_init_flag)//等待陀螺仪初始化
+		osDelay(1);
 	
 	chassis_init(&chassis_move);
 	
-	while(!ins_init_flag)//等待陀螺仪初始化
-		osDelay(1);
+	
 	
 	while(1)
 	{
@@ -63,11 +63,11 @@ void Chassis_task(void const * argument)
 		//底盘位置环
 		//chassis_move_control(m_x, m_y, m_z, &chassis_move);
 		
-		chassis_control_loop(&chassis_move);
-		CAN_cmd_chassis(chassis_move.motor_chassis[0].give_current, 
-						chassis_move.motor_chassis[1].give_current,	
-                        chassis_move.motor_chassis[2].give_current, 
-						chassis_move.motor_chassis[3].give_current);
+		//chassis_control_loop(&chassis_move);
+//		CAN_cmd_chassis(chassis_move.motor_chassis[0].give_current, 
+//						chassis_move.motor_chassis[1].give_current,	
+//                        chassis_move.motor_chassis[2].give_current, 
+//						chassis_move.motor_chassis[3].give_current);
 
 				
 		osDelay(1);
