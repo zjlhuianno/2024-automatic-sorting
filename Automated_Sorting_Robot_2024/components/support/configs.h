@@ -79,4 +79,12 @@ extern int DM4310_delta_enc;
 extern int last_DM4310_delta_enc;
 extern uint8_t flag_z;
 extern uint8_t force_sensing_flag;	
-extern int arm_catch_flag;
+extern uint8_t arm_catch_flag;
+extern uint8_t pile_approach_flag;
+extern uint8_t shunt_ball_flag;
+extern uint8_t openmv_ok_flag;
+extern uint8_t should_push_ball_flag_openmv;
+extern uint8_t ball_color_flag_openmv;
+extern uint8_t no_ball_push_flag_openmv;
+
+

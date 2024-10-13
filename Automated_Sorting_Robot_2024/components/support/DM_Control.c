@@ -404,7 +404,7 @@ void DM_PID_Pos_Speed_Ctrl(uint8_t ID, float DM_target_pos_int)
 	}
 }
 
-//机械臂斜坡函数，使得机械臂两个动作之间衔接得流畅。
+//斜坡函数。
 //k：步进的幅度，结合task里面的osDelay可以计算出每秒data_follow会向data_target逼近多少。
 void ramp_function(float *data_follow,float data_target,float k)
 {
@@ -422,6 +422,8 @@ void ramp_function(float *data_follow,float data_target,float k)
 }
 
 
+
+//机械臂斜坡函数，使得机械臂两个动作之间衔接得流畅。
 void Arm_Ctrl(float target_x, float target_y, float target_angle)
 {
 	//斜坡控制。

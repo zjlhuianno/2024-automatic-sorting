@@ -98,9 +98,9 @@ int arm_flag_ok=0;
 	float DM4310_speed_PID[3];
 
 	//位置环PD控制。
-	float DM4310_pos_kp=0.70f;//0.0045f;
+	float DM4310_pos_kp=0.40f;
 	float DM4310_pos_ki=0.0f;
-	float DM4310_pos_kd=10.0f;
+	float DM4310_pos_kd=13.0f;
 	float DM4310_pos_max_out=35.0f;
 	float DM4310_pos_max_iout=35.0f;
 	float DM4310_pos_PID[3];
@@ -144,10 +144,20 @@ int DM4310_delta_enc = 0;//在task里面一直记录DM4310编码器的p_int与last_p_int的差
 int last_DM4310_delta_enc = 0;//上一次的DM4310_delta_enc。
 
 //标志位。（1为是，0为否。）
-uint8_t flag_z=0;										//检测程序是否卡在了这里。
-uint8_t force_sensing_flag = 0;	//是否进行力控感知。
-int arm_catch_flag;//夹爪舵机姿态标志位。
 
+uint8_t flag_z=0;								//检测程序是否卡在了这里。
+uint8_t force_sensing_flag = 0;	//是否进行力控感知。
+
+//直接控制舵机的标志位。
+uint8_t arm_catch_flag=0;//夹爪舵机姿态标志位。
+uint8_t pile_approach_flag = 0;//甜甜圈塑料桩标志位。
+uint8_t shunt_ball_flag = 0;//分流轨道标志位。
+
+//机械臂与openmv有关的标志位。
+uint8_t openmv_ok_flag = 0;//openmv是否识别到了数据。
+uint8_t should_push_ball_flag_openmv = 1;//是否要拨球。
+uint8_t ball_color_flag_openmv = 0;//识别到的球的颜色。（0为己方球，1为中立球。）
+uint8_t no_ball_push_flag_openmv = 0;//是否识别到无球可拨。
 
 
 

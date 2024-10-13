@@ -14,3 +14,17 @@ V0.0.2
 
 V0.0.3
 优化了机械臂的斜坡函数参数（k由0.01变为0.02），同时修改了DM电机的位置环PID参数。
+
+V0.0.4
+1.机械臂的动作组增至8个，具体如下。
+catch_object_mode = 1：低平台夹方块；catch_object_mode = 2：低平台夹甜甜圈；
+catch_object_mode = 3：高平台夹方块；catch_object_mode = 4：高平台夹甜甜圈；
+catch_object_mode = 5：中平台夹方块；catch_object_mode = 6：中平台夹甜甜圈；
+catch_object_mode = 7：把甜甜圈从机器桩夹到木桩。
+push_ball_mode = 1：圆盘机拨球。
+
+2.优化了机械臂动作组函数的位置，将其从main_task移到arm_task中。
+
+3.增加了一些标志位。
+
+

@@ -31,6 +31,7 @@
 /* USER CODE BEGIN Includes */
 #include "bsp_can.h"
 #include "bsp_delay.h"
+#include "Servo.h"
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -53,7 +54,7 @@
 /* USER CODE BEGIN PV */
 
 extern uint8_t rx_buffer[4];
-
+//float anglee = 30.0f;
 /* USER CODE END PV */
 
 /* Private function prototypes -----------------------------------------------*/
@@ -113,6 +114,7 @@ int main(void)
 	HAL_TIM_PWM_Start(&htim10, TIM_CHANNEL_1);
 	delay_init();
 	HAL_UART_Receive_IT(&huart1, &rx_buffer[0], 1);
+//	Servo_Ctrl_arm(anglee);
   /* USER CODE END 2 */
 
   /* Call init function for freertos objects (in cmsis_os2.c) */

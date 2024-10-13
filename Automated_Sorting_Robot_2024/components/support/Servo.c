@@ -29,14 +29,14 @@ float Servo_arm_angle_to_pwm(int16_t angle)
 {
 	//angle为γ = ∠B'CD。
 	float pwm = 0.0f;
-	pwm = 700 + 2000 * (angle / 180.0f);
-	if (pwm < 500)
+	pwm = 1300 + 2000 * (angle / 180.0f);
+	if (pwm < 1300)
 	{
-		pwm = 500;
+		pwm = 1300;
 	}
-	if (pwm > 1800)//1800 100度左右。
+	if (pwm > 2200)//100度左右。
 	{
-		pwm = 1800;
+		pwm = 2200;
 	}	
 	return pwm;
 }
@@ -162,20 +162,20 @@ void Servo_Ctrl_5(uint8_t ctrl_flag)
 }
 
 //控制仓库侧面放置甜甜圈的舵机。
-//ctrl_flag：	0：收纳仓靠近仓库，pwm = 500。
-//						1：收纳仓远离仓库，pwm = 1500。
+//ctrl_flag：	0：收纳仓远离仓库，pwm = 1500。
+//						1：收纳仓靠近仓库，pwm = 500。
 void Servo_Ctrl_6(uint8_t ctrl_flag)
 {
 	switch (ctrl_flag)
 	{
 		case 0:
 		{
-			__HAL_TIM_SET_COMPARE(&htim8,TIM_CHANNEL_2,500);
+			__HAL_TIM_SET_COMPARE(&htim8,TIM_CHANNEL_2,1150);
 			break;
 		}
 		case 1:
 		{
-			__HAL_TIM_SET_COMPARE(&htim8,TIM_CHANNEL_2,1500);
+			__HAL_TIM_SET_COMPARE(&htim8,TIM_CHANNEL_2,550);
 			break;
 		}		
 		default:
