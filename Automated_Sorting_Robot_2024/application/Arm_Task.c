@@ -19,6 +19,7 @@ int claw_freq_cnt = 0;//爪频率计时器。
 
 extern int catch_object_mode;//机械臂抓取动作模式。
 extern int push_ball_mode;//机械臂拨球动作模式。
+extern uint8_t rxBuffer_main[2];
 
 int cnt_zzz = 0;
 
@@ -31,6 +32,7 @@ void Arm_Task(void const * argument)
 		Servo_Init();
 		DM_Data_Init();
 		DM_PID_Init();
+//		HAL_UART_Receive_IT(&huart1, rxBuffer_main, sizeof(rxBuffer_main));
 		
 		vTaskDelay(1000);
 		
@@ -46,8 +48,9 @@ void Arm_Task(void const * argument)
 	
 	while(1)
 	{	
-		Arm_Ctrl(target_x,target_y, target_angle);
+//		Arm_Ctrl(target_x,target_y, target_angle);
 		//HAL_UART_Transmit_IT(&huart1,&mode,1);	
+		
 		
 		if (arm_catch_flag == 0)//机械爪闭合。
 		{
@@ -65,14 +68,14 @@ void Arm_Task(void const * argument)
 		{
 			Servo_Ctrl_claw(3);
 		}
-		if (arm_catch_flag == 4)//机械爪拨球一次。
-		{
-//			Servo_Ctrl_claw(4);
-			Servo_Ctrl_claw(1);//机械爪张开。
-			osDelay(500);
-			Servo_Ctrl_claw(0);//机械爪闭合。
-			osDelay(500);
-		}		
+//		if (arm_catch_flag == 4)//机械爪拨球一次。
+//		{
+////			Servo_Ctrl_claw(4);
+//			Servo_Ctrl_claw(1);//机械爪张开。
+//			osDelay(500);
+//			Servo_Ctrl_claw(0);//机械爪闭合。
+//			osDelay(500);
+//		}		
 		
 		if (pile_approach_flag == 0)//甜甜圈塑料桩远离。
 		{

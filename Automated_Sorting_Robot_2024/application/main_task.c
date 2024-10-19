@@ -20,11 +20,13 @@ void main_task(void const * argument)
 	openmv_ok_flag=1;
 	while(1)
 	{
+		
+//		Servo_Ctrl_arm(0.0f);
 //		pile_approach_flag = 1;//甜甜圈塑料桩靠近。
 //			set_arm_pos_param(38.0f, 20.0f, 0.0f, 10.0f);//圆盘机平台。
 //			pos_stable_function(0, 0);//不是最后一帧，且爪闭合。
-//		catch_object(7);
-		push_ball(1);
+//		catch_object(2);
+//		push_ball(1);
 		osDelay(1);
 	}
 }

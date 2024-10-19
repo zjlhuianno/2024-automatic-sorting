@@ -52,6 +52,7 @@ osThreadId CHASSIS_TaskHandle;
 osThreadId Grayscale_TaskHandle;
 osThreadId main_TaskHandle;
 osThreadId arm_taskHandle;
+osThreadId UART_taskHandle;
 
 /* Private function prototypes -----------------------------------------------*/
 /* USER CODE BEGIN FunctionPrototypes */
@@ -63,6 +64,7 @@ void Chassis_task(void const * argument);
 void Graysacle_task(void const * argument);
 void main_task(void const * argument);
 void Arm_Task(void const * argument);
+void uart_task(void const * argument);
 
 void MX_FREERTOS_Init(void); /* (MISRA C 2004 rule 8.1) */
 
@@ -128,6 +130,10 @@ void MX_FREERTOS_Init(void) {
   /* definition and creation of arm_task */
   osThreadDef(arm_task, Arm_Task, osPriorityAboveNormal, 0, 512);
   arm_taskHandle = osThreadCreate(osThread(arm_task), NULL);
+
+  /* definition and creation of UART_task */
+  osThreadDef(UART_task, uart_task, osPriorityHigh, 0, 128);
+  UART_taskHandle = osThreadCreate(osThread(UART_task), NULL);
 
   /* USER CODE BEGIN RTOS_THREADS */
   /* add threads, ... */
@@ -223,6 +229,24 @@ __weak void Arm_Task(void const * argument)
     osDelay(1);
   }
   /* USER CODE END Arm_Task */
+}
+
+/* USER CODE BEGIN Header_uart_task */
+/**
+* @brief Function implementing the UART_task thread.
+* @param argument: Not used
+* @retval None
+*/
+/* USER CODE END Header_uart_task */
+__weak void uart_task(void const * argument)
+{
+  /* USER CODE BEGIN uart_task */
+  /* Infinite loop */
+  for(;;)
+  {
+    osDelay(1);
+  }
+  /* USER CODE END uart_task */
 }
 
 /* Private application code --------------------------------------------------*/

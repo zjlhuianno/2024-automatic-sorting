@@ -13,11 +13,8 @@ extern int arm_flag_ok;
 
 ////以下都是openmv的相关变量。
 ////***********************************************************//
-//extern uint8_t rxBuffer_main,rx_buffer[4];
-//extern uint8_t mode;
-//extern uint8_t rx_index;
-//extern uint16_t color, shape, color_circle;
 
+extern uint8_t mode;
 
 //以下都是机械臂的相关变量。
 //***********************************************************//
@@ -86,5 +83,9 @@ extern uint8_t openmv_ok_flag;
 extern uint8_t should_push_ball_flag_openmv;
 extern uint8_t ball_color_flag_openmv;
 extern uint8_t no_ball_push_flag_openmv;
+
+
+
+
 
 

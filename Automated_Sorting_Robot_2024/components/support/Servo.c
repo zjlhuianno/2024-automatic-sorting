@@ -29,14 +29,14 @@ float Servo_arm_angle_to_pwm(int16_t angle)
 {
 	//angleÎª¦Ã = ¡ÏB'CD¡£
 	float pwm = 0.0f;
-	pwm = 1300 + 2000 * (angle / 180.0f);
-	if (pwm < 1300)
+	pwm = 500 + 2000 * (angle / 180.0f);
+	if (pwm < 500)
 	{
-		pwm = 1300;
+		pwm = 500;
 	}
-	if (pwm > 2200)//100¶È×óÓÒ¡£
+	if (pwm > 1500)
 	{
-		pwm = 2200;
+		pwm = 1500;
 	}	
 	return pwm;
 }
@@ -125,12 +125,12 @@ void Servo_Ctrl_4(uint8_t ctrl_flag)
 	{
 		case 0:
 		{
-			__HAL_TIM_SET_COMPARE(&htim1, TIM_CHANNEL_4, 650);
+			__HAL_TIM_SET_COMPARE(&htim1, TIM_CHANNEL_4, 500);
 			break;
 		}
 		case 1:
 		{
-			__HAL_TIM_SET_COMPARE(&htim1, TIM_CHANNEL_4, 1200);
+			__HAL_TIM_SET_COMPARE(&htim1, TIM_CHANNEL_4, 1050);
 			break;
 		}		
 			

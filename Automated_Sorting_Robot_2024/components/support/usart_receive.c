@@ -2,76 +2,120 @@
 #include "configs.h"
 #include "usart.h"
 
-//以下都是openmv的相关变量。
-//***********************************************************//
-uint8_t rxBuffer_main,rx_buffer[4];
-uint8_t mode = 2;
-uint8_t state = 0;
-uint16_t color = 0, shape = 0, color_circle = 0;
+#define RXBUFFER_SIZE 5
+uint8_t rxBuffer_main[2],rxBuffer_color[RXBUFFER_SIZE],rxBuffer_shape[RXBUFFER_SIZE];
+uint8_t mode = 0, flag = 0;
+uint8_t rx_index = 0;
+uint16_t color = 0, shape = 0;
+uint16_t count = 0;
 
-// HAL库回调函数。
 
-void HAL_UART_RxCpltCallback(UART_HandleTypeDef *huart)
+//mode的值是0，表示停止，不识别；
+//mode的值是1，表示同时识别颜色和形状；
+//mode的值是2，表示识别小球颜色；
+//mode的值是3，表示识别二维码；
+
+//shape的值是0x31，表示圆环；
+//shape的值是0x32，表示正方形；
+//shape的值是0x33，表示矩形；
+
+//color的值是0x31，表示红色； 49
+//color的值是0x32，表示蓝色； 50
+//color的值是0x33，表示黄色； 51
+//color的值是0x34，表示白色； 52
+
+//寻找数组中出现次数最多的数字
+uint8_t findMostFrequent(uint8_t *array, uint8_t size1) 
 {
-	/*
-	if (huart->Instance == USART1)
-	{
-			// 处理接收到的数据
-			if(mode == 1)
-			{
-//						// 将接收到的数据添加到缓冲区
-//						rx_buffer[rx_index++] = rxBuffer_main;
-//						// 检查是否接收到了足够的数据
-//						if (rx_index == 4) {
-//							// 解析数据
-//							color = (rx_buffer[1] << 8) | rx_buffer[0];
-//							shape = (rx_buffer[3] << 8) | rx_buffer[2];
-//							// 重置索引，准备下一次接收
-//							rx_index = 0;
-//						}
-			}
-			else if(mode == 2)
-			{ 		
-						uint8_t com_data;
-						switch(state)
-						{
-								case 0:
-										if(rx_buffer[0] == 0x2C) {
-												state = 1;
-										}
-										break;
-								case 1:
-										if(rx_buffer[1] == 0x12) {
-												state = 2;
-										}
-										break;
-								default:
-										if(state < sizeof(rx_buffer)) {
-												com_data = rx_buffer[state];
-												if(com_data == 0x5B) {
-														// 数据包接收完毕，处理rx_buffer中的数据
-														// 在这里添加处理数据的代码
-														color_circle = rx_buffer[2];
-														state = 0;
-												} else {
-														// 继续接收下一个字节
-														state++;
-														HAL_UART_Receive_IT(&huart1, &rx_buffer[state], 1);
-												}
-										}
-										break;
-						}
-			
-			}
-			else if(mode == 3)
-			{
-			
-			}
+    uint8_t maxValue = array[0];
+    uint8_t minValue = array[1];
+    uint8_t counts[size1];
+    uint8_t maxCount = 0;
+    uint8_t mostFrequentNumber;
 
-//        // 重新启动中断接收，准备接收下一批数据
-//        HAL_UART_Receive_IT(&huart1, &rxBuffer_main, sizeof(rxBuffer_main));
-	}
-	*/
+    // 找出数组中的最大值和最小值
+    for (uint8_t i = 0; i < size1; i++) 
+	{
+        if (array[i] > maxValue) 
+					{
+            maxValue = array[i];
+        }
+        if (array[i] < minValue) 
+					{
+            minValue = array[i];
+        }
+    }
+
+    // 记录每个数字的出现次数
+    for (uint8_t i = 0; i < size1; i++) 
+		{
+        counts[array[i] - minValue]++;
+    }
+
+    // 找出出现次数最多的数字
+    for (uint8_t i = 0; i < maxValue - minValue + 1; i++) 
+		{
+        if (counts[i] > maxCount) 
+					{
+            maxCount = counts[i];
+            mostFrequentNumber = i + minValue;
+        }
+    }
+
+    return mostFrequentNumber;
 }
 
+void uart_task(void const * argument)
+{
+		while(1)
+		{
+				HAL_UART_Transmit(&huart1, &mode, 1, 100);
+				osDelay(1);
+		}
+
+}
+
+// HAL库回调函数。
+void HAL_UART_RxCpltCallback(UART_HandleTypeDef *huart)
+{
+    if (huart->Instance == USART1)
+    {
+				if( mode == 1 || mode == 2 )
+				{
+						if(count != RXBUFFER_SIZE && flag == 0)
+						{
+								rxBuffer_color[count] = rxBuffer_main[0]; 
+								rxBuffer_shape[count] = rxBuffer_main[1]; 
+								count++;
+						}
+						else if(count == RXBUFFER_SIZE)
+						{
+								color = findMostFrequent(rxBuffer_color, RXBUFFER_SIZE) - 48;
+								shape = findMostFrequent(rxBuffer_shape, RXBUFFER_SIZE) - 48;
+								count = 0;
+								//flag = 1;
+						}
+						
+						if(flag == 1)
+						{
+								if(mode == 1)
+								{
+										
+								}
+								else if(mode == 2)
+								{			
+
+								}
+						
+						}	
+						
+				}
+				if(mode == 3)
+				{
+				
+				}
+        // 重新启动中断接收，准备接收下一批数据
+        HAL_UART_Receive_IT(&huart1, rxBuffer_main, sizeof(rxBuffer_main));
+    }
+}
 

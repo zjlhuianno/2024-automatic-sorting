@@ -3,7 +3,7 @@
 
 #include "main.h"
 
-
+void uart_task(void const * argument);
 
 #endif
 

@@ -53,7 +53,7 @@
 
 /* USER CODE BEGIN PV */
 
-extern uint8_t rx_buffer[4];
+extern uint8_t rxBuffer_main[2];
 //float anglee = 30.0f;
 /* USER CODE END PV */
 
@@ -112,8 +112,8 @@ int main(void)
 	
 	can_filter_init();
 	HAL_TIM_PWM_Start(&htim10, TIM_CHANNEL_1);
+	
 	delay_init();
-	HAL_UART_Receive_IT(&huart1, &rx_buffer[0], 1);
 //	Servo_Ctrl_arm(anglee);
   /* USER CODE END 2 */
 
@@ -130,7 +130,7 @@ int main(void)
   while (1)
   {
     /* USER CODE END WHILE */
-
+		
     /* USER CODE BEGIN 3 */
   }
   /* USER CODE END 3 */
