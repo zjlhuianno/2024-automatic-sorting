@@ -58,3 +58,4 @@ automated_sorting_robot_2024\ins_task.o: ../components/devices/ist8310driver.h
 automated_sorting_robot_2024\ins_task.o: ../components/controller/pid.h
 automated_sorting_robot_2024\ins_task.o: ../components/algorithm/ahrs.h
 automated_sorting_robot_2024\ins_task.o: ../components/algorithm/AHRS_MiddleWare.h
+automated_sorting_robot_2024\ins_task.o: ../components/support/configs.h

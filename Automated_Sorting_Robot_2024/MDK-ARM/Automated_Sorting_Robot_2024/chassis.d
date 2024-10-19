@@ -45,5 +45,6 @@ automated_sorting_robot_2024\chassis.o: ..\components\support\VOFA.h
 automated_sorting_robot_2024\chassis.o: ../Core/Inc/usart.h
 automated_sorting_robot_2024\chassis.o: D:\KeilMDK\ARM\ARMCC\Bin\..\include\stdio.h
 automated_sorting_robot_2024\chassis.o: D:\KeilMDK\ARM\ARMCC\Bin\..\include\stdarg.h
+automated_sorting_robot_2024\chassis.o: ..\components\support\configs.h
 automated_sorting_robot_2024\chassis.o: ../application/INS_task.h
 automated_sorting_robot_2024\chassis.o: ../components/devices/bmi088driver.h

@@ -43,6 +43,8 @@ automated_sorting_robot_2024\chassis_task.o: ../components/support/VOFA.h
 automated_sorting_robot_2024\chassis_task.o: ../Core/Inc/usart.h
 automated_sorting_robot_2024\chassis_task.o: D:\KeilMDK\ARM\ARMCC\Bin\..\include\stdio.h
 automated_sorting_robot_2024\chassis_task.o: D:\KeilMDK\ARM\ARMCC\Bin\..\include\stdarg.h
+automated_sorting_robot_2024\chassis_task.o: ../components/support/configs.h
+automated_sorting_robot_2024\chassis_task.o: ../application/struct_typedef.h
 automated_sorting_robot_2024\chassis_task.o: ../Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS/cmsis_os.h
 automated_sorting_robot_2024\chassis_task.o: ../Middlewares/Third_Party/FreeRTOS/Source/include/FreeRTOS.h
 automated_sorting_robot_2024\chassis_task.o: ../Core/Inc/FreeRTOSConfig.h
@@ -60,10 +62,10 @@ automated_sorting_robot_2024\chassis_task.o: ../Middlewares/Third_Party/FreeRTOS
 automated_sorting_robot_2024\chassis_task.o: ../components/support/chassis.h
 automated_sorting_robot_2024\chassis_task.o: D:\KeilMDK\ARM\ARMCC\Bin\..\include\math.h
 automated_sorting_robot_2024\chassis_task.o: ../components/controller/pid.h
-automated_sorting_robot_2024\chassis_task.o: ../application/struct_typedef.h
 automated_sorting_robot_2024\chassis_task.o: ../application/INS_task.h
 automated_sorting_robot_2024\chassis_task.o: ../components/devices/bmi088driver.h
 automated_sorting_robot_2024\chassis_task.o: ../components/support/configs.h
 automated_sorting_robot_2024\chassis_task.o: ..\application\Grayscale_task.h
 automated_sorting_robot_2024\chassis_task.o: ../Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS/cmsis_os.h
 automated_sorting_robot_2024\chassis_task.o: ../Core/Inc/i2c.h
+automated_sorting_robot_2024\chassis_task.o: ../components/support/configs.h

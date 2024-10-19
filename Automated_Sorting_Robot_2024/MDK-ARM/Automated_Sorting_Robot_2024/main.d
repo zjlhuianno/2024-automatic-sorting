@@ -61,3 +61,4 @@ automated_sorting_robot_2024\main.o: ../application/struct_typedef.h
 automated_sorting_robot_2024\main.o: ../bsp/bsp_can.h
 automated_sorting_robot_2024\main.o: ../application/Grayscale_task.h
 automated_sorting_robot_2024\main.o: ../Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS/cmsis_os.h
+automated_sorting_robot_2024\main.o: ../components/support/configs.h

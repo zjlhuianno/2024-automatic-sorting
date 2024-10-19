@@ -12,9 +12,6 @@ extern CAN_HandleTypeDef hcan1;
 static motor_measure_t motor_chassis[4];
 static CAN_TxHeaderTypeDef chassis_tx_message;
 static uint8_t chassis_can_send_data[8];
-float odometryResetFlag;
-	
-	
 
 //发送电机控制电流(0x201,0x202,0x203,0x204)
 void CAN_cmd_chassis(int16_t motor1, int16_t motor2, int16_t motor3, int16_t motor4)
@@ -42,7 +39,7 @@ void HAL_CAN_RxFifo0MsgPendingCallback(CAN_HandleTypeDef *hcan)
 {
 	CAN_RxHeaderTypeDef rx_header;
 	uint8_t rx_data[8];
-	
+	uint8_t ii;
     HAL_CAN_GetRxMessage(hcan, CAN_RX_FIFO0, &rx_header, rx_data);
 	if(hcan == &hcan1)
 	{
@@ -68,9 +65,12 @@ void HAL_CAN_RxFifo0MsgPendingCallback(CAN_HandleTypeDef *hcan)
 				if(odometryResetFlag == 1)
 				{
 					odometryResetFlag = 0;
-					motor_chassis[i].round =0;
-					motor_chassis[i].code = 0;
-					
+					for(ii = 0; ii < 4; ii ++)
+					{
+						motor_chassis[ii].round =0;
+						motor_chassis[ii].code = 0;
+					}
+
 				}
 				break;
 			}

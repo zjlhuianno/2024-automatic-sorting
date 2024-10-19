@@ -15,6 +15,18 @@ chassis_flag ==
 */
 uint8_t chassis_flag = 0;
 
+/*底盘停止
+0 走
+1 停
+*/
+uint8_t chassis_stop_flag = 0;
+
+/*十字标志
+0 
+1 开始识别十字
+*/
+uint8_t cross_flag = 0;
+
 /*
 机械臂
 arm_flag ==
@@ -60,10 +72,23 @@ servo_release_flag =
 */
 uint8_t servo_release_flag = 0;
 
-int arm_flag_ok=0;
+/*陀螺仪初始
+ins_init_flag = 
+0 初始化中
+1 初始化完成
+*/
+uint8_t ins_init_flag = 0;
+
+/*里程计清零
+odometryResetFlag = 
+0 
+1 清零
+*/
+uint8_t odometryResetFlag = 0;
 
 
-
-
-
-
+/*避障标志位
+0
+1 进行避障动作
+*/
+uint8_t avoidance_flag = 0;

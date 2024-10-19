@@ -853,6 +853,11 @@
               <FileType>1</FileType>
               <FilePath>..\application\main_task.c</FilePath>
             </File>
+            <File>
+              <FileName>Lidar_task.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\application\Lidar_task.c</FilePath>
+            </File>
           </Files>
         </Group>
         <Group>

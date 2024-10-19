@@ -47,6 +47,7 @@
 "automated_sorting_robot_2024\ins_task.o"
 "automated_sorting_robot_2024\grayscale_task.o"
 "automated_sorting_robot_2024\main_task.o"
+"automated_sorting_robot_2024\lidar_task.o"
 "automated_sorting_robot_2024\bsp_delay.o"
 "automated_sorting_robot_2024\bsp_imu_pwm.o"
 "automated_sorting_robot_2024\bsp_spi.o"

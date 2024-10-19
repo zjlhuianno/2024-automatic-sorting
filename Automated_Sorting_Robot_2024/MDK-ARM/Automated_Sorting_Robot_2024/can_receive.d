@@ -41,3 +41,5 @@ automated_sorting_robot_2024\can_receive.o: ..\components\support\VOFA.h
 automated_sorting_robot_2024\can_receive.o: ../Core/Inc/usart.h
 automated_sorting_robot_2024\can_receive.o: D:\KeilMDK\ARM\ARMCC\Bin\..\include\stdio.h
 automated_sorting_robot_2024\can_receive.o: D:\KeilMDK\ARM\ARMCC\Bin\..\include\stdarg.h
+automated_sorting_robot_2024\can_receive.o: ..\components\support\configs.h
+automated_sorting_robot_2024\can_receive.o: ../application/struct_typedef.h

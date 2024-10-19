@@ -51,6 +51,7 @@ osThreadId INS_TASKHandle;
 osThreadId CHASSIS_TaskHandle;
 osThreadId Grayscale_TaskHandle;
 osThreadId main_TaskHandle;
+osThreadId Lidar_TaskHandle;
 
 /* Private function prototypes -----------------------------------------------*/
 /* USER CODE BEGIN FunctionPrototypes */
@@ -59,8 +60,9 @@ osThreadId main_TaskHandle;
 
 void INS_Task(void const * argument);
 void Chassis_task(void const * argument);
-void Graysacle_task(void const * argument);
+void Grayscale_task(void const * argument);
 void main_task(void const * argument);
+void Lidar_task(void const * argument);
 
 void MX_FREERTOS_Init(void); /* (MISRA C 2004 rule 8.1) */
 
@@ -116,12 +118,16 @@ void MX_FREERTOS_Init(void) {
   CHASSIS_TaskHandle = osThreadCreate(osThread(CHASSIS_Task), NULL);
 
   /* definition and creation of Grayscale_Task */
-  osThreadDef(Grayscale_Task, Graysacle_task, osPriorityNormal, 0, 128);
+  osThreadDef(Grayscale_Task, Grayscale_task, osPriorityNormal, 0, 128);
   Grayscale_TaskHandle = osThreadCreate(osThread(Grayscale_Task), NULL);
 
   /* definition and creation of main_Task */
   osThreadDef(main_Task, main_task, osPriorityHigh, 0, 128);
   main_TaskHandle = osThreadCreate(osThread(main_Task), NULL);
+
+  /* definition and creation of Lidar_Task */
+  osThreadDef(Lidar_Task, Lidar_task, osPriorityBelowNormal, 0, 128);
+  Lidar_TaskHandle = osThreadCreate(osThread(Lidar_Task), NULL);
 
   /* USER CODE BEGIN RTOS_THREADS */
   /* add threads, ... */
@@ -165,22 +171,22 @@ __weak void Chassis_task(void const * argument)
   /* USER CODE END Chassis_task */
 }
 
-/* USER CODE BEGIN Header_Graysacle_task */
+/* USER CODE BEGIN Header_Grayscale_task */
 /**
 * @brief Function implementing the Grayscale_Task thread.
 * @param argument: Not used
 * @retval None
 */
-/* USER CODE END Header_Graysacle_task */
-__weak void Graysacle_task(void const * argument)
+/* USER CODE END Header_Grayscale_task */
+__weak void Grayscale_task(void const * argument)
 {
-  /* USER CODE BEGIN Graysacle_task */
+  /* USER CODE BEGIN Grayscale_task */
   /* Infinite loop */
   for(;;)
   {
     osDelay(1);
   }
-  /* USER CODE END Graysacle_task */
+  /* USER CODE END Grayscale_task */
 }
 
 /* USER CODE BEGIN Header_main_task */
@@ -199,6 +205,24 @@ __weak void main_task(void const * argument)
     osDelay(1);
   }
   /* USER CODE END main_task */
+}
+
+/* USER CODE BEGIN Header_Lidar_task */
+/**
+* @brief Function implementing the Lidar_Task thread.
+* @param argument: Not used
+* @retval None
+*/
+/* USER CODE END Header_Lidar_task */
+__weak void Lidar_task(void const * argument)
+{
+  /* USER CODE BEGIN Lidar_task */
+  /* Infinite loop */
+  for(;;)
+  {
+    osDelay(1);
+  }
+  /* USER CODE END Lidar_task */
 }
 
 /* Private application code --------------------------------------------------*/
