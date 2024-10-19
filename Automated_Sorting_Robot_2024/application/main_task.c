@@ -17,16 +17,14 @@ void main_task(void const * argument)
 	while(!ins_init_flag)
 			osDelay(1);
 	
-	openmv_ok_flag=1;
 	while(1)
 	{
+		chassis_flag = 0;
 		
-//		Servo_Ctrl_arm(0.0f);
-//		pile_approach_flag = 1;//甜甜圈塑料桩靠近。
-//			set_arm_pos_param(38.0f, 20.0f, 0.0f, 10.0f);//圆盘机平台。
-//			pos_stable_function(0, 0);//不是最后一帧，且爪闭合。
-//		catch_object(2);
-//		push_ball(1);
+		
+		
+		push_ball(1);
+		
 		osDelay(1);
 	}
 }
@@ -39,6 +37,13 @@ void main_task(void const * argument)
 
 
 //以下是测试程序。
+
+//		Servo_Ctrl_arm(0.0f);
+//		pile_approach_flag = 1;//甜甜圈塑料桩靠近。
+//			set_arm_pos_param(38.0f, 20.0f, 0.0f, 10.0f);//圆盘机平台。
+//			pos_stable_function(0, 0);//不是最后一帧，且爪闭合。
+//		catch_object(2);
+//		push_ball(1);
 
 		//矫正机械臂舵机。
 		//Servo_Ctrl_arm(30.0f);

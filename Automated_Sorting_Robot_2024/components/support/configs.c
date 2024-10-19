@@ -15,6 +15,13 @@ chassis_flag ==
 */
 uint8_t chassis_flag = 0;
 
+/*陀螺仪初始
+ins_init_flag = 
+0 初始化中
+1 初始化完成
+*/
+uint8_t ins_init_flag = 0;
+
 /*
 机械臂
 arm_flag ==
@@ -26,6 +33,8 @@ arm_flag ==
 5 对准收物处
 */
 uint8_t arm_flag = 0;
+
+uint8_t openmv_flag_ddd = 0;
 
 /*
 拨夹爪

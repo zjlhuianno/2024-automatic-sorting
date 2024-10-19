@@ -1,5 +1,8 @@
 #include "chassis.h"
 
+
+float data_follow[3];
+float ramp_k = 0.00065;
 /*
    0/-\1
     | | 
@@ -75,6 +78,7 @@ void chassis_feedback_update(chassis_move_t *chassis_move_update)
 														/(M2006_MOTOR_ECD_TO_ANGLE * M2006_MOTOR_SPEED_RATIO) 
 														* ROUND_PI * DIAMETER_OF_WHEEL;
 	}
+
 	
 	chassis_move_update->vx_last = chassis_move_update->vx;
 	chassis_move_update->vx = ((- chassis_move_update->motor_chassis[1].speed 
@@ -106,18 +110,23 @@ void chassis_feedback_update(chassis_move_t *chassis_move_update)
 							  + chassis_move_update->motor_chassis[3].distance)
 							  / 4.0f / 0.70710678f;	
 
-
-	chassis_move_update->yaw = *(chassis_move_update->chassis_INS_angle_degree + INS_YAW_ADDRESS_OFFSET);
 	
+	chassis_move_update->yaw = *(chassis_move_update->chassis_INS_angle_degree + INS_YAW_ADDRESS_OFFSET);
+	if(chassis_move_update->yaw < -50)
+		chassis_move_update->yaw += 360;
 }
 
 //底盘移动控制
 void chassis_move_control(float x_set, float y_set, float yaw_set, chassis_move_t *chassis_move_control)
 {
+	//加入斜坡函数实现缓起
+	ramp_function_chassis(data_follow, x_set, ramp_k);
+	ramp_function_chassis(data_follow + 1, y_set, ramp_k);
+	ramp_function_chassis(data_follow + 1 + 1, yaw_set, ramp_k*1000);
 	
-	chassis_move_control->x_set = x_set;
-	chassis_move_control->y_set = y_set;
-	chassis_move_control->yaw_set = yaw_set;
+	chassis_move_control->x_set = data_follow[0];
+	chassis_move_control->y_set = data_follow[1];
+	chassis_move_control->yaw_set = data_follow[2];
 
 	chassis_move_control->vx_set = PID_calc(&chassis_move_control->chassis_location_pid_x, chassis_move_control->x, chassis_move_control->x_set);
 	chassis_move_control->vy_set = PID_calc(&chassis_move_control->chassis_location_pid_y, chassis_move_control->y, chassis_move_control->y_set);
@@ -152,6 +161,7 @@ void chassis_init(chassis_move_t *chassis_move_init)
 	
 	PID_init(&chassis_move_init->chassis_speed_pid_x, PID_POSITION, chassis_speed_pid,CHASSIS_SPEED_PID_MAX_OUT ,CHASSIS_SPEED_PID_MAX_IOUT);
 	PID_init(&chassis_move_init->chassis_speed_pid_y, PID_POSITION, chassis_speed_pid,CHASSIS_SPEED_PID_MAX_OUT ,CHASSIS_SPEED_PID_MAX_IOUT);
+	PID_init(&chassis_move_init->chassis_speed_pid_z, PID_POSITION, chassis_speed_pid,CHASSIS_SPEED_PID_MAX_OUT ,CHASSIS_SPEED_PID_MAX_IOUT);
 
 	PID_init(&chassis_move_init->chassis_location_pid_x, PID_POSITION, chassis_location_pid,CHASSIS_POSITION_PID_MAX_OUT ,CHASSIS_POSITION_PID_MAX_IOUT);
 	PID_init(&chassis_move_init->chassis_location_pid_y, PID_POSITION, chassis_location_pid,CHASSIS_POSITION_PID_MAX_OUT ,CHASSIS_POSITION_PID_MAX_IOUT);
@@ -160,4 +170,21 @@ void chassis_init(chassis_move_t *chassis_move_init)
 	
     //更新一下数据
     chassis_feedback_update(chassis_move_init);
+}
+
+//斜坡函数
+//k：步进的幅度，结合task里面的osDelay可以计算出每秒data_follow会向data_target逼近多少
+void ramp_function_chassis(float *data_follow, float data_target, float k)
+{
+	if(data_target != *data_follow)
+	{
+		if(fabs(data_target - *data_follow) < k / 10.0f)
+		{
+			*data_follow = data_target;
+		}
+		else
+		{
+			*data_follow += k * (data_target - *data_follow> 0 ? 1.0f : - 1.0f);
+		}
+	}
 }

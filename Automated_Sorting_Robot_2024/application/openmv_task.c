@@ -1,13 +1,13 @@
-#include "usart_receive.h"
+#include "openmv_task.h"
 #include "configs.h"
 #include "usart.h"
 
 #define RXBUFFER_SIZE 5
 uint8_t rxBuffer_main[2],rxBuffer_color[RXBUFFER_SIZE],rxBuffer_shape[RXBUFFER_SIZE];
-uint8_t mode = 0, flag = 0;
+uint8_t mode_openmv = 0, flag_openmv = 0;
 uint8_t rx_index = 0;
 uint16_t color = 0, shape = 0;
-uint16_t count = 0;
+uint16_t count_openmv = 0;
 
 
 //mode的值是0，表示停止，不识别；
@@ -65,11 +65,16 @@ uint8_t findMostFrequent(uint8_t *array, uint8_t size1)
     return mostFrequentNumber;
 }
 
-void uart_task(void const * argument)
+void openmv_task(void const * argument)
 {
+		
 		while(1)
 		{
-				HAL_UART_Transmit(&huart1, &mode, 1, 100);
+			HAL_UART_Transmit(&huart1, &mode_openmv, 1, 100);
+			if(openmv_flag_ddd == 1)
+			{
+				mode_openmv = 2;
+			}
 				osDelay(1);
 		}
 
@@ -80,37 +85,24 @@ void HAL_UART_RxCpltCallback(UART_HandleTypeDef *huart)
 {
     if (huart->Instance == USART1)
     {
-				if( mode == 1 || mode == 2 )
+				if( mode_openmv == 1 || mode_openmv == 2 )
 				{
-						if(count != RXBUFFER_SIZE && flag == 0)
+						if(count_openmv != RXBUFFER_SIZE && flag_openmv == 0)
 						{
-								rxBuffer_color[count] = rxBuffer_main[0]; 
-								rxBuffer_shape[count] = rxBuffer_main[1]; 
-								count++;
+								rxBuffer_color[count_openmv] = rxBuffer_main[0]; 
+								rxBuffer_shape[count_openmv] = rxBuffer_main[1]; 
+								count_openmv++;
 						}
-						else if(count == RXBUFFER_SIZE)
+						else if(count_openmv == RXBUFFER_SIZE)
 						{
 								color = findMostFrequent(rxBuffer_color, RXBUFFER_SIZE) - 48;
 								shape = findMostFrequent(rxBuffer_shape, RXBUFFER_SIZE) - 48;
-								count = 0;
-								//flag = 1;
+								count_openmv = 0;
+								flag_openmv = 1;
 						}
 						
-						if(flag == 1)
-						{
-								if(mode == 1)
-								{
-										
-								}
-								else if(mode == 2)
-								{			
-
-								}
-						
-						}	
-						
 				}
-				if(mode == 3)
+				if(mode_openmv == 3)
 				{
 				
 				}

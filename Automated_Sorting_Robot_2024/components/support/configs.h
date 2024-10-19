@@ -5,11 +5,14 @@
 
 extern uint8_t chassis_flag;
 extern uint8_t arm_flag;
+extern uint8_t ins_init_flag;
 extern uint8_t servo_claw_flag;
 extern uint8_t servo_sort_flag;
 extern uint8_t servo_circle_flag;
 extern uint8_t servo_release_flag;
 extern int arm_flag_ok;
+
+extern uint8_t openmv_flag_ddd;
 
 ////以下都是openmv的相关变量。
 ////***********************************************************//

@@ -108,11 +108,12 @@ int main(void)
   MX_CAN2_Init();
   MX_TIM1_Init();
   MX_TIM8_Init();
+  MX_USART6_UART_Init();
   /* USER CODE BEGIN 2 */
 	
 	can_filter_init();
 	HAL_TIM_PWM_Start(&htim10, TIM_CHANNEL_1);
-	
+	HAL_UART_Receive_IT(&huart1, rxBuffer_main, sizeof(rxBuffer_main));
 	delay_init();
 //	Servo_Ctrl_arm(anglee);
   /* USER CODE END 2 */
@@ -130,7 +131,7 @@ int main(void)
   while (1)
   {
     /* USER CODE END WHILE */
-		
+
     /* USER CODE BEGIN 3 */
   }
   /* USER CODE END 3 */

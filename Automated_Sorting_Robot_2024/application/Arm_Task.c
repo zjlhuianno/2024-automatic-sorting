@@ -20,6 +20,7 @@ int claw_freq_cnt = 0;//爪频率计时器。
 extern int catch_object_mode;//机械臂抓取动作模式。
 extern int push_ball_mode;//机械臂拨球动作模式。
 extern uint8_t rxBuffer_main[2];
+extern uint8_t mode_openmv, flag_openmv, color, shape;
 
 int cnt_zzz = 0;
 
@@ -32,7 +33,6 @@ void Arm_Task(void const * argument)
 		Servo_Init();
 		DM_Data_Init();
 		DM_PID_Init();
-//		HAL_UART_Receive_IT(&huart1, rxBuffer_main, sizeof(rxBuffer_main));
 		
 		vTaskDelay(1000);
 		
@@ -48,8 +48,10 @@ void Arm_Task(void const * argument)
 	
 	while(1)
 	{	
-//		Arm_Ctrl(target_x,target_y, target_angle);
-		//HAL_UART_Transmit_IT(&huart1,&mode,1);	
+		Arm_Ctrl(target_x,target_y, target_angle);
+//		MIT_Ctrl_DM_Motor(&hcan2,DM4310_ID,0,0,0,0,0);
+//		MIT_Ctrl_DM_Motor(&hcan2,DM4340_ID,0,0,0,0,0);
+//		HAL_UART_Transmit(&huart1, &mode_openmv, 1, 100);
 		
 		
 		if (arm_catch_flag == 0)//机械爪闭合。
@@ -126,39 +128,42 @@ void push_ball(uint8_t mode)
 		else if (pos_frame_cnt==2)//机械臂保持圆盘机平台位置，并按需拨球。
 		{
 			set_arm_pos_param(38.0f, 21.0f, 0.0f, 0.0f);//圆盘机平台。
+			openmv_flag_ddd = 1;//打开openmv的识别球颜色模式。
 			//pos_stable_function(0, 1);//不是最后一帧，且爪拨球一次。
 			
-			if (should_push_ball_flag_openmv == 1)//该标志位的初始化值需要在加上视觉后修改为0。
+			if (color == 1 || color == 3)//如果是红球或黄球。
 			{
 				//爪拨球一次。
 				arm_catch_flag = 1;
 				osDelay(500);
 				arm_catch_flag = 0;
-				osDelay(500);				
+				osDelay(500);
+				flag_openmv=0;
+				color = 0;//把颜色置零。
 				//should_push_ball_flag_openmv = 0;//加上视觉后须打开。
-				cnt_zzz++;
-				if (cnt_zzz == 5)
-				{
-					should_push_ball_flag_openmv = 0;
-					no_ball_push_flag_openmv = 1;
-					cnt_zzz=0;
-				}
+//				cnt_zzz++;
+//				if (cnt_zzz == 5)
+//				{
+//					should_push_ball_flag_openmv = 0;
+//					no_ball_push_flag_openmv = 1;
+//					cnt_zzz=0;
+//				}
 				
 			}
-			if (ball_color_flag_openmv == 0)//如果是己方球（红球或蓝球），则将球分流至己方轨道。
-			{
-				shunt_ball_flag = 0;
-			}
-			if (ball_color_flag_openmv == 1)//如果是中立球（黄球），则将球分流至中立轨道。
-			{
-				shunt_ball_flag = 1;
-			}
-			if (no_ball_push_flag_openmv == 1)//如果识别到无球可拨，则结束此动作帧。
-			{
-				pos_frame_cnt++;
-				no_ball_push_flag_openmv = 0;
-				should_push_ball_flag_openmv = 1;//加上视觉后须删除。
-			}
+//			if (ball_color_flag_openmv == 0)//如果是己方球（红球或蓝球），则将球分流至己方轨道。
+//			{
+//				shunt_ball_flag = 0;
+//			}
+//			if (ball_color_flag_openmv == 1)//如果是中立球（黄球），则将球分流至中立轨道。
+//			{
+//				shunt_ball_flag = 1;
+//			}
+//			if (no_ball_push_flag_openmv == 1)//如果识别到无球可拨，则结束此动作帧。
+//			{
+//				pos_frame_cnt++;
+//				no_ball_push_flag_openmv = 0;
+//				should_push_ball_flag_openmv = 1;//加上视觉后须删除。
+//			}
 			
 		}		
 		else if (pos_frame_cnt==3)//机械臂伸到高缓冲处3，结束拨球。

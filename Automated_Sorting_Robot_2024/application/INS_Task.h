@@ -77,7 +77,7 @@
 extern fp32 INS_angle_deg[3];
 extern fp32 INS_angle_speed_deg[3];
 extern bmi088_real_data_t bmi088_real_data;
-extern float ins_init_flag;
+
 /**
   * @brief          imu task, init bmi088, ist8310, calculate the euler angle
   * @param[in]      pvParameters: NULL

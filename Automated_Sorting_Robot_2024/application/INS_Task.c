@@ -177,7 +177,7 @@ fp32 INS_angle_deg[3] = {0.0f, 0.0f, 0.0f};
 fp32 INS_angle_speed_deg[3] = {0.0f,0.0f,0.0f};
 
 
-float ins_init_flag = 0;//陀螺仪初始化成功标志位
+
 
 /**
   * @brief          imu task, init bmi088, ist8310, calculate the euler angle

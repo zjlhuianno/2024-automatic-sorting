@@ -24,27 +24,27 @@
 #define MAX_WHEEL_SPEED 4.0f 
 
 //速度PID
-#define M2006_MOTOR_SPEED_PID_KP 5000.0f
-#define M2006_MOTOR_SPEED_PID_KI 25.0f
+#define M2006_MOTOR_SPEED_PID_KP 18000.0f
+#define M2006_MOTOR_SPEED_PID_KI 300.0f
 #define M2006_MOTOR_SPEED_PID_KD 0.0f
 #define M2006_MOTOR_SPEED_PID_MAX_OUT 8000.0f
 #define M2006_MOTOR_SPEED_PID_MAX_IOUT 1200.0f //积分限幅
 //底盘速度pid
-#define CHASSIS_SPEED_PID_KP 10.0f
-#define CHASSIS_SPEED_PID_KI 0.04f
+#define CHASSIS_SPEED_PID_KP 3.0f
+#define CHASSIS_SPEED_PID_KI 0.01f
 #define CHASSIS_SPEED_PID_KD 0.0f
-#define CHASSIS_SPEED_PID_MAX_OUT 5.0f
-#define CHASSIS_SPEED_PID_MAX_IOUT 1.0f
+#define CHASSIS_SPEED_PID_MAX_OUT 1.0f
+#define CHASSIS_SPEED_PID_MAX_IOUT 0.4f
 //位置pid
-#define CHASSIS_POSITION_PID_KP 3.7
-#define CHASSIS_POSITION_PID_KI 0.0
-#define CHASSIS_POSITION_PID_KD 150.0
-#define CHASSIS_POSITION_PID_MAX_OUT 0.3f
+#define CHASSIS_POSITION_PID_KP 10.0f
+#define CHASSIS_POSITION_PID_KI 0.0f
+#define CHASSIS_POSITION_PID_KD 0.0
+#define CHASSIS_POSITION_PID_MAX_OUT 0.6f
 #define CHASSIS_POSITION_PID_MAX_IOUT 0.2f
 //角度环pid
-#define CHASSIS_YAW_PID_KP 8.0f
+#define CHASSIS_YAW_PID_KP 12.0f
 #define CHASSIS_YAW_PID_KI 0.0f
-#define CHASSIS_YAW_PID_KD 200.0f
+#define CHASSIS_YAW_PID_KD 80.0f
 #define CHASSIS_YAW_PID_MAX_OUT 90.0f
 #define CHASSIS_YAW_PID_MAX_IOUT 40.0f
 
@@ -67,6 +67,7 @@ typedef struct
 	pid_type_def motor_speed_pid[4];
 	pid_type_def chassis_speed_pid_x;
 	pid_type_def chassis_speed_pid_y;
+	pid_type_def chassis_speed_pid_z;
 	pid_type_def chassis_location_pid_x;
 	pid_type_def chassis_location_pid_y;
 	pid_type_def chassis_yaw_pid;
@@ -97,5 +98,6 @@ extern void chassis_control_loop(chassis_move_t *chassis_move);
 extern void chassis_feedback_update(chassis_move_t *chassis_move);
 extern void chassis_move_control(float x_set, float y_set, float yaw_set, chassis_move_t *chassis_move_control);
 extern void chassis_init(chassis_move_t *chassis_move);
+extern void ramp_function_chassis(float *data_follow, float data_target, float k);
 #endif
 
