@@ -53,7 +53,7 @@ void Servo_Ctrl_arm(int16_t angle_for_servo_arm)
 //						1：机械爪张开，pwm = 2000。
 //						2：机械爪抓取方块，pwm = 2350。
 //						3：机械爪抓取甜甜圈，pwm = 2200。
-//						4：机械爪拨球，pwm = 1900。
+//						4：机械爪拨球，pwm = 2050。
 void Servo_Ctrl_claw(uint8_t ctrl_flag)
 {
 	switch (ctrl_flag)
@@ -80,7 +80,7 @@ void Servo_Ctrl_claw(uint8_t ctrl_flag)
 		}	
 		case 4:
 		{
-			__HAL_TIM_SET_COMPARE(&htim1,TIM_CHANNEL_2,1900);
+			__HAL_TIM_SET_COMPARE(&htim1,TIM_CHANNEL_2,2050);//2100能用，但容易拨到铲子外面。
 			break;			
 		}		
 		default:
@@ -117,20 +117,20 @@ void Servo_Ctrl_3(uint8_t ctrl_flag)
 }
 
 //控制仓库上方进口的舵机。
-//ctrl_flag：	0：接球，pwm = 650。
-//						1：接方块，pwm = 1200。
+//ctrl_flag：	0：接方块，pwm = 1050。
+//				1：接球，pwm = 500。
 void Servo_Ctrl_4(uint8_t ctrl_flag)
 {
 	switch (ctrl_flag)
 	{
 		case 0:
 		{
-			__HAL_TIM_SET_COMPARE(&htim1, TIM_CHANNEL_4, 500);
+			__HAL_TIM_SET_COMPARE(&htim1, TIM_CHANNEL_4, 1050);
 			break;
 		}
 		case 1:
 		{
-			__HAL_TIM_SET_COMPARE(&htim1, TIM_CHANNEL_4, 1050);
+			__HAL_TIM_SET_COMPARE(&htim1, TIM_CHANNEL_4, 500);
 			break;
 		}		
 			
@@ -140,8 +140,8 @@ void Servo_Ctrl_4(uint8_t ctrl_flag)
 }
 
 //控制仓库上方分流的舵机。
-//ctrl_flag：	0：分流至蓝球，pwm = 1800。
-//						1：分流至黄球，pwm = 1100。
+//ctrl_flag：	0：分流至蓝/红球，pwm = 1800。
+//				1：分流至黄球，pwm = 1100。
 void Servo_Ctrl_5(uint8_t ctrl_flag)
 {
 	switch (ctrl_flag)

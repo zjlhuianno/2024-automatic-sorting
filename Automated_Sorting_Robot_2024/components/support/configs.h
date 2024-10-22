@@ -6,12 +6,16 @@
 extern uint8_t chassis_flag;
 extern uint8_t arm_flag;
 extern uint8_t ins_init_flag;
+extern uint8_t ins_beyond_flag;
 extern uint8_t servo_claw_flag;
 extern uint8_t servo_sort_flag;
 extern uint8_t servo_circle_flag;
 extern uint8_t servo_release_flag;
+extern uint8_t chassis_stop_flag;
+extern uint8_t cross_flag;
 extern int arm_flag_ok;
 
+extern uint8_t mode_openmv;
 extern uint8_t openmv_flag_ddd;
 
 ////以下都是openmv的相关变量。
@@ -82,6 +86,7 @@ extern uint8_t force_sensing_flag;
 extern uint8_t arm_catch_flag;
 extern uint8_t pile_approach_flag;
 extern uint8_t shunt_ball_flag;
+extern uint8_t ball_in_flag;
 extern uint8_t openmv_ok_flag;
 extern uint8_t should_push_ball_flag_openmv;
 extern uint8_t ball_color_flag_openmv;

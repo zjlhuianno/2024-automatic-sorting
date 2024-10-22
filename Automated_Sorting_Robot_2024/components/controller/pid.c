@@ -97,17 +97,7 @@ fp32 PID_calc(pid_type_def *pid, fp32 ref, fp32 set)
     if (pid->mode == PID_POSITION)
     {
         pid->Pout = pid->Kp * pid->error[0];
-				
-				if(pid == &chassis_move.chassis_location_pid_x || pid == &chassis_move.chassis_location_pid_y)
-				{
-					 if (fabs(pid->error[0]) > 0.01) 
-						pid->Iout += pid->Ki * pid->error[0];
-				}
-				else
-				{
-					pid->Iout += pid->Ki * pid->error[0];
-				}
-        
+		pid->Iout += pid->Ki * pid->error[0];
         pid->Dbuf[0] = 0.005f*(pid->error[0] - pid->error[1])+(1.0f-0.005f)*pid->Dbuf[1];
         pid->Dbuf[1] = pid->Dbuf[0];
         pid->Dout = pid->Kd * pid->Dbuf[0];

@@ -22,11 +22,18 @@ ins_init_flag =
 */
 uint8_t ins_init_flag = 0;
 
+uint8_t ins_beyond_flag = 0;
+
+uint8_t cross_flag = 0;
+
+uint8_t chassis_stop_flag = 0;
 /*
 机械臂
 arm_flag ==
 0 收起状态
 1 对准圆盘机
+
+2 阶梯平台
 2 对准立桩中心白球
 3 对准立桩边缘
 4 对准台阶物品
@@ -71,6 +78,7 @@ uint8_t servo_release_flag = 0;
 
 int arm_flag_ok=0;
 
+uint8_t mode_openmv = 0;
 //以下都是openmv的相关变量。
 //***********************************************************//
 
@@ -163,6 +171,7 @@ uint8_t force_sensing_flag = 0;	//是否进行力控感知。
 uint8_t arm_catch_flag=0;//夹爪舵机姿态标志位。
 uint8_t pile_approach_flag = 0;//甜甜圈塑料桩标志位。
 uint8_t shunt_ball_flag = 0;//分流轨道标志位。
+uint8_t ball_in_flag = 0;//进口接方块或接球。
 
 //机械臂与openmv有关的标志位。
 uint8_t openmv_ok_flag = 0;//openmv是否识别到了数据。

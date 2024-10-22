@@ -635,14 +635,19 @@
               <FilePath>..\application\Arm_Task.c</FilePath>
             </File>
             <File>
+              <FileName>Grayscale_task.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\application\Grayscale_task.c</FilePath>
+            </File>
+            <File>
               <FileName>chassis_task.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\application\chassis_task.c</FilePath>
             </File>
             <File>
-              <FileName>Grayscale_task.c</FileName>
+              <FileName>openmv_task.c</FileName>
               <FileType>1</FileType>
-              <FilePath>..\application\Grayscale_task.c</FilePath>
+              <FilePath>..\application\openmv_task.c</FilePath>
             </File>
             <File>
               <FileName>INS_Task.c</FileName>
@@ -655,9 +660,9 @@
               <FilePath>..\application\main_task.c</FilePath>
             </File>
             <File>
-              <FileName>openmv_task.c</FileName>
+              <FileName>Lidar_task.c</FileName>
               <FileType>1</FileType>
-              <FilePath>..\application\openmv_task.c</FilePath>
+              <FilePath>..\application\Lidar_task.c</FilePath>
             </File>
           </Files>
         </Group>

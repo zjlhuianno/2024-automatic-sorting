@@ -11,25 +11,112 @@
 
 int catch_object_mode = 0;//机械臂抓取动作模式。
 int push_ball_mode = 0;//机械臂拨球动作模式。
+int look_object_mode = 0;//机械臂看阶梯平台模式。
+int disable_arm_flag = 0;//机械臂无力标志位。（1为无力。）
 
 void main_task(void const * argument)
 {
 	while(!ins_init_flag)
-			osDelay(1);
-	
+	{
+		osDelay(1);
+	}
+			
+	disable_arm_flag = 0;//1为机械臂无力。
 	while(1)
 	{
-		chassis_flag = 0;
+//		mode_openmv = 1;//打开openmv的识别形状颜色模式。
+		mode_openmv = 2;//打开openmv的识别球颜色模式。
+//		look_object_mode = 1;//低平台看。
+		push_ball_mode = 1;//圆盘机拨球。
+		
+//		arm_flag = 1;
+//		if(arm_flag == 1)
+//		{
+//			//disable_arm_flag = 0;
+//			push_ball(1);
+//			
+//		}
 		
 		
+//		if(chassis_flag == 2)
+//		{
+//			osDelay(1000);
+//			chassis_flag = 3;
+//		}
+//		if(chassis_flag == 3)
+//		{
+//			osDelay(2000);
+//			chassis_flag = 4;
+//		}
+//		if(chassis_flag == 5)
+//		{
+//			osDelay(3000);
+//			chassis_flag = 6;
+//		}
+//		if(chassis_flag == 6)
+//		{
+//			osDelay(2000);
+//			chassis_flag = 0;
+//		
+//			osDelay(2000);
+//			chassis_flag = 7;
+//		}
+//		if(chassis_flag == 8)
+//		{
+//			osDelay(3000);
+//			chassis_flag = 9;
+//		}
+//		if(chassis_flag == 9)
+//		{
+//			osDelay(2000);
+//			chassis_stop_flag = 1;
+//			//chassis_flag = 0;
+//			osDelay(2000);
+//			chassis_flag = 10;
+//		}
+
+//		if(chassis_flag == 11)
+//		{
+//			osDelay(2000);
+//			chassis_flag = 12;
+//		}
 		
-		push_ball(1);
+
+//******************************************
+
+
+//		if(arm_flag == 2)
+//		{
+//			osDelay(5000);
+//			arm_flag = 3;
+//		}
+
+
+
+		//look_object(1);//高平台爪甜甜圈。
+		
+//			set_arm_pos_param(40.0f, 20.0f, 0.0f, 0.0f);//立桩平台。
+//			pos_stable_function(0, 0);//不是最后一帧，且爪闭合。
+
+
+//******************************************
+
+//		chassis_flag = 1;
+////		if(arm_flag == 1)
+//			push_ball(1);
+//		osDelay(5000);
+//		no_ball_push_flag_openmv = 1;
+//		osDelay(2000);
+//		chassis_flag = 4;
+
+//机械臂动作标志位判断。
+		FUCK_YOU();
+
 		
 		osDelay(1);
 	}
+
 }
-
-
 
 
 

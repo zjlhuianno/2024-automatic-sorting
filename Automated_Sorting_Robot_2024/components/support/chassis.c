@@ -2,7 +2,7 @@
 
 
 float data_follow[3];
-float ramp_k = 0.00065;
+float ramp_k = 0.0005f;//0.00065;
 /*
    0/-\1
     | | 
@@ -112,7 +112,7 @@ void chassis_feedback_update(chassis_move_t *chassis_move_update)
 
 	
 	chassis_move_update->yaw = *(chassis_move_update->chassis_INS_angle_degree + INS_YAW_ADDRESS_OFFSET);
-	if(chassis_move_update->yaw < -50)
+	if(chassis_move_update->yaw < -100)
 		chassis_move_update->yaw += 360;
 }
 
@@ -127,9 +127,25 @@ void chassis_move_control(float x_set, float y_set, float yaw_set, chassis_move_
 	chassis_move_control->x_set = data_follow[0];
 	chassis_move_control->y_set = data_follow[1];
 	chassis_move_control->yaw_set = data_follow[2];
-
-	chassis_move_control->vx_set = PID_calc(&chassis_move_control->chassis_location_pid_x, chassis_move_control->x, chassis_move_control->x_set);
-	chassis_move_control->vy_set = PID_calc(&chassis_move_control->chassis_location_pid_y, chassis_move_control->y, chassis_move_control->y_set);
+	if(x_set != 0 && y_set != 0)
+	{
+		chassis_move_control->vx_set = PID_calc(&chassis_move_control->chassis_location_pid_x, chassis_move_control->x, chassis_move_control->x_set);
+		chassis_move_control->vy_set = PID_calc(&chassis_move_control->chassis_location_pid_y, chassis_move_control->y, chassis_move_control->y_set);
+	}
+	else if(x_set == 0)
+	{
+		chassis_move_control->vx_set = 0;
+		//chassis_move_control->vx_set = PID_calc(&chassis_move_control->chassis_location_pid_x, chassis_move_control->x, chassis_move_control->x_set);
+		chassis_move_control->vy_set = PID_calc(&chassis_move_control->chassis_location_pid_y, chassis_move_control->y, chassis_move_control->y_set);
+	}
+	else if(y_set == 0)
+	{
+		chassis_move_control->vx_set = PID_calc(&chassis_move_control->chassis_location_pid_x, chassis_move_control->x, chassis_move_control->x_set);
+//		chassis_move_control->vy_set = PID_calc(&chassis_move_control->chassis_location_pid_y, chassis_move_control->y, chassis_move_control->y_set);
+		chassis_move_control->vy_set = 0;
+	}
+//	chassis_move_control->vx_set = PID_calc(&chassis_move_control->chassis_location_pid_x, chassis_move_control->x, chassis_move_control->x_set);
+//	chassis_move_control->vy_set = PID_calc(&chassis_move_control->chassis_location_pid_y, chassis_move_control->y, chassis_move_control->y_set);
 	chassis_move_control->wz_set = PID_calc(&chassis_move_control->chassis_yaw_pid, chassis_move_control->yaw, chassis_move_control->yaw_set);
 }
 
@@ -161,7 +177,7 @@ void chassis_init(chassis_move_t *chassis_move_init)
 	
 	PID_init(&chassis_move_init->chassis_speed_pid_x, PID_POSITION, chassis_speed_pid,CHASSIS_SPEED_PID_MAX_OUT ,CHASSIS_SPEED_PID_MAX_IOUT);
 	PID_init(&chassis_move_init->chassis_speed_pid_y, PID_POSITION, chassis_speed_pid,CHASSIS_SPEED_PID_MAX_OUT ,CHASSIS_SPEED_PID_MAX_IOUT);
-	PID_init(&chassis_move_init->chassis_speed_pid_z, PID_POSITION, chassis_speed_pid,CHASSIS_SPEED_PID_MAX_OUT ,CHASSIS_SPEED_PID_MAX_IOUT);
+	PID_init(&chassis_move_init->chassis_speed_pid_z, PID_POSITION, chassis_speed_pid,90.0f ,18.0f);
 
 	PID_init(&chassis_move_init->chassis_location_pid_x, PID_POSITION, chassis_location_pid,CHASSIS_POSITION_PID_MAX_OUT ,CHASSIS_POSITION_PID_MAX_IOUT);
 	PID_init(&chassis_move_init->chassis_location_pid_y, PID_POSITION, chassis_location_pid,CHASSIS_POSITION_PID_MAX_OUT ,CHASSIS_POSITION_PID_MAX_IOUT);

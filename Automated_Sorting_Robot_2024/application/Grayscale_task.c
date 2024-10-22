@@ -4,14 +4,14 @@
 int ret_receive = 1;
 int ret_transmit = 1;
 uint8_t i2c_cmd = 0xDD;
-uint8_t i_gray=0;
+uint8_t i_gray = 0;
 uint8_t data_gray[2];
 uint8_t Data_gray[2][8];
+uint8_t Data_sum_gray1;
 uint8_t Grayscale_ADDR[2] = { 0x4D, 0x4C };
 uint8_t Grayscale_num = 0;
 uint8_t cross_cnt = 0;
-uint8_t cnt = 0;
-float Delta_y;
+
 
 void Grayscale_task(void const * argument)
 {
@@ -23,55 +23,48 @@ void Grayscale_task(void const * argument)
 	{
 		Grayscale_num = 0;grayscale_GetData(Grayscale_num);
 		Grayscale_num = 1;grayscale_GetData(Grayscale_num);
-
-//		if(chassis_flag == 2 && data_gray[0] == 0xFF)
-//		{
-//			chassis_stop_flag = 1;
-//		}
-//		if(chassis_flag == 3 && data_gray[1] == 0xFF)
-//		{
-//			chassis_stop_flag = 1;
-//			chassis_flag = 4;
-//		}
-//		if(chassis_flag == 6 && data_gray[1] == 0xFF)
-//		{
-//			chassis_flag = 7;
-//			chassis_stop_flag = 1;
-//		}
+		Data_sum_gray1 = 0;
+		for(i_gray = 0; i_gray < 8; i_gray++)
+			Data_sum_gray1 += Data_gray[1][i_gray];
 		
-		
-		//不用
-//		if(chassis_flag == 3)
-//		{
-//			if(data_gray[0] == 0x00)
-//				cnt = 1;
-//			if(cnt == 1)
-//			{
-//				if(data_gray[0] == 0xFF)
-//				{
-//					chassis_flag = 3;
-//				}
-//			}
-//		}
-		//下面的灰度加一个灰度巡线,调y轴值
-//		if(Data_gray[1][2] == 0 || Data_gray[1][3] == 0 || Data_gray[1][4] == 0 || Data_gray[1][5] == 0)
-//			cross_flag = 1;
-//		if(cross_flag == 1)
-//		{
-//			if(data_gray[1] == 0x00)
-//			{
-//				cross_flag = 0;
-//				cross_cnt ++;
-//			}
-//			if(cross_cnt == 3 && data_gray[1] == 0xFF)
-//			{
-//				chassis_stop_flag = 1;
-//				chassis_flag = 1;
-//				cross_cnt ++;
-//			}
-//			
-//		}
-		
+		if(chassis_flag == 1 && Data_sum_gray1 > 1)
+		{
+			cross_flag = 1;
+			
+		}
+		if(chassis_flag == 1 && cross_flag == 1 && data_gray[1] == 0x00)
+		{
+			cross_cnt++;
+			cross_flag = 0;
+		}
+		if(chassis_flag == 1 && cross_cnt == 2)
+		{
+			if(Data_sum_gray1 > 1)
+			{
+				if(Data_gray[1][0] || Data_gray[1][7])
+				{
+					//chassis_stop_flag = 1;
+					chassis_flag = 2;
+				}
+			}
+		}
+		if(chassis_flag == 4 && data_gray[0] == 0xFF)
+		{
+			chassis_flag = 0;
+			arm_flag = 1;
+			//chassis_stop_flag = 1;
+			//arm_flag = 1;
+		}
+		if(chassis_flag == 5 && Data_sum_gray1 > 4)
+		{
+			chassis_stop_flag = 1;
+		}
+		//！！！！由于是蓝光款，所以蓝方场地，cnt要到3！！！！！！
+		if(chassis_flag == 11)
+		{
+			chassis_flag = 0;
+			
+		}
 		osDelay(1);
 	}
 	
