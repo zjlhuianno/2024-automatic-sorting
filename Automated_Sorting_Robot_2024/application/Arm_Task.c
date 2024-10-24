@@ -30,6 +30,8 @@ extern uint8_t mode_openmv, flag_openmv, color, shape,flag_openmv_ball;
 
 int cnt_zzz = 0;
 
+float now_angle_4310 = 0.0f;
+
 void Arm_Task(void const * argument)
 {
 	while(!ins_init_flag)
@@ -118,6 +120,8 @@ void Arm_Task(void const * argument)
 		{
 			Servo_Ctrl_4(1);
 		}
+		
+		now_angle_4310 = DM4310_enc_p_int_to_angle(DM4310_Data.p_int);
 		
 		DM4310_delta_enc = DM4310_Data.p_int - DM4310_Data.last_p_int;
 		last_DM4310_delta_enc = DM4310_delta_enc;
@@ -400,11 +404,44 @@ void look_object(uint8_t mode)
 
 void catch_object(uint8_t mode)
 {
-//	int force_sensing_cnt = 0;//力控感知计时器。
+	int force_sensing_cnt = 0;//力控感知计时器。
+	
+//	if (mode == 1)//低平台夹方块。
+//	{
+//		force_sensing_flag = 1;//启动力控感知。
+
+//		if (pos_frame_cnt == 0)//机械臂伸到高缓冲处，爪闭合。
+//		{
+//			
+//			ball_in_flag = 0;//仓库上方进口的舵机接方块。
+//			pile_approach_flag = 0;//甜甜圈塑料桩远离。	
+//			
+//			set_arm_pos_param(38.0f, 30.0f, 25.600061f, 5.0f);//高缓冲处。
+//			pos_stable_function(0, 1);//不是最后一帧，且爪张开。
+//			
+//		}
+//		else if (pos_frame_cnt == 1)//机械臂伸到低平台，爪取方块。
+//		{
+//			set_arm_pos_param(38.0f, 16.2f, 0.0f, 5.0f);//低平台。
+//			pos_stable_function(0, 2);//不是最后一帧，且爪取方块。	
+//		}
+//		else if (pos_frame_cnt==2)//机械臂伸到低平台的较高处，爪仍保持抓方块的姿态，为的是防止爪放方块时方块会搓到阶梯平台。
+//		{
+//			//set_arm_pos_param(38.0f, 20.0f, 40.0f, 10.0f);//低平台的较高处。
+//			set_arm_pos_param(43.0f, 20.0f, 3.899998f, 10.0f);//低平台的较高处。
+//			pos_stable_function(0, 2);//不是最后一帧，且爪取方块。
+//						
+//		}
+//		else if (pos_frame_cnt==3)//机械臂缩到方块仓库的上方，爪放方块。
+//		{
+//			set_arm_pos_param(20.0f, 30.0f, 40.0f, 5.0f);//方块仓库的上方。
+//			pos_stable_function(1, 1);//是最后一帧，且爪张开。
+//		}			
+//	}//mode == 1结束。
 	
 	if (mode == 1)//低平台夹方块。
 	{
-//		force_sensing_flag = 1;//启动力控感知。
+		force_sensing_flag = 1;//启动力控感知。
 
 		if (pos_frame_cnt == 0)//机械臂伸到高缓冲处，爪闭合。
 		{
@@ -412,27 +449,29 @@ void catch_object(uint8_t mode)
 			ball_in_flag = 0;//仓库上方进口的舵机接方块。
 			pile_approach_flag = 0;//甜甜圈塑料桩远离。	
 			
-			set_arm_pos_param(38.0f, 30.0f, 30.0f, 5.0f);//高缓冲处。
+			set_arm_pos_param_ture(38.0f, 25.0f, 0.0f);//高缓冲处。
+//			set_arm_pos_param_ture(38.0f, 30.0f, 0.0f);//高缓冲处。
 			pos_stable_function(0, 1);//不是最后一帧，且爪张开。
 			
 		}
 		else if (pos_frame_cnt == 1)//机械臂伸到低平台，爪取方块。
 		{
-			set_arm_pos_param(38.0f, 18.0f, 40.0f, 5.0f);//低平台。
+			set_arm_pos_param_ture(38.0f, 16.2f, 0.0f);//低平台。
 			pos_stable_function(0, 2);//不是最后一帧，且爪取方块。	
 		}
 		else if (pos_frame_cnt==2)//机械臂伸到低平台的较高处，爪仍保持抓方块的姿态，为的是防止爪放方块时方块会搓到阶梯平台。
 		{
-			set_arm_pos_param(43.0f, 20.0f, 40.0f, 10.0f);//低平台的较高处。
+			//set_arm_pos_param(38.0f, 20.0f, 40.0f, 10.0f);//低平台的较高处。
+			set_arm_pos_param_ture(43.0f, 20.0f, 0.0f);//低平台的较高处。
 			pos_stable_function(0, 2);//不是最后一帧，且爪取方块。
 						
 		}
 		else if (pos_frame_cnt==3)//机械臂缩到方块仓库的上方，爪放方块。
 		{
-			set_arm_pos_param(20.0f, 30.0f, 40.0f, 5.0f);//方块仓库的上方。
+			set_arm_pos_param_ture(20.0f, 30.0f, 0.0f);//方块仓库的上方。
 			pos_stable_function(1, 1);//是最后一帧，且爪张开。
 		}			
-	}//mode == 1结束。
+	}//mode == 1结束。	
 	
 		
 	if (mode == 2)//低平台夹甜甜圈。
@@ -450,7 +489,7 @@ void catch_object(uint8_t mode)
 		}
 		else if (pos_frame_cnt == 1)//机械臂伸到低平台，爪取甜甜圈。
 		{
-			set_arm_pos_param(38.0f, 17.5f, 40.0f, 5.0f);//低平台。
+			set_arm_pos_param(38.0f, 16.0f, 0.0f, 5.0f);//低平台。
 			pos_stable_function(0, 2);//不是最后一帧，且爪取甜甜圈。	
 		}
 		else if (pos_frame_cnt==2)//机械臂伸到低平台的较高处，爪仍保持抓甜甜圈的姿态，为的是防止爪放方块时方块会搓到阶梯平台。
@@ -641,32 +680,32 @@ void catch_object(uint8_t mode)
 	}//mode == 7结束。						
 			
 		//力控感知。
-//		while(force_sensing_flag)
-//		{
-//			target_y-=0.03f;
-//			if(target_y<5)
-//			{
-//				break;
-//			}
-//			if(abs(DM4310_delta_enc-last_DM4310_delta_enc)<5)
-//			{
-//				if(DM4310_delta_enc<25)
-//				{
-//					force_sensing_cnt++;
-//					if(force_sensing_cnt==15)
-//					{
-//						target_y+=1;
-//						force_sensing_flag=0;
-//					}
-//				}
-//				else
-//				{
-//					force_sensing_cnt=0;
+		while(force_sensing_flag)
+		{
+			//target_y-=0.03f;
+			if(target_y<5)
+			{
+				break;
+			}
+			if(abs(DM4310_delta_enc-last_DM4310_delta_enc)<5)
+			{
+				if(DM4310_delta_enc<25)
+				{
+					force_sensing_cnt++;
+					if(force_sensing_cnt==15)
+					{
+						target_y+=1.0f;//1
+						force_sensing_flag=0;
+					}
+				}
+				else
+				{
+					force_sensing_cnt=0;
 
-//				}
-//			}
-//			osDelay(1);			
-//		}//力控感知结束。
+				}
+			}
+			osDelay(1);			
+		}//力控感知结束。
 
 }
 
@@ -678,18 +717,30 @@ void set_arm_pos_param(float target_x_param, float target_y_param, float target_
 	Servo_Ctrl_arm(true_target_angle_param);
 }
 
+void set_arm_pos_param_ture(float target_x_param, float target_y_param, float target_angle_param)
+{
+	target_x = target_x_param;
+	target_y = target_y_param;
+	target_angle = target_angle_param;
+}
+
 void pos_stable_function(uint8_t is_last_pos_frame, uint8_t claw_mode)
 {
 	osDelay(100);
 	
-	if (abs(arms_js_data[1] == DM4310_enc_p_int_to_angle(DM4310_Data.p_int)) < 0.1 && abs(arms_js_data[2] == DM4340_enc_p_int_to_angle(DM4340_Data.p_int)) < 0.1)
+	if (fabs(arms_js_data[1] - DM4310_enc_p_int_to_angle(DM4310_Data.p_int)) < 0.1 && fabs(arms_js_data[2] - DM4340_enc_p_int_to_angle(DM4340_Data.p_int)) < 0.1)
 	{
+		
+//		if(fabs(arms_js_data[1] - DM4310_enc_p_int_to_angle(DM4310_Data.p_int)) > 0.01)
+//		{
+//				offset_4310_angle += 6.0f;
+//		}
 		
 		pos_stable_cnt++; //每隔一段时间，如果编码器数据在预测范围内，pos_stable_cnt++。
 											//注意：这里的一段时间并不是由本函数内的osDelay(100)单方面决定的，还受到task的通讯频率的影响。
 
 		
-		if (pos_stable_cnt == 20)//姿态稳定一段时间以后，才允许执行下一帧。
+		if (pos_stable_cnt == 10)//姿态稳定一段时间以后，才允许执行下一帧。
 		{
 			pos_stable_cnt=0;
 			arm_catch_flag=claw_mode;//直到机械臂姿态稳定，才改变夹爪的动作。

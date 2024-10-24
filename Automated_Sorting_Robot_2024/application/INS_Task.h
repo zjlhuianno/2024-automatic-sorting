@@ -145,6 +145,7 @@ extern const fp32 *get_INS_quat_point(void);
   */
 extern const fp32 *get_INS_angle_point(void);
 extern const fp32 *get_INS_angle_deg_point(void);
+extern const fp32 *get_INS_angle_speed_deg_point(void);
 
 /**
   * @brief          get the rotation speed, 0:x-axis, 1:y-axis, 2:roll-axis,unit rad/s

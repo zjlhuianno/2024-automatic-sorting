@@ -6,6 +6,7 @@
 #include "pid.h"
 #include "can_receive.h"
 #include "INS_task.h"
+#include "configs.h"
 
 
 /*电机基础数据*/
@@ -61,7 +62,7 @@ typedef struct
 typedef struct
 {                
 	const float *chassis_INS_angle_degree;//获取陀螺仪解算出的欧拉角指针(角度制)
-	
+	const float *chassis_INS_angle_speed_degree;
 	chassis_motor_t motor_chassis[4];          
   
 	pid_type_def motor_speed_pid[4];
@@ -81,6 +82,7 @@ typedef struct
 	float x;
 	float y;
 	float yaw;
+	float yaw_speed;
 	
 	float vx_set;
 	float vy_set;

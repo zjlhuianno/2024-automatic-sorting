@@ -496,6 +496,10 @@ const fp32 *get_INS_angle_deg_point(void)
 {
     return INS_angle_deg;
 }
+const fp32 *get_INS_angle_speed_deg_point(void)
+{
+	return INS_angle_speed_deg;
+}
 /**
   * @brief          get the rotation speed, 0:x-axis, 1:y-axis, 2:roll-axis,unit rad/s
   * @param[in]      none

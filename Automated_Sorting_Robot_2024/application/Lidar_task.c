@@ -18,9 +18,9 @@ void Lidar_task(void const * argument)
 	while(1)
 	{
 
-		if(chassis_flag == 7 && lidar_distance < 500)
+		if(chassis_flag == 8 && lidar_distance < 350)
 		{
-			chassis_flag = 8;
+			chassis_flag = 9;
 		}
 		
 		osDelay(1);

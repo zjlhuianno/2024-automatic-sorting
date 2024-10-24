@@ -58,13 +58,28 @@ void Grayscale_task(void const * argument)
 		if(chassis_flag == 5 && Data_sum_gray1 > 4)
 		{
 			chassis_stop_flag = 1;
+			chassis_flag = 6;
 		}
-		//！！！！由于是蓝光款，所以蓝方场地，cnt要到3！！！！！！
-		if(chassis_flag == 11)
+		if(chassis_flag == 9 && Data_sum_gray1 > 4)
+		{
+			chassis_stop_flag = 1;
+		}
+		if(chassis_flag == 10 && data_gray[0] == 0xFF)
 		{
 			chassis_flag = 0;
-			
 		}
+
+		if(chassis_flag == 14 && Data_sum_gray1 > 4)
+		{
+			chassis_stop_flag = 1;
+			chassis_flag = 16;
+		}
+		//！！！！由于是蓝光款，所以蓝方场地，cnt要到3！！！！！！
+//		if(chassis_flag == 11)
+//		{
+//			chassis_flag = 0;
+//			
+//		}
 		osDelay(1);
 	}
 	

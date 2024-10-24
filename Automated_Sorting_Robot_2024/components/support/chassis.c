@@ -31,11 +31,18 @@ void chassis_control_loop(chassis_move_t *chassis_move_control_loop)
 	float wheel_speed[4] = {0.0f, 0.0f, 0.0f, 0.0f};
     uint8_t i = 0;
 	
+	
     chassis_vector_to_omni_wheel_speed(chassis_move_control_loop->vx_set,
                                        chassis_move_control_loop->vy_set, 
 									   chassis_move_control_loop->wz_set,
 									   wheel_speed);
-	
+	if(chassis_yz_mode == 1)
+	{
+		wheel_speed[0] = -0.03f;
+		wheel_speed[1] = -0.03f;
+		wheel_speed[2] = 0.2f;
+		wheel_speed[3] = 0.2f;
+	}
     //计算轮子控制最大速度，并限制其最大速度
 	for (i = 0; i < 4; i++)
     {
@@ -112,8 +119,10 @@ void chassis_feedback_update(chassis_move_t *chassis_move_update)
 
 	
 	chassis_move_update->yaw = *(chassis_move_update->chassis_INS_angle_degree + INS_YAW_ADDRESS_OFFSET);
-	if(chassis_move_update->yaw < -100)
-		chassis_move_update->yaw += 360;
+	chassis_move_update->yaw_speed = *(chassis_move_update->chassis_INS_angle_speed_degree + INS_YAW_ADDRESS_OFFSET);
+	
+	if(chassis_move_update->yaw > 160)
+		chassis_move_update->yaw -= 360;
 }
 
 //底盘移动控制
@@ -165,7 +174,7 @@ void chassis_init(chassis_move_t *chassis_move_init)
 
     //获取陀螺仪姿态角指针
     chassis_move_init->chassis_INS_angle_degree = get_INS_angle_deg_point();
-	
+	chassis_move_init->chassis_INS_angle_speed_degree = get_INS_angle_speed_deg_point();
     //获取底盘电机数据指针，初始化PID 
     for (i = 0; i < 4; i++)
     {

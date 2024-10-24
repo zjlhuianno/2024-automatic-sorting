@@ -14,7 +14,7 @@ extern uint8_t servo_release_flag;
 extern uint8_t chassis_stop_flag;
 extern uint8_t cross_flag;
 extern int arm_flag_ok;
-
+extern uint8_t chassis_yz_mode;
 extern uint8_t mode_openmv;
 extern uint8_t openmv_flag_ddd;
 
@@ -25,7 +25,7 @@ extern uint8_t mode;
 
 //以下都是机械臂的相关变量。
 //***********************************************************//
-
+extern float offset_4310_angle;
 
 
 //库变量的申明。

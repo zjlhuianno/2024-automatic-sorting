@@ -25,9 +25,18 @@ void main_task(void const * argument)
 	while(1)
 	{
 //		mode_openmv = 1;//打开openmv的识别形状颜色模式。
-		mode_openmv = 2;//打开openmv的识别球颜色模式。
+//		mode_openmv = 2;//打开openmv的识别球颜色模式。
 //		look_object_mode = 1;//低平台看。
-		push_ball_mode = 1;//圆盘机拨球。
+		catch_object_mode = 1;//低平台抓取。
+//		push_ball_mode = 1;//圆盘机拨球。
+		
+//		set_arm_pos_param_ture(38.0f, 20.0f, 0.0f);
+		
+		
+//机械臂动作标志位判断。
+		FUCK_YOU();
+		
+		//push_ball_mode = 1;//圆盘机拨球。
 		
 //		arm_flag = 1;
 //		if(arm_flag == 1)
@@ -38,50 +47,63 @@ void main_task(void const * argument)
 //		}
 		
 		
-//		if(chassis_flag == 2)
-//		{
-//			osDelay(1000);
-//			chassis_flag = 3;
-//		}
-//		if(chassis_flag == 3)
-//		{
-//			osDelay(2000);
-//			chassis_flag = 4;
-//		}
-//		if(chassis_flag == 5)
-//		{
-//			osDelay(3000);
-//			chassis_flag = 6;
-//		}
-//		if(chassis_flag == 6)
-//		{
-//			osDelay(2000);
-//			chassis_flag = 0;
-//		
-//			osDelay(2000);
-//			chassis_flag = 7;
-//		}
-//		if(chassis_flag == 8)
-//		{
-//			osDelay(3000);
-//			chassis_flag = 9;
-//		}
-//		if(chassis_flag == 9)
-//		{
-//			osDelay(2000);
-//			chassis_stop_flag = 1;
-//			//chassis_flag = 0;
-//			osDelay(2000);
-//			chassis_flag = 10;
-//		}
-
-//		if(chassis_flag == 11)
-//		{
-//			osDelay(2000);
-//			chassis_flag = 12;
-//		}
+		if(chassis_flag == 2)
+		{
+			osDelay(1000);
+			chassis_flag = 3;
+		}
+		if(chassis_flag == 3)
+		{
+			osDelay(2000);
+			chassis_flag = 4;
+		}
 		
-
+		if(chassis_flag == 6)//g
+		{
+			osDelay(2000);
+			chassis_flag = 7;
+		}
+		if(chassis_flag == 7)
+		{
+			osDelay(2000);
+			chassis_flag = 8;
+		}
+		if(chassis_flag == 8)
+		{
+			osDelay(3000);
+			chassis_flag = 9;
+		}
+		if(chassis_flag == 9)
+		{
+			osDelay(3000);
+			chassis_flag = 10;
+		}
+		if(chassis_flag == 10)
+		{
+			osDelay(2000);
+			chassis_flag = 11;
+		}
+		if(chassis_flag == 11)
+		{
+			osDelay(2000);
+			chassis_flag = 12;
+		}
+		if(chassis_flag == 15)
+		{
+			osDelay(2000);
+			chassis_flag = 16;
+		}
+		if(chassis_flag == 16)
+		{
+			osDelay(2000);
+			chassis_flag = 17;
+		}
+		if(chassis_flag == 17)
+		{
+			osDelay(2000);
+			chassis_flag = 18;
+		}
+		
 //******************************************
 
 
@@ -109,8 +131,6 @@ void main_task(void const * argument)
 //		osDelay(2000);
 //		chassis_flag = 4;
 
-//机械臂动作标志位判断。
-		FUCK_YOU();
 
 		
 		osDelay(1);

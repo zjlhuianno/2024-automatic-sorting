@@ -1,5 +1,6 @@
 #include "DM_Control.h"
 #include "Arm_Posture_Calculate.h"
+#include "Servo.h"
 #include "math.h"
 #include "stdlib.h"
 #include "configs.h"
@@ -427,10 +428,10 @@ void ramp_function(float *data_follow,float data_target,float k)
 void Arm_Ctrl(float target_x, float target_y, float target_angle)
 {
 	//斜坡控制。
-	//在k==0.01,osDelay(1)的情况下，每1ms，target_x_follow逼近target_x的大小为0.01，即1s步进10。
-	ramp_function(&target_x_follow, target_x, 0.02);
-	ramp_function(&target_y_follow, target_y, 0.02);
-	ramp_function(&target_angle_follow, target_angle, 0.02);
+	//在k==0.02,osDelay(1)的情况下，每1ms，target_x_follow逼近target_x的大小为0.02，即1s步进20。
+	ramp_function(&target_x_follow, target_x, 0.025);
+	ramp_function(&target_y_follow, target_y, 0.025);
+	ramp_function(&target_angle_follow, target_angle, 0.025);
 	
 	//机械臂解算。
 	arms_js(arms_js_data, target_x_follow, target_y_follow, target_angle_follow, 16.085f, 17.514f, 16.454f);
@@ -458,7 +459,7 @@ void Arm_Ctrl(float target_x, float target_y, float target_angle)
 //		MIT_Ctrl_DM_Motor(&hcan2,DM4310_ID,0,0,0,0,0);
 //		MIT_Ctrl_DM_Motor(&hcan2,DM4340_ID,0,0,0,0,0);
 //	}
-	DM_PID_Pos_Speed_Ctrl(DM4310_ID, DM4310_target_pos_int);
+	DM_PID_Pos_Speed_Ctrl(DM4310_ID, DM4310_target_pos_int + DM4310_angle_to_enc_p_int(offset_4310_angle));
 	DM_PID_Pos_Speed_Ctrl(DM4340_ID, DM4340_target_pos_int);		
-
+	Servo_Ctrl_arm(Servo_target_angle);
 }

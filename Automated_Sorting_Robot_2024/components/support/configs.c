@@ -26,6 +26,8 @@ uint8_t ins_beyond_flag = 0;
 
 uint8_t cross_flag = 0;
 
+uint8_t chassis_yz_mode = 0;
+
 uint8_t chassis_stop_flag = 0;
 /*
 机械臂
@@ -85,7 +87,7 @@ uint8_t mode_openmv = 0;
 
 //以下都是机械臂的相关变量。
 //***********************************************************//
-
+float offset_4310_angle = 0.0f;
 
 //**************PID参数******************//
 
@@ -98,9 +100,9 @@ uint8_t mode_openmv = 0;
 	float DM4340_speed_PID[3];
 
 	//位置环PD控制。
-	float DM4340_pos_kp=0.30f;//0.06f;
+	float DM4340_pos_kp=0.20f;//0.25f
 	float DM4340_pos_ki=0.0f;
-	float DM4340_pos_kd=0.20f;
+	float DM4340_pos_kd=0.20f;//0.20f
 	float DM4340_pos_max_out=28.0f;
 	float DM4340_pos_max_iout=28.0f;
 	float DM4340_pos_PID[3];
@@ -117,9 +119,9 @@ uint8_t mode_openmv = 0;
 	float DM4310_speed_PID[3];
 
 	//位置环PD控制。
-	float DM4310_pos_kp=0.40f;
+	float DM4310_pos_kp=0.10f;//0.30f
 	float DM4310_pos_ki=0.0f;
-	float DM4310_pos_kd=13.0f;
+	float DM4310_pos_kd=13.0f;//13.0f
 	float DM4310_pos_max_out=35.0f;
 	float DM4310_pos_max_iout=35.0f;
 	float DM4310_pos_PID[3];

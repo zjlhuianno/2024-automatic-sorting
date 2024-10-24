@@ -83,7 +83,7 @@ void arms_js(float* data_ref,float x1,float y1,float alphas,float l1,float l2,fl
 	x3=0-co*sin(alpha7);
 	y3=0-co*cos(alpha7);
 	kbc=(y2-y3)/(x2-x3);
-	kbc_f=1/kbc;
+	kbc_f=-(1/kbc);
 	x4=x2-(y2/kbc_f);
 	bd= re_dis(x2,y2,x4,y4);
 	ad= re_dis(x1,y1,x4,y4);
@@ -102,7 +102,7 @@ void arms_js(float* data_ref,float x1,float y1,float alphas,float l1,float l2,fl
 	alpha2= rtod(alpha2);
 	alpha3= rtod(alpha3);
 	
-	real_alpha1 = alpha1;//机械臂舵机转过的角度。
+	real_alpha1 = alpha1-90.0f-10.0f;//机械臂舵机转过的角度。
 	real_alpha2 = alpha2-(180.0f-137.9f);//DM4310转过的角度。
 	real_alpha3 = 55.0f+180.0f-alpha3;//DM4340转过的角度。
 	

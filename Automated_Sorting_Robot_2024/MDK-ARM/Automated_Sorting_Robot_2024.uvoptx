@@ -263,42 +263,57 @@
         <Ww>
           <count>21</count>
           <WinNumber>1</WinNumber>
-          <ItemText>arm_flag</ItemText>
+          <ItemText>chassis_flag,0x0A</ItemText>
         </Ww>
         <Ww>
           <count>22</count>
           <WinNumber>1</WinNumber>
-          <ItemText>pos_frame_cnt</ItemText>
+          <ItemText>chassis_stop_flag,0x0A</ItemText>
         </Ww>
         <Ww>
           <count>23</count>
           <WinNumber>1</WinNumber>
-          <ItemText>ball_in_flag</ItemText>
+          <ItemText>lidar_distance,0x0A</ItemText>
         </Ww>
         <Ww>
           <count>24</count>
           <WinNumber>1</WinNumber>
-          <ItemText>ins_init_flag</ItemText>
+          <ItemText>pos_frame_cnt,0x0A</ItemText>
         </Ww>
         <Ww>
           <count>25</count>
           <WinNumber>1</WinNumber>
-          <ItemText>cnt_zzz</ItemText>
+          <ItemText>pos_stable_cnt,0x0A</ItemText>
         </Ww>
         <Ww>
           <count>26</count>
           <WinNumber>1</WinNumber>
-          <ItemText>chassis_flag,0x0A</ItemText>
+          <ItemText>target_angle</ItemText>
         </Ww>
         <Ww>
           <count>27</count>
           <WinNumber>1</WinNumber>
-          <ItemText>ins_beyond_flag</ItemText>
+          <ItemText>arm_catch_flag</ItemText>
         </Ww>
         <Ww>
           <count>28</count>
           <WinNumber>1</WinNumber>
-          <ItemText>chassis_stop_flag</ItemText>
+          <ItemText>target_x_follow</ItemText>
+        </Ww>
+        <Ww>
+          <count>29</count>
+          <WinNumber>1</WinNumber>
+          <ItemText>target_y_follow</ItemText>
+        </Ww>
+        <Ww>
+          <count>30</count>
+          <WinNumber>1</WinNumber>
+          <ItemText>now_angle_4310</ItemText>
+        </Ww>
+        <Ww>
+          <count>31</count>
+          <WinNumber>1</WinNumber>
+          <ItemText>arms_js_data</ItemText>
         </Ww>
       </WatchWindow1>
       <WatchWindow2>
@@ -938,7 +953,7 @@
       <GroupNumber>6</GroupNumber>
       <FileNumber>45</FileNumber>
       <FileType>1</FileType>
-      <tvExp>0</tvExp>
+      <tvExp>1</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
       <PathWithFileName>..\application\Arm_Task.c</PathWithFileName>
