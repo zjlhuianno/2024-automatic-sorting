@@ -1,0 +1,12 @@
+automated_sorting_robot_2024\port.o: ../Middlewares/Third_Party/FreeRTOS/Source/portable/RVDS/ARM_CM4F/port.c
+automated_sorting_robot_2024\port.o: ../Middlewares/Third_Party/FreeRTOS/Source/include/FreeRTOS.h
+automated_sorting_robot_2024\port.o: D:\KeilMDK\ARM\ARMCC\Bin\..\include\stddef.h
+automated_sorting_robot_2024\port.o: D:\KeilMDK\ARM\ARMCC\Bin\..\include\stdint.h
+automated_sorting_robot_2024\port.o: ../Core/Inc/FreeRTOSConfig.h
+automated_sorting_robot_2024\port.o: ../Middlewares/Third_Party/FreeRTOS/Source/include/projdefs.h
+automated_sorting_robot_2024\port.o: ../Middlewares/Third_Party/FreeRTOS/Source/include/portable.h
+automated_sorting_robot_2024\port.o: ../Middlewares/Third_Party/FreeRTOS/Source/include/deprecated_definitions.h
+automated_sorting_robot_2024\port.o: ../Middlewares/Third_Party/FreeRTOS/Source/portable/RVDS/ARM_CM4F/portmacro.h
+automated_sorting_robot_2024\port.o: ../Middlewares/Third_Party/FreeRTOS/Source/include/mpu_wrappers.h
+automated_sorting_robot_2024\port.o: ../Middlewares/Third_Party/FreeRTOS/Source/include/task.h
+automated_sorting_robot_2024\port.o: ../Middlewares/Third_Party/FreeRTOS/Source/include/list.h

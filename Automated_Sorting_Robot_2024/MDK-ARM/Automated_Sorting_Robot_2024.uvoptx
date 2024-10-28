@@ -285,6 +285,11 @@
           <WinNumber>1</WinNumber>
           <ItemText>arm_flag_zzz,0x0A</ItemText>
         </Ww>
+        <Ww>
+          <count>26</count>
+          <WinNumber>1</WinNumber>
+          <ItemText>shunt_ball_flag,0x0A</ItemText>
+        </Ww>
       </WatchWindow1>
       <WatchWindow2>
         <Ww>
@@ -923,7 +928,7 @@
       <GroupNumber>6</GroupNumber>
       <FileNumber>45</FileNumber>
       <FileType>1</FileType>
-      <tvExp>1</tvExp>
+      <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
       <PathWithFileName>..\application\Arm_Task.c</PathWithFileName>

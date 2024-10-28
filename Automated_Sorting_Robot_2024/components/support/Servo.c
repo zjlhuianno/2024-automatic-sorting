@@ -148,8 +148,8 @@ void Servo_Ctrl_4(uint8_t ctrl_flag)
 }
 
 //控制仓库上方分流的舵机。
-//ctrl_flag：	0：分流至蓝/红球，pwm = 1400。
-//				1：分流至黄球，pwm = 2100。
+//ctrl_flag：0：分流至蓝/红球，pwm = 1300。
+//			 1：分流至黄球，pwm = 200。
 void Servo_Ctrl_5(uint8_t ctrl_flag)
 {
 	switch (ctrl_flag)
@@ -161,7 +161,7 @@ void Servo_Ctrl_5(uint8_t ctrl_flag)
 		}
 		case 1:
 		{
-			__HAL_TIM_SET_COMPARE(&htim8, TIM_CHANNEL_1, 200);
+			__HAL_TIM_SET_COMPARE(&htim8, TIM_CHANNEL_1, 2200);
 			break;
 		}
 		default:

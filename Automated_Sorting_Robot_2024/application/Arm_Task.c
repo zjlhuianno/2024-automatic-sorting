@@ -156,32 +156,33 @@ void push_ball(uint8_t mode)
 	if (mode == 1)//圆盘机拨球。
 	{
 //		force_sensing_flag = 1;//启动力控感知。
-		
-			ball_in_flag = 1;//铲子放平。
-			pile_approach_flag = 0;//塑料桩远离。
-			
 
 		if (pos_frame_cnt == 0)//机械臂伸到高缓冲处，爪闭合。
 		{
-			set_arm_pos_param_true(38.0f, 27.0f, 10.0f);//圆盘机上方。
+			
+			ball_in_flag = 1;//铲子放平。
+			pile_approach_flag = 0;//塑料桩远离。
+			
+			set_arm_pos_param_true(39.0f, 27.0f, 10.0f);//圆盘机上方。
 			pos_stable_function(0, 0);//不是最后一帧，且爪闭合。			
 		}
 		else if (pos_frame_cnt == 1)//机械臂伸到圆盘机平台，爪按需拨球。
 		{
-			set_arm_pos_param_true(38.0f, 21.0f, 0.0f);//圆盘机平台。
+			set_arm_pos_param_true(39.0f, 21.0f, 0.0f);//圆盘机平台。
 			pos_stable_function(0, 0);//不是最后一帧，且爪闭合。
 		}
 		else if (pos_frame_cnt == 2)//机械臂保持圆盘机平台位置，并按需拨球。
 		{
-			set_arm_pos_param_true(38.0f, 21.0f, 0.0f);//圆盘机平台。
+			set_arm_pos_param_true(39.0f, 21.0f, 0.0f);//圆盘机平台。
 
 			if (color == 1)//如果是红球。
 			{
 				color = 0;//把颜色置零。
-				shunt_ball_flag = 0;//如果是己方球（红球或蓝球），则将球分流至己方轨道。
+				
 				//爪拨球一次。
 				arm_catch_flag = 4;
 				osDelay(250);
+				shunt_ball_flag = 0;//如果是己方球（红球或蓝球），则将球分流至己方轨道。
 				arm_catch_flag = 0;
 				osDelay(250);
 				//350
@@ -189,10 +190,11 @@ void push_ball(uint8_t mode)
 			else if (color == 3)//如果是黄球。
 			{
 				color = 0;//把颜色置零。
-				shunt_ball_flag = 1;//如果是中立球（黄球），则将球分流至中立轨道。
+				
 				//爪拨球一次。
 				arm_catch_flag = 4;
 				osDelay(250);
+				shunt_ball_flag = 1;//如果是中立球（黄球），则将球分流至中立轨道。
 				arm_catch_flag = 0;
 				osDelay(250);
 				//350				
@@ -215,7 +217,7 @@ void push_ball(uint8_t mode)
 		}		
 		else if (pos_frame_cnt==3)//机械臂伸到圆盘机上方，结束拨球。
 		{
-			set_arm_pos_param_true(38.0f, 25.0f, 5.0f);//圆盘机上方。
+			set_arm_pos_param_true(39.0f, 25.0f, 5.0f);//圆盘机上方。
 			pos_stable_function(0, 0);//不是最后一帧，且爪闭合。
 		}		
 		else if (pos_frame_cnt==4)//机械臂伸到方块仓库的上上方，结束拨球。
@@ -677,9 +679,9 @@ void set_arm_pos_param_true(float target_x_param, float target_y_param, float ta
 
 void pos_stable_function(uint8_t is_last_pos_frame, uint8_t claw_mode)
 {
-	osDelay(90);
+	osDelay(100);//0.5
 	
-	if (fabs(arms_js_data[1] - DM4310_enc_p_int_to_angle(DM4310_Data.p_int)) < 0.5 && fabs(arms_js_data[2] - DM4340_enc_p_int_to_angle(DM4340_Data.p_int)) < 0.5)
+	if (fabs(arms_js_data[1] - DM4310_enc_p_int_to_angle(DM4310_Data.p_int)) < 0.3 && fabs(arms_js_data[2] - DM4340_enc_p_int_to_angle(DM4340_Data.p_int)) < 0.3)
 	{
 		pos_stable_cnt++; //每隔一段时间，如果编码器数据在预测范围内，pos_stable_cnt++。
 											//注意：这里的一段时间并不是由本函数内的osDelay(100)单方面决定的，还受到task的通讯频率的影响。

@@ -23,25 +23,27 @@ void main_task(void const * argument)
 	{
 		osDelay(1);
 	}
-	disable_arm_flag = 1;//当为1时无力。
+	disable_arm_flag = 0;//当为1时无力。
 	while(1)
 	{
-		mode_openmv = 1;//打开openmv的识别形状颜色模式。
-//		mode_openmv = 2;//打开openmv的识别球颜色模式。
+//		mode_openmv = 1;//打开openmv的识别形状颜色模式。
+		mode_openmv = 2;//打开openmv的识别球颜色模式。
+//		
+		push_ball(1);
 		
-		//低平台看和识别抓取。
-		if (arm_flag == 0)
-		{
-			look_object(1);//低平台看。
-		}
-		if (arm_flag == 1 && color == 1 && (shape == 2 || shape == 3))//红色方块或矩形。
-		{
-			catch_object(1);//低平台抓方块。
-		}
-		else if (arm_flag == 1 && color == 1 && (shape == 1))//红色圆环。
-		{
-			catch_object(2);//低平台抓甜甜圈。
-		}
+//		//低平台看和识别抓取。
+//		if (arm_flag == 0)
+//		{
+//			look_object(1);//低平台看。
+//		}
+//		if (arm_flag == 1 && color == 1 && (shape == 2 || shape == 3))//红色方块或矩形。
+//		{
+//			catch_object(1);//低平台抓方块。
+//		}
+//		else if (arm_flag == 1 && color == 1 && (shape == 1))//红色圆环。
+//		{
+//			catch_object(2);//低平台抓甜甜圈。
+//		}
 		
 //		//高平台看和识别抓取。
 //		if (arm_flag == 2)
