@@ -50,7 +50,7 @@ void Grayscale_task(void const * argument)
 		if(chassis_work_flag == 2 && work_flag == 5)
 			if(Data_sum_gray1 > 4)
 				target_cross_flag = 1;
-		if(chassis_work_flag == 2 && work_flag == 6)
+		if(chassis_work_flag == 2 && work_flag == 7)
 			if(data_gray[0] == 0xFF)
 				gray_stop_flag = 1;
 

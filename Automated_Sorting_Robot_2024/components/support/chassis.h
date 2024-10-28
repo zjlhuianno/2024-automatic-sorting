@@ -3,6 +3,7 @@
 
 #include "main.h"
 #include "math.h"
+#include "stdlib.h"
 #include "pid.h"
 #include "can_receive.h"
 #include "INS_task.h"
@@ -45,7 +46,7 @@
 #define CHASSIS_POSITION_PID_KP 12.0f//10.0f
 #define CHASSIS_POSITION_PID_KI 0.0f
 #define CHASSIS_POSITION_PID_KD 10.0f
-#define CHASSIS_POSITION_PID_MAX_OUT 0.5f
+#define CHASSIS_POSITION_PID_MAX_OUT 0.4f
 #define CHASSIS_POSITION_PID_MAX_IOUT 0.2f
 //角度环pid
 #define CHASSIS_YAW_PID_KP 12.0f
@@ -54,9 +55,9 @@
 #define CHASSIS_YAW_PID_MAX_OUT 90.0f
 #define CHASSIS_YAW_PID_MAX_IOUT 40.0f
 //角速度环pid
-#define CHASSIS_YAW_SPEED_PID_KP 1.0f
-#define CHASSIS_YAW_SPEED_PID_KI 0.0f
-#define CHASSIS_YAW_SPEED_PID_KD 0.0f
+#define CHASSIS_YAW_SPEED_PID_KP 2.0f
+#define CHASSIS_YAW_SPEED_PID_KI 0.01f
+#define CHASSIS_YAW_SPEED_PID_KD 10.0f
 #define CHASSIS_YAW_SPEED_PID_MAX_OUT 90.0f
 #define CHASSIS_YAW_SPEED_PID_MAX_IOUT 40.0f
 

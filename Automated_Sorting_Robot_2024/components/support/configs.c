@@ -7,6 +7,9 @@ uint8_t ins_init_flag = 0;
 uint8_t cross_flag = 0;
 uint8_t target_cross_flag = 0;
 uint8_t gray_stop_flag = 0;
+
+
+uint8_t openmv_look_flag = 0;
 /*
 机械臂
 arm_flag ==
@@ -19,7 +22,7 @@ arm_flag ==
 4 对准台阶物品
 5 对准收物处
 */
-uint8_t arm_flag = 0;
+int arm_flag = 0;
 
 uint8_t openmv_flag_ddd = 0;
 

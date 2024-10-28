@@ -112,6 +112,9 @@ void chassis_feedback_update(chassis_move_t *chassis_move_update)
 
 	chassis_move_update->yaw_last = chassis_move_update->yaw;
 	chassis_move_update->yaw = *(chassis_move_update->chassis_INS_angle_degree + INS_YAW_ADDRESS_OFFSET);
+	if((chassis_work_flag == 2 && work_flag > 3) || chassis_work_flag > 2)
+		if(chassis_move_update->yaw > 60)
+			chassis_move_update->yaw -= 360.0f;
 	chassis_move_update->yaw_speed = *(chassis_move_update->chassis_INS_angle_speed_degree + 2);
 }
 
@@ -141,19 +144,20 @@ void chassis_control(float x, float y, float z, uint8_t move_mode, chassis_move_
 	}
 	if(move_mode == RC_MODE)
 	{
-		chassis_move_control->vx_set = 0;
-		chassis_move_control->vy_set = 0;
-		chassis_move_control->wz_set = 0;
-		if(abs(rc_ctrl.rc.ch[3]) > 10)
-			chassis_move_control->vx_set=rc_ctrl.rc.ch[3]/300.0f;
-		if(abs(rc_ctrl.rc.ch[2]) > 10)
-			chassis_move_control->vy_set=-rc_ctrl.rc.ch[2]/300.0f;
-		if(abs(rc_ctrl.rc.ch[0]) > 10)
-			chassis_move_control->wz_set=-rc_ctrl.rc.ch[0]/8.0f;
+		if(rc_ctrl.rc.s[0] == 3)
+		{
+			chassis_move_control->vx_set = 0;
+			chassis_move_control->vy_set = 0;
+			chassis_move_control->wz_set = 0;
+			if(abs(rc_ctrl.rc.ch[3]) > 10)
+				chassis_move_control->vx_set=rc_ctrl.rc.ch[3]/300.0f;
+			if(abs(rc_ctrl.rc.ch[2]) > 10)
+				chassis_move_control->vy_set=-rc_ctrl.rc.ch[2]/300.0f;
+			if(abs(rc_ctrl.rc.ch[0]) > 10)
+				chassis_move_control->wz_set=-rc_ctrl.rc.ch[0]/5.0f;
+			
+		}
 	}
-	
-		
-
 }
 
 /*底盘初始化*/

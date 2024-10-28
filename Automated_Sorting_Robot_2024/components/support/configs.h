@@ -13,8 +13,9 @@ extern uint8_t target_cross_flag;
 extern uint8_t gray_stop_flag;
 extern uint8_t avoidance_flag;
 
+extern uint8_t openmv_look_flag;
 
-extern uint8_t arm_flag;
+extern int arm_flag;
 extern uint8_t ins_init_flag;
 extern uint8_t ins_beyond_flag;
 extern uint8_t servo_claw_flag;

@@ -4,6 +4,7 @@ chassis_move_t chassis_move;
 float mz = 0;
 float mx = 0;
 float my = 0;
+extern uint8_t push_ball_mode;
 void Chassis_task(void const * argument)
 {
 	
@@ -14,7 +15,8 @@ void Chassis_task(void const * argument)
 		osDelay(1);
 	
 	xTimerStart(xTimer, 0);		
-	chassis_work_flag = 0;
+	chassis_work_flag = 1;
+//	mode_openmv = 2;
 	while(1)
 	{
 		
@@ -23,8 +25,8 @@ void Chassis_task(void const * argument)
 		
 		
 		
-		//chassis_work();
-		//speed_set(mx,my,mz);
+		chassis_work();
+		//speed_set(0,-0.2,33);
 		remote_control();
 		chassis_control_loop(&chassis_move);
 		
@@ -70,30 +72,32 @@ void chassis_work(void)
 	/*圆盘机*/
 	if(chassis_work_flag == 1)
 	{
-		if(work_flag==0) if(location_set(0.58f+3.55f,0.58f,0)||target_cross_flag)   work_flag=1,target_cross_flag=0; 
+		if(work_flag==0) if(location_set(4.23f,0.59f,0)||target_cross_flag)   		work_flag=1,target_cross_flag=0,chassis_odometry_reset(&chassis_move);; 
 		if(work_flag==1) if(location_set(0,0,90.0f)) 								work_flag=2;
-		if(work_flag==2) if(location_set(0.2,-0.02,90.0f)||gray_stop_flag) 			work_flag=0,chassis_work_flag=0,gray_stop_flag=0;
-		
-	}
+		if(work_flag==2) if(location_set(0.2,0,90.0f)||gray_stop_flag) 				work_flag=3,gray_stop_flag=0,chassis_odometry_reset(&chassis_move);else speed_set(0.2,0,0);else;
+		if(work_flag==3) if(location_set(0,0,90.0f))								work_flag=0,chassis_work_flag=0,arm_flag=1;
+	}//
 	/*阶梯平台以及避障*/
 	if(chassis_work_flag == 2)
 	{
-		if(work_flag==0) if(location_set(-0.15f,0,90.0f)||target_cross_flag) 		work_flag=1,target_cross_flag=0;
+		if(work_flag==0) if(location_set(-0.15f,0,90.0f)||target_cross_flag) 		work_flag=1,target_cross_flag=0,chassis_odometry_reset(&chassis_move);
 		if(work_flag==1) if(location_set(0,0,0.0f)) 								work_flag=2;
-		if(work_flag==2) if(location_set(0,-1.2f,0)||lidar_distance<350) 			work_flag=3,chassis_odometry_reset(&chassis_move);
+		if(work_flag==2) if(location_set(0,-0.4f,0)||lidar_distance<350) 			work_flag=3,chassis_odometry_reset(&chassis_move);
 		if(work_flag==3) if(location_set(-1.25f,0,0)) 								work_flag=4;
 		if(work_flag==4) if(location_set(0,0,-90.0f)) 								work_flag=5;
-		if(work_flag==5) if(location_set(1,-0.02,-90.0f)||target_cross_flag)		work_flag=6,target_cross_flag=0;
-		if(work_flag==6) if(location_set(0,-0.2,-90.0f)) 							work_flag=7;
-		if(work_flag==7) if(location_set(0.5f,0,-90.0f)||gray_stop_flag) chassis_work_flag=0;
-		//if(work_flag==6) if(location_set()) work_flag=7;chassis_work_flag = 0;
-		//if(work_flag==7) if()
-		/*阶梯平台*/
+		if(work_flag==5) if(location_set(1,-0.02,-90.0f)||target_cross_flag)		work_flag=6,target_cross_flag=0,chassis_odometry_reset(&chassis_move);
+		if(work_flag==6) if(location_set(0,-0.15,-90.0f)) 							work_flag=7;
+		if(work_flag==7) if(location_set(2.0f,0,-90.0f)||gray_stop_flag) 			work_flag=8,chassis_odometry_reset(&chassis_move);else speed_set(0.2,0,0);else;
+		if(work_flag==8) if(location_set(-0.03f,0,-88.0f))							work_flag=9;
+		if(work_flag==9) if(location_set(0,-0.9f,-88.0f)||chassis_move.y<-0.9f) 	work_flag=10,chassis_odometry_reset(&chassis_move);else speed_set(0,-0.2,0);else;
+		if(work_flag==10)if(location_set(0,0.9f,-88.0f)||chassis_move.y>0.9f)		work_flag=0,chassis_work_flag=0,chassis_odometry_reset(&chassis_move);else speed_set(0,0.2,0);else;
 	}
 	/*立桩*/
 	if(chassis_work_flag == 3)
 	{
-		if(work_flag==0) ;
+		if(work_flag==0) if(location_set(0,0,-180.0f)) 								work_flag=1;
+		if(work_flag==1) if(location_set(0.1f,-1.0f,-180.0f)) 						work_flag=2;
+		if(work_flag==2) if(location_set(0,-0.2f,-180.0f)||chassis_move.y<-2.0f) 	work_flag=0,chassis_work_flag=0,chassis_odometry_reset(&chassis_move);else speed_set(0,-0.2f,33);else;
 	}
 	/*放球*/
 	

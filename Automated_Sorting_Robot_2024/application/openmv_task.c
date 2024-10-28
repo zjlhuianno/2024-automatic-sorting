@@ -98,7 +98,7 @@ void HAL_UART_RxCpltCallback(UART_HandleTypeDef *huart)
 								color = findMostFrequent(rxBuffer_color, RXBUFFER_SIZE) - 48;
 								shape = findMostFrequent(rxBuffer_shape, RXBUFFER_SIZE) - 48;
 								count_openmv = 0;
-								flag_openmv = 1;
+								//flag_openmv = 1;
 						}
 						
 				}

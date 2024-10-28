@@ -43,7 +43,7 @@ void HAL_CAN_RxFifo0MsgPendingCallback(CAN_HandleTypeDef *hcan)
 {
 	CAN_RxHeaderTypeDef rx_header;
 	uint8_t rx_data[8];
-	
+	uint8_t motor_i;
     HAL_CAN_GetRxMessage(hcan, CAN_RX_FIFO0, &rx_header, rx_data);
 	if(hcan == &hcan1)
 	{
@@ -68,10 +68,13 @@ void HAL_CAN_RxFifo0MsgPendingCallback(CAN_HandleTypeDef *hcan)
 				//里程计清零标志位
 				if(odometryResetFlag == 1)
 				{
-					odometryResetFlag = 0;
-					motor_chassis[i].round =0;
-					motor_chassis[i].code = 0;
 					
+					for(motor_i = 0; motor_i < 4; motor_i++)
+					{
+						motor_chassis[motor_i].round = 0;
+						motor_chassis[motor_i].code = 0;
+						odometryResetFlag = 0;
+					}
 				}
 				break;
 			}

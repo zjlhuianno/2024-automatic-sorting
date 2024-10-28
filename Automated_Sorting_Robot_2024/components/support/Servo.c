@@ -121,8 +121,8 @@ void Servo_Ctrl_3(uint8_t ctrl_flag)
 
 //控制仓库上方进口的舵机。
 //ctrl_flag：	0：立正，pwm = 1050。
-//						1：放平，pwm = 500。
-//						2：稍微立正一点，pwm = 800。
+//				1：放平，pwm = 500。
+//				2：稍微立正一点，pwm = 800。
 void Servo_Ctrl_4(uint8_t ctrl_flag)
 {
 	switch (ctrl_flag)
@@ -148,20 +148,20 @@ void Servo_Ctrl_4(uint8_t ctrl_flag)
 }
 
 //控制仓库上方分流的舵机。
-//ctrl_flag：	0：分流至蓝/红球，pwm = 1800。
-//				1：分流至黄球，pwm = 1100。
+//ctrl_flag：	0：分流至蓝/红球，pwm = 1400。
+//				1：分流至黄球，pwm = 2100。
 void Servo_Ctrl_5(uint8_t ctrl_flag)
 {
 	switch (ctrl_flag)
 	{
 		case 0:
 		{
-			__HAL_TIM_SET_COMPARE(&htim8, TIM_CHANNEL_1, 1400);
+			__HAL_TIM_SET_COMPARE(&htim8, TIM_CHANNEL_1, 1300);
 			break;
 		}
 		case 1:
 		{
-			__HAL_TIM_SET_COMPARE(&htim8, TIM_CHANNEL_1, 2100);
+			__HAL_TIM_SET_COMPARE(&htim8, TIM_CHANNEL_1, 200);
 			break;
 		}
 		default:
@@ -171,7 +171,7 @@ void Servo_Ctrl_5(uint8_t ctrl_flag)
 
 //控制仓库侧面放置甜甜圈的舵机。
 //ctrl_flag：	0：收纳仓远离仓库，pwm = 1300。
-//						1：收纳仓靠近仓库，pwm = 800。
+//				1：收纳仓靠近仓库，pwm = 800。
 
 
 void Servo_Ctrl_6(uint8_t ctrl_flag)

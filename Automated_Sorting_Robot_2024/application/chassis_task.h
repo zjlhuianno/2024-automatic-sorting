@@ -8,6 +8,7 @@
 #include "configs.h"
 #include "Grayscale_task.h"
 #include "lidar.h"
+#include "arm_task.h"
 
 void vTimerCallback(TimerHandle_t xTimer);
 void chassis_work(void);

@@ -14,65 +14,84 @@ int push_ball_mode = 0;//机械臂拨球动作模式。
 int look_object_mode = 0;//机械臂看阶梯平台模式。
 int disable_arm_flag = 0;//机械臂无力标志位。（1为无力。）
 
+extern uint8_t rxBuffer_main[2];
+extern uint8_t mode_openmv, flag_openmv, color, shape,flag_openmv_ball;
+
 void main_task(void const * argument)
 {
 	while(!ins_init_flag)
 	{
 		osDelay(1);
 	}
-			
-	disable_arm_flag = 1;//1为机械臂无力。
+	disable_arm_flag = 1;//当为1时无力。
 	while(1)
 	{
-//		mode_openmv = 1;//打开openmv的识别形状颜色模式。
+		mode_openmv = 1;//打开openmv的识别形状颜色模式。
 //		mode_openmv = 2;//打开openmv的识别球颜色模式。
+		
+		//低平台看和识别抓取。
+		if (arm_flag == 0)
+		{
+			look_object(1);//低平台看。
+		}
+		if (arm_flag == 1 && color == 1 && (shape == 2 || shape == 3))//红色方块或矩形。
+		{
+			catch_object(1);//低平台抓方块。
+		}
+		else if (arm_flag == 1 && color == 1 && (shape == 1))//红色圆环。
+		{
+			catch_object(2);//低平台抓甜甜圈。
+		}
+		
+//		//高平台看和识别抓取。
+//		if (arm_flag == 2)
+//		{
+//			look_object(2);//高平台看。
+//		}
+//		if (arm_flag == 3 && color == 1 && (shape == 2 || shape == 3))//红色方块或矩形。
+//		{
+//			catch_object(3);//高平台抓方块。
+//		}
+//		else if (arm_flag == 3 && color == 1 && (shape == 1))//红色圆环。
+//		{
+//			catch_object(4);//高平台抓甜甜圈。
+//		}
+//		
+//		//中平台看和识别抓取。
+//		if (arm_flag == 2)
+//		{
+//			look_object(3);//中平台看。
+//		}
+//		if (arm_flag == 3 && color == 1 && (shape == 2 || shape == 3))//红色方块或矩形。
+//		{
+//			catch_object(5);//中平台抓方块。
+//		}
+//		else if (arm_flag == 3 && color == 1 && (shape == 1))//红色圆环。
+//		{
+//			catch_object(6);//中平台抓甜甜圈。
+//		}		
+
+//		if(openmv_look_flag == 1)
+//		{
+//			osDelay(1000);
+//			openmv_look_flag = 0;
+//		}
 //		look_object_mode = 1;
 //		catch_object_mode = 1;
-//		push_ball_mode = 2;
-//		ball_in_flag = 2;//铲子稍微立正一点。
-		
-		
-//		set_arm_pos_param_true(32.0f, 30.0f, 0.0f);//木桩上方。
-//		set_arm_pos_param_true(14.0f, 30.0f, 0.0f);//甜甜圈仓库的上上方。
-//		set_arm_pos_param_true(42.0f, 20.0f, 0.0f);//立桩。
-//		set_arm_pos_param_true(37.0f, 20.0f, 0.0f);//立桩拨球。
-//		
-//		pile_approach_flag = 1;
-
-		
-		
-//机械臂动作标志位判断。
-		FUCK_YOU();
-		
-		//push_ball_mode = 1;//圆盘机拨球。
-		
-//		arm_flag = 1;
 //		if(arm_flag == 1)
-//		{
-//			//disable_arm_flag = 0;
-//			push_ball(1);
-//			
-//		}
-		
-		
+//			push_ball_mode = 1;
+//		FUCK_YOU();
+//		if(arm_flag == 2)
+//			chassis_work_flag = 2;
 		
 		
 //******************************************
-
 
 //		if(arm_flag == 2)
 //		{
 //			osDelay(5000);
 //			arm_flag = 3;
 //		}
-
-
-
-		//look_object(1);//高平台爪甜甜圈。
-		
-//			set_arm_pos_param(40.0f, 20.0f, 0.0f, 0.0f);//立桩平台。
-//			pos_stable_function(0, 0);//不是最后一帧，且爪闭合。
-
 
 //******************************************
 
