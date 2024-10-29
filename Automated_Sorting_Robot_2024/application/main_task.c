@@ -7,12 +7,14 @@
 #include "ins_task.h"
 #include "Arm_Task.h"
 #include "tim.h"
-
+#include "remote_control.h"
 
 int catch_object_mode = 0;//机械臂抓取动作模式。
 int push_ball_mode = 0;//机械臂拨球动作模式。
 int look_object_mode = 0;//机械臂看阶梯平台模式。
 int disable_arm_flag = 0;//机械臂无力标志位。（1为无力。）
+
+
 
 extern uint8_t rxBuffer_main[2];
 extern uint8_t mode_openmv, flag_openmv, color, shape,flag_openmv_ball;
@@ -26,90 +28,121 @@ void main_task(void const * argument)
 	disable_arm_flag = 0;//当为1时无力。
 	while(1)
 	{
+		if(rc_ctrl.rc.s[1] == 3)
+		{
+			disable_arm_flag = 0;//当为1时无力。
+		}
+		else
+		{
+			disable_arm_flag = 1;
+		}
+			
 //		mode_openmv = 1;//打开openmv的识别形状颜色模式。
-		mode_openmv = 2;//打开openmv的识别球颜色模式。
-//		
-		push_ball(1);
+//		mode_openmv = 2;//打开openmv的识别球颜色模式。
 		
-//		//低平台看和识别抓取。
-//		if (arm_flag == 0)
-//		{
-//			look_object(1);//低平台看。
-//		}
-//		if (arm_flag == 1 && color == 1 && (shape == 2 || shape == 3))//红色方块或矩形。
-//		{
-//			catch_object(1);//低平台抓方块。
-//		}
-//		else if (arm_flag == 1 && color == 1 && (shape == 1))//红色圆环。
-//		{
-//			catch_object(2);//低平台抓甜甜圈。
-//		}
+//		Servo_Ctrl_4(1);
 		
-//		//高平台看和识别抓取。
-//		if (arm_flag == 2)
-//		{
-//			look_object(2);//高平台看。
-//		}
-//		if (arm_flag == 3 && color == 1 && (shape == 2 || shape == 3))//红色方块或矩形。
-//		{
-//			catch_object(3);//高平台抓方块。
-//		}
-//		else if (arm_flag == 3 && color == 1 && (shape == 1))//红色圆环。
-//		{
-//			catch_object(4);//高平台抓甜甜圈。
-//		}
-//		
-//		//中平台看和识别抓取。
-//		if (arm_flag == 2)
-//		{
-//			look_object(3);//中平台看。
-//		}
-//		if (arm_flag == 3 && color == 1 && (shape == 2 || shape == 3))//红色方块或矩形。
-//		{
-//			catch_object(5);//中平台抓方块。
-//		}
-//		else if (arm_flag == 3 && color == 1 && (shape == 1))//红色圆环。
-//		{
-//			catch_object(6);//中平台抓甜甜圈。
-//		}		
-
-//		if(openmv_look_flag == 1)
-//		{
-//			osDelay(1000);
-//			openmv_look_flag = 0;
-//		}
-//		look_object_mode = 1;
-//		catch_object_mode = 1;
-//		if(arm_flag == 1)
-//			push_ball_mode = 1;
-//		FUCK_YOU();
-//		if(arm_flag == 2)
-//			chassis_work_flag = 2;
+//		catch_object(7);//立桩抓球。
 		
+//		push_ball(2);//立桩拨球。
 		
-//******************************************
-
-//		if(arm_flag == 2)
-//		{
-//			osDelay(5000);
-//			arm_flag = 3;
-//		}
-
-//******************************************
-
-//		chassis_flag = 1;
-////		if(arm_flag == 1)
-//			push_ball(1);
-//		osDelay(5000);
-//		no_ball_push_flag_openmv = 1;
-//		osDelay(2000);
-//		chassis_flag = 4;
-
-
+		//圆盘机拨球。
+		if (chassis_arm_comm_flag == 1 || chassis_arm_comm_flag == 2)
+		{
+			push_ball(1);//圆盘机拨球。
+		}
 		
+		//低平台看和识别抓取。
+		if (height_flag == 1)
+		{
+			if (arm_flag % 2 == 0)
+			{
+				look_object(1);//低平台看。
+			}
+			if ((arm_flag % 2 == 1)
+				&& (color == 1) && (shape == 2 || shape == 3))//红色方块或矩形。
+			{
+				begin_look_flag = 0;//结束看。
+				catch_object(1);//低平台抓方块。
+			}
+			else if ((arm_flag % 2 == 1)
+					&& (color == 1) && (shape == 1))//红色圆环。
+			{
+				begin_look_flag = 0;//结束看。
+				catch_object(2);//低平台抓甜甜圈。
+			}
+			else if ((arm_flag % 2 == 1)
+					&& (color == 2))//如果是蓝色。
+			{
+				begin_look_flag = 0;//结束看。
+				arm_flag++;
+			}				
+		}
+		//高平台看和识别抓取。
+		if (height_flag == 2)
+			
+		{
+			if (arm_flag % 2 == 0)
+			{
+				look_object(2);//高平台看。
+			}
+			if ((arm_flag % 2 == 1)
+				&& (color == 1) && (shape == 2 || shape == 3))//红色方块或矩形。
+			{
+				begin_look_flag = 0;//结束看。
+				catch_object(3);//高平台抓方块。
+			}
+			else if ((arm_flag % 2 == 1)
+					&& (color == 1) && (shape == 1))//红色圆环。
+			{
+				begin_look_flag = 0;//结束看。
+				catch_object(4);//高平台抓甜甜圈。
+			}
+			else if ((arm_flag % 2 == 1)
+					&& (color == 2))//蓝色。
+			{
+				begin_look_flag = 0;//结束看。
+				arm_flag++;
+			}				
+		}		
+		//中平台看和识别抓取。
+		if (height_flag == 3)
+		{
+			if (arm_flag % 2 == 0)
+			{
+				look_object(3);//中平台看。
+			}
+			if ((arm_flag % 2 == 1)
+				&& (color == 1) && (shape == 2 || shape == 3))//红色方块或矩形。
+			{
+				begin_look_flag = 0;//结束看。
+				catch_object(5);//中平台抓方块。
+			}
+			else if ((arm_flag % 2 == 1)
+					&& (color == 1) && (shape == 1))//红色圆环。
+			{
+				begin_look_flag = 0;//结束看。
+				catch_object(6);//中平台抓甜甜圈。
+			}
+			else if ((arm_flag % 2 == 1)
+					&& (color == 2))//蓝色。
+			{
+				begin_look_flag = 0;//结束看。
+				arm_flag++;
+			}				
+		}		
+		
+		//立桩抓球。
+		if (chassis_arm_comm_flag == 4)
+		{
+			catch_object(7);//立桩抓球。
+		}
+		
+		//立桩拨球。
+		
+
 		osDelay(1);
 	}
-
 }
 
 

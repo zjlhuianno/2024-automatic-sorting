@@ -5,6 +5,9 @@ float mz = 0;
 float mx = 0;
 float my = 0;
 extern uint8_t push_ball_mode;
+extern uint16_t color;
+extern int pos_frame_cnt;
+int color_time = 0;
 void Chassis_task(void const * argument)
 {
 	
@@ -16,7 +19,9 @@ void Chassis_task(void const * argument)
 	
 	xTimerStart(xTimer, 0);		
 	chassis_work_flag = 1;
-//	mode_openmv = 2;
+	work_flag=0;	
+	mode_openmv = 2;
+//	height_flag=1;
 	while(1)
 	{
 		
@@ -24,9 +29,8 @@ void Chassis_task(void const * argument)
 		
 		
 		
-		
 		chassis_work();
-		//speed_set(0,-0.2,33);
+		//speed_set(0,0.2,-32.5);
 		remote_control();
 		chassis_control_loop(&chassis_move);
 		
@@ -72,39 +76,67 @@ void chassis_work(void)
 	/*圆盘机*/
 	if(chassis_work_flag == 1)
 	{
-		if(work_flag==0) if(location_set(4.23f,0.59f,0)||target_cross_flag)   		work_flag=1,target_cross_flag=0,chassis_odometry_reset(&chassis_move);; 
-		if(work_flag==1) if(location_set(0,0,90.0f)) 								work_flag=2;
-		if(work_flag==2) if(location_set(0.2,0,90.0f)||gray_stop_flag) 				work_flag=3,gray_stop_flag=0,chassis_odometry_reset(&chassis_move);else speed_set(0.2,0,0);else;
-		if(work_flag==3) if(location_set(0,0,90.0f))								work_flag=0,chassis_work_flag=0,arm_flag=1;
+		//0
+		//2
+		if(work_flag==0) if(location_set(3.85f,0.59f,0))   							work_flag=1;
+		if(work_flag==1) if(location_set(0.5,0,0)||target_cross_flag)				work_flag=2,target_cross_flag=0,chassis_odometry_reset(&chassis_move);else speed_set(0.2,0,0);else;
+		if(work_flag==2) if(location_set(0,0,90.0f)) 								work_flag=3;
+		if(work_flag==3) if(location_set(0.2f,0,90.0f)||gray_stop_flag) 			work_flag=4,gray_stop_flag=0,chassis_odometry_reset(&chassis_move);else speed_set(0.2,0,0);else;
+		if(work_flag==4) if(location_set(0,0,90.0f))								work_flag=0,chassis_work_flag=0,chassis_arm_comm_flag=1;
 	}//
 	/*阶梯平台以及避障*/
 	if(chassis_work_flag == 2)
 	{
-		if(work_flag==0) if(location_set(-0.15f,0,90.0f)||target_cross_flag) 		work_flag=1,target_cross_flag=0,chassis_odometry_reset(&chassis_move);
+		//0
+		//5
+		//7
+		mode_openmv = 1;
+		if(work_flag==0) if(location_set(-0.116f,0,89.0f)||target_cross_flag) 		work_flag=1,target_cross_flag=0,chassis_odometry_reset(&chassis_move);
 		if(work_flag==1) if(location_set(0,0,0.0f)) 								work_flag=2;
-		if(work_flag==2) if(location_set(0,-0.4f,0)||lidar_distance<350) 			work_flag=3,chassis_odometry_reset(&chassis_move);
-		if(work_flag==3) if(location_set(-1.25f,0,0)) 								work_flag=4;
+		if(work_flag==2) if(location_set(0,-0.9f,0)||lidar_distance<350) 			work_flag=3,chassis_odometry_reset(&chassis_move);
+		if(work_flag==3) if(location_set(-1.23f,0,0)) 								work_flag=4;
 		if(work_flag==4) if(location_set(0,0,-90.0f)) 								work_flag=5;
 		if(work_flag==5) if(location_set(1,-0.02,-90.0f)||target_cross_flag)		work_flag=6,target_cross_flag=0,chassis_odometry_reset(&chassis_move);
 		if(work_flag==6) if(location_set(0,-0.15,-90.0f)) 							work_flag=7;
-		if(work_flag==7) if(location_set(2.0f,0,-90.0f)||gray_stop_flag) 			work_flag=8,chassis_odometry_reset(&chassis_move);else speed_set(0.2,0,0);else;
-		if(work_flag==8) if(location_set(-0.03f,0,-88.0f))							work_flag=9;
-		if(work_flag==9) if(location_set(0,-0.9f,-88.0f)||chassis_move.y<-0.9f) 	work_flag=10,chassis_odometry_reset(&chassis_move);else speed_set(0,-0.2,0);else;
-		if(work_flag==10)if(location_set(0,0.9f,-88.0f)||chassis_move.y>0.9f)		work_flag=0,chassis_work_flag=0,chassis_odometry_reset(&chassis_move);else speed_set(0,0.2,0);else;
+		if(work_flag==7) if(location_set(0.5f,0,-88.0f)||gray_stop_flag) 			work_flag=8,height_flag=1,chassis_odometry_reset(&chassis_move);else speed_set(0.2,0,0);else;
+		if(work_flag==8) if(chassis_move.y<-0.205f) 								work_flag=9,height_flag=2,begin_look_flag=0,arm_flag=0,chassis_odometry_reset(&chassis_move);else if(color==1) speed_set(0,0,0);else if(begin_look_flag==1) speed_set(0,-0.05,0);else speed_set(0,0,0);else;
+		if(work_flag==9) if(chassis_move.y<-0.47f)									work_flag=10,height_flag=3,begin_look_flag=0,arm_flag=0,chassis_odometry_reset(&chassis_move);else if(color==1) speed_set(0,0,0);else if(begin_look_flag==1) speed_set(0.003,-0.05,0);else speed_set(0,0,0);else;
+		if(work_flag==10)if(chassis_move.y<-0.22f)									work_flag=11,height_flag=2,begin_look_flag=0,arm_flag=0,chassis_odometry_reset(&chassis_move);else if(color==1) speed_set(0,0,0);else if(begin_look_flag==1) speed_set(0.003,-0.05,0);else speed_set(0,0,0);else;
+		if(work_flag==11)if(location_set(0,0.8,-88.0f))							    work_flag=0,chassis_work_flag=3;
+
 	}
 	/*立桩*/
 	if(chassis_work_flag == 3)
 	{
-		if(work_flag==0) if(location_set(0,0,-180.0f)) 								work_flag=1;
-		if(work_flag==1) if(location_set(0.1f,-1.0f,-180.0f)) 						work_flag=2;
-		if(work_flag==2) if(location_set(0,-0.2f,-180.0f)||chassis_move.y<-2.0f) 	work_flag=0,chassis_work_flag=0,chassis_odometry_reset(&chassis_move);else speed_set(0,-0.2f,33);else;
+		mode_openmv = 2;
+		if(work_flag==0) if(location_set(-0.5,0,-88.0f))							work_flag=1;
+		if(work_flag==1) if(location_set(0,0,-180.0f)) 								work_flag=2;
+		if(work_flag==2) if(chassis_move.y<-0.4f)									work_flag=3,chassis_arm_comm_flag=4,chassis_odometry_reset(&chassis_move);else speed_set(0.01,-0.2,0);else;
+		if(work_flag==3) if(chassis_arm_comm_flag==5)								work_flag=4;else speed_set(0,0,0);else;	
+		if(work_flag==4) if(chassis_move.y>2.3f) 									work_flag=0,begin_look_flag=0,chassis_work_flag=0,chassis_odometry_reset(&chassis_move);else if(color==1) speed_set(0,0,0);else if(begin_look_flag==1) speed_set(0,0.2f,-32.5);else speed_set(0,0,0);else;
 	}
 	/*放球*/
-	
+	if(chassis_work_flag == 4)
+	{
+		if(work_flag==0) if(location_set(-0.5,0,-180.0f))							work_flag=1;
+		if(work_flag==1) if(location_set(0,0,-270.0f))								work_flag=2;
+		if(work_flag==2) if(1)														work_flag=3;
+	}
 	/*回出发点*/
 }
 //0.01秒定时器回调
 void vTimerCallback(TimerHandle_t xTimer)
 {
-	chassis_move.yaw_speed = (chassis_move.yaw - chassis_move.yaw_last) / 0.01f;
+	
+	if(push_ball_mode == 1 && pos_frame_cnt == 2 )
+	{
+		color_time++;
+		if(color_time > 1000)
+			chassis_arm_comm_flag = 2;
+	}
+	if(color == 1 || color == 3)
+		color_time=0;
+	
+		
+	//chassis_move.yaw_speed = (chassis_move.yaw - chassis_move.yaw_last) / 0.01f;
 }

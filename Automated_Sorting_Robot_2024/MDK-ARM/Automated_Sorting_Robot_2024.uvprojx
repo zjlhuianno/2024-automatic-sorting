@@ -630,6 +630,11 @@
           <GroupName>application</GroupName>
           <Files>
             <File>
+              <FileName>main_task.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\application\main_task.c</FilePath>
+            </File>
+            <File>
               <FileName>Arm_Task.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\application\Arm_Task.c</FilePath>
@@ -653,11 +658,6 @@
               <FileName>INS_Task.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\application\INS_Task.c</FilePath>
-            </File>
-            <File>
-              <FileName>main_task.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\application\main_task.c</FilePath>
             </File>
           </Files>
         </Group>

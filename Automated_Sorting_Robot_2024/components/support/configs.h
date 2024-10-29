@@ -15,7 +15,12 @@ extern uint8_t avoidance_flag;
 
 extern uint8_t openmv_look_flag;
 
-extern int arm_flag;
+
+extern uint8_t height_flag;
+extern uint8_t chassis_arm_comm_flag;
+
+extern uint8_t arm_flag;
+extern uint8_t arm_flag_last;
 extern uint8_t ins_init_flag;
 extern uint8_t ins_beyond_flag;
 extern uint8_t servo_claw_flag;
@@ -94,6 +99,7 @@ extern int DM4310_delta_enc;
 extern int last_DM4310_delta_enc;
 extern uint8_t flag_z;
 extern uint8_t force_sensing_flag;	
+extern int begin_look_flag;
 extern uint8_t arm_catch_flag;
 extern uint8_t pile_approach_flag;
 extern uint8_t shunt_ball_flag;

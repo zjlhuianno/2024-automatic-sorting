@@ -33,6 +33,9 @@ void openmv_task(void const * argument)
 	while(1)
 	{
 		HAL_UART_Transmit(&huart1, &mode_openmv, 1, 100);
+		
+		
+		
 		osDelay(1);
 	}
 }
@@ -85,22 +88,24 @@ void HAL_UART_RxCpltCallback(UART_HandleTypeDef *huart)
 {
     if (huart->Instance == USART1)
     {
-				if( mode_openmv == 1)
+				if( mode_openmv 
+					== 1)
 				{
-						if(count_openmv != RXBUFFER_SIZE && flag_openmv == 0)
-						{
-								rxBuffer_color[count_openmv] = rxBuffer_main[0]; 
-								rxBuffer_shape[count_openmv] = rxBuffer_main[1]; 
-								count_openmv++;
-						}
-						else if(count_openmv == RXBUFFER_SIZE)
-						{
-								color = findMostFrequent(rxBuffer_color, RXBUFFER_SIZE) - 48;
-								shape = findMostFrequent(rxBuffer_shape, RXBUFFER_SIZE) - 48;
-								count_openmv = 0;
-								//flag_openmv = 1;
-						}
-						
+//						if(count_openmv != RXBUFFER_SIZE && flag_openmv == 0)
+//						{
+//								rxBuffer_color[count_openmv] = rxBuffer_main[0]; 
+//								rxBuffer_shape[count_openmv] = rxBuffer_main[1]; 
+//								count_openmv++;
+//						}
+//						else if(count_openmv == RXBUFFER_SIZE)
+//						{
+//								color = findMostFrequent(rxBuffer_color, RXBUFFER_SIZE) - 48;
+//								shape = findMostFrequent(rxBuffer_shape, RXBUFFER_SIZE) - 48;
+//								count_openmv = 0;
+//								//flag_openmv = 1;
+//						}
+						color = rxBuffer_main[0] - 48;
+						shape = rxBuffer_main[1] - 48;
 				}
 				if(mode_openmv == 3)
 				{
@@ -108,7 +113,7 @@ void HAL_UART_RxCpltCallback(UART_HandleTypeDef *huart)
 				}
 				if(mode_openmv == 2)
 				{
-							color = rxBuffer_main[0] - 48;
+						color = rxBuffer_main[0] - 48;
 				}
         // 重新启动中断接收，准备接收下一批数据
         HAL_UART_Receive_IT(&huart1, rxBuffer_main, sizeof(rxBuffer_main));

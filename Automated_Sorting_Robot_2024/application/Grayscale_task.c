@@ -37,7 +37,7 @@ void Grayscale_task(void const * argument)
 					target_cross_flag = 1;
 				
 		/*«∞ª“∂»ºÏ≤‚Õ£÷π*/
-		if(chassis_work_flag == 1 && work_flag == 2)
+		if(chassis_work_flag == 1 && work_flag == 3)
 			if(data_gray[0] == 0xFF)
 				gray_stop_flag = 1;
 			

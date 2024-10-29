@@ -9,7 +9,7 @@ extern uint8_t flag_z;
 //ID == 3：仓库下方出口的舵机。  						位置：tim1, TIM_CHANNEL_3。
 //ID == 4：仓库上方进口的舵机。  						位置：tim1, TIM_CHANNEL_4。
 //ID == 5：仓库上方分流的舵机。 						位置：tim8, TIM_CHANNEL_1。
-//ID == 6：仓库侧面放置甜甜圈的舵机。  			位置：tim8, TIM_CHANNEL_2。
+//ID == 6：仓库侧面放置甜甜圈的舵机。  					位置：tim8, TIM_CHANNEL_2。
 
 void Servo_Init(void)
 {
@@ -91,8 +91,8 @@ void Servo_Ctrl_claw(uint8_t ctrl_flag)
 
 //控制仓库下方出口的舵机。
 //ctrl_flag：	0：出口闭合，pwm = 1650。
-//						1：出口打开，pwm = 850。
-//						2：出口半打开，pwm = 1500。
+//				1：出口打开，pwm = 850。
+//				2：出口半打开，pwm = 1500。
 void Servo_Ctrl_3(uint8_t ctrl_flag)
 {
 	switch (ctrl_flag)
@@ -106,7 +106,6 @@ void Servo_Ctrl_3(uint8_t ctrl_flag)
 		case 1:
 		{
 			__HAL_TIM_SET_COMPARE(&htim1, TIM_CHANNEL_3, 850);
-			flag_z = 1;
 			break;
 		}
 		case 2:

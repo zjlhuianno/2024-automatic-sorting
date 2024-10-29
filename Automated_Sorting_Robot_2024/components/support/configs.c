@@ -10,9 +10,10 @@ uint8_t gray_stop_flag = 0;
 
 
 uint8_t openmv_look_flag = 0;
+
 /*
 机械臂
-arm_flag ==
+chassis_arm_comm_flag ==
 0 收起状态
 1 对准圆盘机
 
@@ -22,9 +23,11 @@ arm_flag ==
 4 对准台阶物品
 5 对准收物处
 */
-int arm_flag = 0;
 
-uint8_t openmv_flag_ddd = 0;
+//底盘与机械臂交互。
+uint8_t chassis_arm_comm_flag = 0;//底盘与机械臂交流标志位。
+uint8_t height_flag = 0;
+
 
 /*
 拨夹爪
@@ -147,8 +150,11 @@ int last_DM4310_delta_enc = 0;//上一次的DM4310_delta_enc。
 
 //标志位。（1为是，0为否。）
 
-uint8_t flag_z=0;								//检测程序是否卡在了这里。
+uint8_t flag_z=0;				//检测程序是否卡在了这里。
 uint8_t force_sensing_flag = 0;	//是否进行力控感知。
+int begin_look_flag = 0;//开始看动作的标志位。
+uint8_t arm_flag = 0;//控制机械臂阶梯平台动作衔接的标志位。
+uint8_t arm_flag_last = 0;//控制机械臂阶梯平台动作衔接的标志位。
 
 //直接控制舵机的标志位。
 uint8_t arm_catch_flag=99;//夹爪舵机姿态标志位。
