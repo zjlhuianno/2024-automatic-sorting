@@ -57,6 +57,7 @@ void Arm_Task(void const * argument)
 	while(1)
 	{	
 		
+		
 		if (disable_arm_flag == 1)//机械臂无力。
 		{
 			Servo_Ctrl_arm(170.0f);

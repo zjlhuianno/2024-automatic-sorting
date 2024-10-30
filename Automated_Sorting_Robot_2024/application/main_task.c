@@ -21,6 +21,9 @@ extern uint8_t mode_openmv, flag_openmv, color, shape,flag_openmv_ball;
 
 void main_task(void const * argument)
 {
+	HAL_GPIO_WritePin(LED_R_GPIO_Port, LED_R_Pin, GPIO_PIN_SET);
+	HAL_GPIO_WritePin(LED_B_GPIO_Port, LED_B_Pin, GPIO_PIN_RESET);
+	HAL_GPIO_WritePin(LED_G_GPIO_Port, LED_G_Pin, GPIO_PIN_RESET);
 	while(!ins_init_flag)
 	{
 		osDelay(1);
@@ -30,21 +33,16 @@ void main_task(void const * argument)
 	{
 		if(rc_ctrl.rc.s[1] == 3)
 		{
-			disable_arm_flag = 0;//当为1时无力。
+			disable_arm_flag = 1;
 		}
 		else
 		{
-			disable_arm_flag = 1;
+			disable_arm_flag = 0;//当为1时无力。
 		}
 			
 //		mode_openmv = 1;//打开openmv的识别形状颜色模式。
 //		mode_openmv = 2;//打开openmv的识别球颜色模式。
 		
-//		Servo_Ctrl_4(1);
-		
-//		catch_object(7);//立桩抓球。
-		
-//		push_ball(2);//立桩拨球。
 		
 		//圆盘机拨球。
 		if (chassis_arm_comm_flag == 1 || chassis_arm_comm_flag == 2)
