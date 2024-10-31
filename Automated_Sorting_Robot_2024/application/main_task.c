@@ -29,12 +29,15 @@ void main_task(void const * argument)
 		osDelay(1);
 	}
 	disable_arm_flag = 0;//当为1时无力。
+	height_flag = 1;
 	
 	Servo_Ctrl_claw(0);//机械爪闭合。
 	Servo_Ctrl_3(2);//出口半打开。
 	Servo_Ctrl_6(0);//甜甜圈塑料桩远离。
 	while(1)
 	{
+
+		
 		if(rc_ctrl.rc.s[1] == 3)
 		{
 			disable_arm_flag = 1;
@@ -44,10 +47,11 @@ void main_task(void const * argument)
 			disable_arm_flag = 0;//当为1时无力。
 		}
 			
-//		mode_openmv = 1;//打开openmv的识别形状颜色模式。
+		mode_openmv = 1;//打开openmv的识别形状颜色模式。
 //		mode_openmv = 2;//打开openmv的识别球颜色模式。
 
 //		catch_object(7);//立桩抓球。
+//		push_ball(1);//低平台抓方块。
 		
 
 		//圆盘机拨球。
@@ -59,82 +63,102 @@ void main_task(void const * argument)
 		//低平台看和识别抓取。
 		if (height_flag == 1)
 		{
-			if (arm_flag % 2 == 0)
+			
+			if (arm_flag % 3 == 0)
 			{
 				look_object(1);//低平台看。
 			}
-			if ((arm_flag % 2 == 1)
+			if ((arm_flag % 3 == 1)
 				&& (color == 1) && (shape == 2 || shape == 3))//红色方块或矩形。
 			{
 				begin_look_flag = 0;//结束看。
 				catch_object(1);//低平台抓方块。
 			}
-			else if ((arm_flag % 2 == 1)
+			else if ((arm_flag % 3 == 1)
 					&& (color == 1) && (shape == 1))//红色圆环。
 			{
 				begin_look_flag = 0;//结束看。
 				catch_object(2);//低平台抓甜甜圈。
 			}
-			else if ((arm_flag % 2 == 1)
+			else if ((arm_flag % 3 == 1)
 					&& (color == 2))//如果是蓝色。
 			{
 				begin_look_flag = 0;//结束看。
 				arm_flag++;
-			}				
+			}
+			if (arm_flag % 3 == 2)
+			{
+				if (arm_flag == 2)
+				{
+					look_object(1);//低平台看。
+				}
+				else if (arm_flag == 5)
+				{
+					look_object(2);//高平台看。
+				}
+			}
 		}
 		//高平台看和识别抓取。
 		if (height_flag == 2)
-			
 		{
-			if (arm_flag % 2 == 0)
+			
+			if (arm_flag % 3 == 0)
 			{
 				look_object(2);//高平台看。
 			}
-			if ((arm_flag % 2 == 1)
+			if ((arm_flag % 3 == 1)
 				&& (color == 1) && (shape == 2 || shape == 3))//红色方块或矩形。
 			{
 				begin_look_flag = 0;//结束看。
 				catch_object(3);//高平台抓方块。
 			}
-			else if ((arm_flag % 2 == 1)
+			else if ((arm_flag % 3 == 1)
 					&& (color == 1) && (shape == 1))//红色圆环。
 			{
 				begin_look_flag = 0;//结束看。
 				catch_object(4);//高平台抓甜甜圈。
 			}
-			else if ((arm_flag % 2 == 1)
+			else if ((arm_flag % 3 == 1)
 					&& (color == 2))//蓝色。
 			{
 				begin_look_flag = 0;//结束看。
 				arm_flag++;
-			}				
+			}
+			if (arm_flag % 3 == 2)
+			{
+				look_object(2);//高平台看。
+			}			
 		}		
 		//中平台看和识别抓取。
 		if (height_flag == 3)
 		{
-			if (arm_flag % 2 == 0)
+			if (arm_flag % 3 == 0)
 			{
-				look_object(3);//中平台看。
+				look_object(2);//高平台看。
 			}
-			if ((arm_flag % 2 == 1)
+			if ((arm_flag % 3 == 1)
 				&& (color == 1) && (shape == 2 || shape == 3))//红色方块或矩形。
 			{
 				begin_look_flag = 0;//结束看。
 				catch_object(5);//中平台抓方块。
 			}
-			else if ((arm_flag % 2 == 1)
+			else if ((arm_flag % 3 == 1)
 					&& (color == 1) && (shape == 1))//红色圆环。
 			{
 				begin_look_flag = 0;//结束看。
 				catch_object(6);//中平台抓甜甜圈。
 			}
-			else if ((arm_flag % 2 == 1)
+			else if ((arm_flag % 3 == 1)
 					&& (color == 2))//蓝色。
 			{
 				begin_look_flag = 0;//结束看。
 				arm_flag++;
-			}				
-		}		
+			}
+			if (arm_flag % 3 == 2)
+			{
+				look_object(2);//高平台看。
+			}			
+		}	
 		
 		//立桩抓球。
 //		if (chassis_arm_comm_flag == 4)
@@ -161,6 +185,95 @@ void main_task(void const * argument)
 
 
 //以下是测试程序。
+
+
+//		//低平台看和识别抓取。
+//		if (height_flag == 1)
+//		{
+//			
+//			if (arm_flag % 2 == 0)
+//			{
+//				look_object(1);//低平台看。
+//			}
+//			if ((arm_flag % 2 == 1)
+//				&& (color == 1) && (shape == 2 || shape == 3))//红色方块或矩形。
+//			{
+//				begin_look_flag = 0;//结束看。
+//				catch_object(1);//低平台抓方块。
+//			}
+//			else if ((arm_flag % 2 == 1)
+//					&& (color == 1) && (shape == 1))//红色圆环。
+//			{
+//				begin_look_flag = 0;//结束看。
+//				catch_object(2);//低平台抓甜甜圈。
+//			}
+//			else if ((arm_flag % 2 == 1)
+//					&& (color == 2))//如果是蓝色。
+//			{
+//				begin_look_flag = 0;//结束看。
+////				color = 0;
+////				shape = 0;
+//				arm_flag++;
+//			}						
+//		}
+//		//高平台看和识别抓取。
+//		if (height_flag == 2)
+//		{
+//			
+//			if (arm_flag % 2 == 0)
+//			{
+//				look_object(2);//高平台看。
+//			}
+//			if ((arm_flag % 2 == 1)
+//				&& (color == 1) && (shape == 2 || shape == 3))//红色方块或矩形。
+//			{
+//				begin_look_flag = 0;//结束看。
+//				catch_object(3);//高平台抓方块。
+//			}
+//			else if ((arm_flag % 2 == 1)
+//					&& (color == 1) && (shape == 1))//红色圆环。
+//			{
+//				begin_look_flag = 0;//结束看。
+//				catch_object(4);//高平台抓甜甜圈。
+//			}
+//			else if ((arm_flag % 2 == 1)
+//					&& (color == 2))//蓝色。
+//			{
+//				begin_look_flag = 0;//结束看。
+////				color = 0;
+////				shape = 0;
+//				arm_flag++;
+//			}				
+//		}		
+//		//中平台看和识别抓取。
+//		if (height_flag == 3)
+//		{
+//			if (arm_flag % 2 == 0)
+//			{
+//				look_object(3);//中平台看。
+//			}
+//			if ((arm_flag % 2 == 1)
+//				&& (color == 1) && (shape == 2 || shape == 3))//红色方块或矩形。
+//			{
+//				begin_look_flag = 0;//结束看。
+//				catch_object(5);//中平台抓方块。
+//			}
+//			else if ((arm_flag % 2 == 1)
+//					&& (color == 1) && (shape == 1))//红色圆环。
+//			{
+//				begin_look_flag = 0;//结束看。
+//				catch_object(6);//中平台抓甜甜圈。
+//			}
+//			else if ((arm_flag % 2 == 1)
+//					&& (color == 2))//蓝色。
+//			{
+//				begin_look_flag = 0;//结束看。
+//				color = 0;
+//				shape = 0;
+//				arm_flag++;
+//			}				
+//		}		
+
 
 //		Servo_Ctrl_arm(0.0f);
 //		pile_approach_flag = 1;//甜甜圈塑料桩靠近。

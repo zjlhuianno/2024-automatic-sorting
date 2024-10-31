@@ -88,8 +88,7 @@ void HAL_UART_RxCpltCallback(UART_HandleTypeDef *huart)
 {
     if (huart->Instance == USART1)
     {
-				if( mode_openmv 
-					== 1)
+				if( mode_openmv == 1)
 				{
 //						if(count_openmv != RXBUFFER_SIZE && flag_openmv == 0)
 //						{
@@ -104,8 +103,10 @@ void HAL_UART_RxCpltCallback(UART_HandleTypeDef *huart)
 //								count_openmv = 0;
 //								//flag_openmv = 1;
 //						}
+						
 						color = rxBuffer_main[0] - 48;
 						shape = rxBuffer_main[1] - 48;
+
 				}
 				if(mode_openmv == 3)
 				{

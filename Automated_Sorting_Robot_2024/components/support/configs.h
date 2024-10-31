@@ -12,7 +12,7 @@ extern uint8_t odometryResetFlag;
 extern uint8_t target_cross_flag;
 extern uint8_t gray_stop_flag;
 extern uint8_t avoidance_flag;
-
+extern uint8_t chassis_reach_flag;
 extern uint8_t openmv_look_flag;
 
 
@@ -102,6 +102,8 @@ extern uint8_t force_sensing_flag;
 extern int begin_look_flag;
 extern uint8_t arm_catch_flag;
 extern uint8_t just_once_flag;
+extern uint8_t catch_object_end_flag;
+extern uint8_t second_look_flag;
 extern uint8_t pile_approach_flag;
 extern uint8_t shunt_ball_flag;
 extern uint8_t ball_in_flag;

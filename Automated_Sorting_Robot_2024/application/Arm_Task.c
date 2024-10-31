@@ -174,17 +174,17 @@ void push_ball(uint8_t mode)
 			pile_approach_flag = 0;//塑料桩远离。
 			ball_out_flag = 2;//出口半打开。
 			
-			set_arm_pos_param_true(37.0f, 25.0f, 10.0f);//圆盘机上方。
+			set_arm_pos_param_true(39.0f, 27.0f, 10.0f);//圆盘机上方。
 			pos_stable_function(1, 0, 0);//不是最后一帧，且爪闭合。			
 		}
 		else if (pos_frame_cnt == 1)//机械臂伸到圆盘机平台，爪按需拨球。
 		{
-			set_arm_pos_param_true(35.0f, 20.0f, 0.0f);//圆盘机平台。
+			set_arm_pos_param_true(39.0f, 20.0f, 0.0f);//圆盘机平台。
 			pos_stable_function(1, 0, 0);//不是最后一帧，且爪闭合。
 		}
 		else if (pos_frame_cnt == 2)//机械臂保持圆盘机平台位置，并按需拨球。
 		{
-			set_arm_pos_param_true(35.0f, 20.0f, 0.0f);//圆盘机平台。
+			set_arm_pos_param_true(39.0f, 20.0f, 0.0f);//圆盘机平台。
 			
 			if (color == 1)//如果是红球。
 			{
@@ -416,6 +416,8 @@ void catch_object(uint8_t mode)
 
 		if (pos_frame_cnt == 0)//机械臂伸到低平台上方，爪闭合。
 		{
+			catch_object_end_flag = 0;//结束抓取动作标志位清零。
+			
 			ball_in_flag = 1;//铲子放平。
 			pile_approach_flag = 0;//塑料桩远离。
 			ball_out_flag = 2;//出口半打开。
@@ -450,10 +452,14 @@ void catch_object(uint8_t mode)
 	if (mode == 2)//低平台夹甜甜圈。
 	{
 		catch_object_mode = 2;
+		
+
 //		force_sensing_flag = 1;//启动力控感知。
 	
 		if (pos_frame_cnt == 0)//机械臂伸到低平台上方，爪闭合。
 		{
+			catch_object_end_flag = 0;//结束抓取动作标志位清零。
+			
 			ball_in_flag = 1;//铲子放平。
 			pile_approach_flag = 0;//塑料桩远离。
 			ball_out_flag = 2;//出口半打开。
@@ -497,6 +503,8 @@ void catch_object(uint8_t mode)
 	
 		if (pos_frame_cnt == 0)//机械臂伸到高平台上方，爪闭合。
 		{
+			catch_object_end_flag = 0;//结束抓取动作标志位清零。
+			
 			ball_in_flag = 1;//铲子放平。
 			pile_approach_flag = 0;//塑料桩远离。
 			ball_out_flag = 2;//出口半打开。
@@ -532,6 +540,7 @@ void catch_object(uint8_t mode)
 
 		if (pos_frame_cnt == 0)//机械臂伸到高缓冲处，爪闭合。
 		{
+			catch_object_end_flag = 0;//结束抓取动作标志位清零。
 			
 			ball_in_flag = 1;//铲子放平。
 			pile_approach_flag = 0;//塑料桩远离。
@@ -571,6 +580,8 @@ void catch_object(uint8_t mode)
 
 		if (pos_frame_cnt == 0)//机械臂伸到中平台上方，爪闭合。
 		{
+			catch_object_end_flag = 0;//结束抓取动作标志位清零。
+			
 			ball_in_flag = 1;//铲子放平。
 			pile_approach_flag = 0;//塑料桩远离。
 			ball_out_flag = 2;//出口半打开。
@@ -607,6 +618,7 @@ void catch_object(uint8_t mode)
 	
 		if (pos_frame_cnt == 0)//机械臂伸到低平台看处，爪闭合。
 		{
+			catch_object_end_flag = 0;//结束抓取动作标志位清零。
 			
 			ball_in_flag = 1;//铲子放平。
 			pile_approach_flag = 0;//塑料桩远离。
@@ -759,8 +771,8 @@ void set_arm_pos_param_true(float target_x_param, float target_y_param, float ta
 	target_angle = target_angle_param;
 }
 
-uint32_t catch_object_delay = 90;
-float catch_object_sensitivity = 0.5f;
+uint32_t catch_object_delay = 100;//90
+float catch_object_sensitivity = 0.4f;//0.5
 uint32_t push_ball_delay = 100;
 float push_ball_sensitivity = 0.3f;
 
@@ -823,6 +835,28 @@ void pos_stable_function(uint8_t catch_or_push, uint8_t is_last_pos_frame, uint8
 				{
 					arm_flag_last = arm_flag;
 					arm_flag++;//阶梯平台的这次动作结束。
+					catch_object_end_flag = 1;//结束抓取动作。
+				}
+				
+				if (arm_flag % 3 == 0)
+				{
+					second_look_flag = 0;//看抓看的第二次看标志位清零。
+				}				
+				
+				if (arm_flag % 3 == 2)
+				{
+					second_look_flag = 1;//看抓看的第二次看。
+				}
+				
+				if (arm_flag == 5)
+				{
+					height_flag = 2;
+					arm_flag = 0;
+				}
+				if (arm_flag == 11)
+				{
+					height_flag = 3;
+					arm_flag = 0;					
 				}
 				
 				if (catch_object_mode == 7)

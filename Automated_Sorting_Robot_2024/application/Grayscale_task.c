@@ -32,10 +32,13 @@ void Grayscale_task(void const * argument)
 		if(chassis_work_flag == 1 && Data_sum_gray1 > 1) cross_flag = 1;
 		if(chassis_work_flag == 1 && cross_flag == 1 && data_gray[1] == 0x00) cross_cnt++,cross_flag = 0;
 		if(chassis_work_flag == 1 && cross_cnt == 2)
-			if(Data_sum_gray1 > 3)
+			if(Data_sum_gray1 > 2)
 				if(Data_gray[1][0] || Data_gray[1][7])
 					target_cross_flag = 1;
-				
+//		if(chassis_work_flag == 1)		
+//			if(Data_sum_gray1 > 2)
+//				if(Data_gray[1][0] || Data_gray[1][7])
+//					target_cross_flag = 1;
 		/*前灰度检测停止*/
 		if(chassis_work_flag == 1 && work_flag == 3)
 			if(data_gray[0] == 0xFF)
@@ -48,7 +51,11 @@ void Grayscale_task(void const * argument)
 		
 		/*阶梯平台十字*/
 		if(chassis_work_flag == 2 && work_flag == 5)
-			if(Data_sum_gray1 > 4)
+			if(Data_sum_gray1 > 3)
+				target_cross_flag = 1;
+		/*十字精调*/
+		if(chassis_work_flag == 2 && work_flag == 6)
+			if(data_gray[1] == 0xFF)
 				target_cross_flag = 1;
 		if(chassis_work_flag == 2 && work_flag == 7)
 			if(data_gray[0] == 0xFF)
