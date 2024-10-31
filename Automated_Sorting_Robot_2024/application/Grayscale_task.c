@@ -53,7 +53,10 @@ void Grayscale_task(void const * argument)
 		if(chassis_work_flag == 2 && work_flag == 7)
 			if(data_gray[0] == 0xFF)
 				gray_stop_flag = 1;
-
+		/*仓库白线*/
+			if(chassis_work_flag == 4 && work_flag == 4)
+				if(data_gray[0] == 0xFF)
+					gray_stop_flag = 1;
 		//！！！！由于是蓝光款，所以蓝方场地，cnt要到3！！！！！！
 		osDelay(1);
 	}

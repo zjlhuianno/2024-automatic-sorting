@@ -29,6 +29,10 @@ void main_task(void const * argument)
 		osDelay(1);
 	}
 	disable_arm_flag = 0;//当为1时无力。
+	
+	Servo_Ctrl_claw(0);//机械爪闭合。
+	Servo_Ctrl_3(2);//出口半打开。
+	Servo_Ctrl_6(0);//甜甜圈塑料桩远离。
 	while(1)
 	{
 		if(rc_ctrl.rc.s[1] == 3)
@@ -42,8 +46,9 @@ void main_task(void const * argument)
 			
 //		mode_openmv = 1;//打开openmv的识别形状颜色模式。
 //		mode_openmv = 2;//打开openmv的识别球颜色模式。
-		
-		
+
+//		catch_object(7);//立桩抓球。
+
 		//圆盘机拨球。
 		if (chassis_arm_comm_flag == 1 || chassis_arm_comm_flag == 2)
 		{
@@ -135,10 +140,16 @@ void main_task(void const * argument)
 		{
 			catch_object(7);//立桩抓球。
 		}
-		
+/*		
 		//立桩拨球。
+		if (chassis_arm_comm_flag == 5 || chassis_arm_comm_flag == 6 || chassis_arm_comm_flag == 9)
+		{
+			push_ball(2);//立桩拨球。
+		}
 		
-
+//		ball_out_flag=0;
+		
+*/
 		osDelay(1);
 	}
 }

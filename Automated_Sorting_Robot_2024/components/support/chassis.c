@@ -112,9 +112,10 @@ void chassis_feedback_update(chassis_move_t *chassis_move_update)
 
 	chassis_move_update->yaw_last = chassis_move_update->yaw;
 	chassis_move_update->yaw = *(chassis_move_update->chassis_INS_angle_degree + INS_YAW_ADDRESS_OFFSET);
-	if((chassis_work_flag == 2 && work_flag > 3) || chassis_work_flag > 2)
-		if(chassis_move_update->yaw > 60)
+	if(chassis_work_flag > 2)
+		if(chassis_move_update->yaw > 60.0f)
 			chassis_move_update->yaw -= 360.0f;
+		
 	chassis_move_update->yaw_speed = *(chassis_move_update->chassis_INS_angle_speed_degree + 2);
 }
 

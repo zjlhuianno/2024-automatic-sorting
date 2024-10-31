@@ -69,6 +69,7 @@ void Arm_Task(void const * argument)
 			if (push_ball_mode == 0 && catch_object_mode == 0 && look_object_mode == 0)
 			{
 				Arm_Ctrl(14.0f, 18.0f, 0.0f);//甜甜圈仓库的上方。
+				
 			}
 			else
 			{
@@ -242,22 +243,26 @@ void push_ball(uint8_t mode)
 		push_ball_mode = 2;
 //		force_sensing_flag = 1;//启动力控感知。
 	
-		ball_in_flag = 1;//铲子放平。
-		pile_approach_flag = 0;//塑料桩远离。
-		ball_out_flag = 2;//出口半打开。
-
 		if (pos_frame_cnt == 0)//机械臂伸到立桩拨球处上方，爪闭合。
 		{
+			
+			ball_in_flag = 1;//铲子放平。
+			pile_approach_flag = 0;//塑料桩远离。
+			ball_out_flag = 2;//出口半打开。			
+			
 			set_arm_pos_param_true(38.0f, 27.0f, 5.0f);//立桩拨球处上方。
 			pos_stable_function(1, 0, 0);//不是最后一帧，且爪闭合。			
 		}
 		else if (pos_frame_cnt == 1)//机械臂伸到立桩拨球处，爪按需拨球。
 		{
-			set_arm_pos_param_true(38.0f, 20.0f, 0.0f);//立桩拨球处。
+			set_arm_pos_param_true(38.0f, 21.0f, 0.0f);//立桩拨球处。
 			pos_stable_function(1, 0, 0);//不是最后一帧，且爪闭合。
 		}
 		else if (pos_frame_cnt == 2)//机械臂保持立桩拨球处，并按需拨球。
 		{
+			chassis_arm_comm_flag = 6;
+			
+			set_arm_pos_param_true(38.0f, 21.0f, 0.0f);//立桩拨球处。
 			
 			if (color == 1)//如果是红球。
 			{
@@ -291,13 +296,13 @@ void push_ball(uint8_t mode)
 				//150
 			}			
 			
-			if (chassis_arm_comm_flag == 2)//如果识别到无球可拨，则结束此动作帧。
+			if (chassis_arm_comm_flag == 9)//如果底盘转完圈，则结束此动作帧。
 			{
 				pos_frame_cnt++;
 			}
 			
 		}		
-		else if (pos_frame_cnt==3)//机械臂伸到圆盘机上方，结束拨球。
+		else if (pos_frame_cnt==3)//机械臂伸到立桩上方，结束拨球。
 		{
 			set_arm_pos_param_true(38.0f, 27.0f, 5.0f);//立桩拨球处上方。
 			pos_stable_function(1, 0, 0);//不是最后一帧，且爪闭合。
@@ -468,6 +473,7 @@ void catch_object(uint8_t mode)
 		}
 		else if (pos_frame_cnt==3)//机械臂伸到甜甜圈仓库的上上方，爪仍保持抓甜甜圈的姿态，为的是防止爪放方块时方块会搓到阶梯平台。
 		{
+			ball_in_flag = 1;//铲子放平。
 			pile_approach_flag = 1;//塑料桩靠近。
 			
 			set_arm_pos_param_true(14.0f, 30.0f, 0.0f);//甜甜圈仓库的上上方。
@@ -475,6 +481,7 @@ void catch_object(uint8_t mode)
 		}					
 		else if (pos_frame_cnt==4)//机械臂缩到甜甜圈仓库的上方，爪放甜甜圈。
 		{
+			ball_in_flag = 1;//铲子放平。
 			pile_approach_flag = 1;//塑料桩靠近。
 			
 			set_arm_pos_param_true(14.0f, 18.0f, 0.0f);//甜甜圈仓库的上方。
@@ -540,6 +547,7 @@ void catch_object(uint8_t mode)
 		}
 		else if (pos_frame_cnt==2)//机械臂伸到高缓冲处，爪仍保持抓甜甜圈的姿态，为的是防止爪放方块时方块会搓到阶梯平台。
 		{
+			ball_in_flag = 1;//铲子放平。
 			pile_approach_flag = 1;//塑料桩靠近。
 			
 			set_arm_pos_param_true(14.0f, 30.0f, 0.0f);//甜甜圈仓库的上上方。
@@ -547,6 +555,7 @@ void catch_object(uint8_t mode)
 		}				
 		else if (pos_frame_cnt==3)//机械臂缩到甜甜圈仓库的上方，爪放甜甜圈。
 		{
+			ball_in_flag = 1;//铲子放平。
 			pile_approach_flag = 1;//塑料桩靠近。
 			
 			set_arm_pos_param_true(14.0f, 18.0f, 0.0f);//甜甜圈仓库的上方。
@@ -613,6 +622,7 @@ void catch_object(uint8_t mode)
 		}
 		else if (pos_frame_cnt==2)//机械臂伸到甜甜圈仓库的上上方，爪仍保持抓甜甜圈的姿态，为的是防止爪放方块时方块会搓到阶梯平台。
 		{
+			ball_in_flag = 1;//铲子放平。
 			pile_approach_flag = 1;//塑料桩靠近。
 			
 			set_arm_pos_param_true(14.0f, 30.0f, 0.0f);//甜甜圈仓库的上上方。
@@ -620,6 +630,7 @@ void catch_object(uint8_t mode)
 		}					
 		else if (pos_frame_cnt==3)//机械臂缩到甜甜圈仓库的上方，爪放甜甜圈。
 		{
+			ball_in_flag = 1;//铲子放平。
 			pile_approach_flag = 1;//塑料桩靠近。
 			
 			set_arm_pos_param_true(14.0f, 18.0f, 0.0f);//甜甜圈仓库的上方。
@@ -636,17 +647,20 @@ void catch_object(uint8_t mode)
 		{
 			ball_in_flag = 1;//铲子放平。
 			pile_approach_flag = 0;//塑料桩远离。
+			shunt_ball_flag = 0;//将球分流至己方轨道。
 			
 			set_arm_pos_param_true(42.0f, 25.0f, 13.0f);//立桩抓球处上方。
 			pos_stable_function(0, 0, 1);//不是最后一帧，且爪张开。			
 		}
 		else if (pos_frame_cnt == 1)//机械臂伸到立桩抓球处，爪取球。
 		{
+			shunt_ball_flag = 0;//将球分流至己方轨道。
 			set_arm_pos_param_true(42.0f, 20.0f, 0.0f);//立桩抓球处。
-			pos_stable_function(0, 0, 2);//不是最后一帧，且爪取方块。
-		}
+			pos_stable_function(0, 0, 2);//不是最后一帧，且爪取球。
+		}	
 		else if (pos_frame_cnt==2)//机械臂伸到方块仓库的上上方，爪仍保持抓方块的姿态，为的是防止爪放方块时方块会搓到阶梯平台。
 		{
+			shunt_ball_flag = 0;//将球分流至己方轨道。
 			set_arm_pos_param_true(24.0f, 30.0f, 0.0f);//方块仓库的上上方。
 			pos_stable_function(0, 1, 1);//是最后一帧，且爪张开。
 		}
@@ -796,10 +810,12 @@ void pos_stable_function(uint8_t catch_or_push, uint8_t is_last_pos_frame, uint8
 				
 				if (catch_object_mode == 7)
 				{
-					chassis_arm_comm_flag = 5;
-					
+					chassis_arm_comm_flag = 5;	
 				}
-				
+				if (push_ball_mode == 2)
+				{
+					chassis_arm_comm_flag = 8;
+				}
 				catch_object_mode =99;
 				look_object_mode = 99;
 				push_ball_mode = 99;
