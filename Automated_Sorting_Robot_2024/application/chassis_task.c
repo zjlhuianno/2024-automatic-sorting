@@ -79,7 +79,7 @@ void chassis_work(void)
 	{
 		//0
 		//2
-		if(work_flag==0) if(location_set(3.85f,0.59f,0))   							work_flag=1;
+		if(work_flag==0) if(location_set(3.9f,0.59f,0))   							work_flag=1;
 		if(work_flag==1) if(location_set(0.7,0,0)||target_cross_flag)				work_flag=2,target_cross_flag=0,chassis_odometry_reset(&chassis_move);else speed_set(0.2,0,0);else;
 		if(work_flag==2) if(location_set(0,0,89.5f)) 								work_flag=3;
 		if(work_flag==3) if(location_set(0.2f,0,89.5f)||gray_stop_flag) 			work_flag=4,gray_stop_flag=0,chassis_odometry_reset(&chassis_move);else speed_set(0.2,0,0);else;
@@ -95,19 +95,19 @@ void chassis_work(void)
 		if(work_flag==0) if(location_set(-0.116f,0,89.0f)||target_cross_flag) 		work_flag=1,target_cross_flag=0,chassis_odometry_reset(&chassis_move);
 		if(work_flag==1) if(location_set(0.01,0,0.0f)) 								work_flag=2;
 		if(work_flag==2) if(location_set(0,-0.8f,0)||lidar_distance<350) 			work_flag=3,chassis_odometry_reset(&chassis_move);
-		if(work_flag==3) if(location_set(-1.215f,0,0)) 								work_flag=4;
-		if(work_flag==4) if(location_set(0,0,-88.5f)) 								work_flag=5;
+		if(work_flag==3) if(location_set(-1.23f,0,0)) 								work_flag=4;
+		if(work_flag==4) if(location_set(0,0,-89.0f)) 								work_flag=5;
 		
 		//标定
-		if(work_flag==5) if(location_set(0.8,-0.02,-90.0f)||target_cross_flag)		work_flag=6,target_cross_flag=0,chassis_odometry_reset(&chassis_move);
-		if(work_flag==6) if(location_set(0,-0.16,-90.0f)) 							work_flag=7;
-		if(work_flag==7) if(location_set(0.5f,0,-88.0f)||gray_stop_flag) 			work_flag=8,gray_stop_flag=0,height_flag=1,chassis_odometry_reset(&chassis_move);else speed_set(0.2,0,0);else;
+		if(work_flag==5) if(location_set(1.5,0,-88.0f)||target_cross_flag)			work_flag=6,target_cross_flag=0,chassis_odometry_reset(&chassis_move);
+		if(work_flag==6) if(location_set(0,-0.2,-88.0f)) 							work_flag=7;
+		if(work_flag==7) if(location_set(1.0f,0,-88.0f)||gray_stop_flag) 			work_flag=8,gray_stop_flag=0,height_flag=1,chassis_odometry_reset(&chassis_move);else speed_set(0.2,0,0);else;
 		
-		if(work_flag==8) if(chassis_move.y<-0.205f) 								work_flag=9,height_flag=2,begin_look_flag=0,arm_flag=0,chassis_odometry_reset(&chassis_move);else if(color==1) speed_set(0,0,0);else if(begin_look_flag==1) speed_set(0,-0.05,0);else speed_set(0,0,0);else;
-		if(work_flag==9) if(chassis_move.y<-0.47f)									work_flag=10,height_flag=3,begin_look_flag=0,arm_flag=0,chassis_odometry_reset(&chassis_move);else if(color==1) speed_set(0,0,0);else if(begin_look_flag==1) speed_set(0.003,-0.05,0);else speed_set(0,0,0);else;
-		if(work_flag==10)if(chassis_move.y<-0.22f)									work_flag=11,height_flag=2,begin_look_flag=0,arm_flag=0,chassis_odometry_reset(&chassis_move);else if(color==1) speed_set(0,0,0);else if(begin_look_flag==1) speed_set(0.003,-0.05,0);else speed_set(0,0,0);else;
+		if(work_flag==8) if(chassis_move.y<-0.186f) 								work_flag=9,height_flag=2,begin_look_flag=0,arm_flag=0,chassis_odometry_reset(&chassis_move);else if(color==1) speed_set(0,0,0);else if(begin_look_flag==1) speed_set(0,-0.05,0);else speed_set(0,0,0);else;
+		if(work_flag==9) if(chassis_move.y<-0.42f)									work_flag=10,height_flag=3,begin_look_flag=0,arm_flag=0,chassis_odometry_reset(&chassis_move);else if(color==1) speed_set(0,0,0);else if(begin_look_flag==1) speed_set(0.001,-0.05,0);else speed_set(0,0,0);else;
+		if(work_flag==10)if(chassis_move.y<-0.22f)									work_flag=11,height_flag=2,begin_look_flag=0,arm_flag=0,chassis_odometry_reset(&chassis_move);else if(color==1) speed_set(0,0,0);else if(begin_look_flag==1) speed_set(0.001,-0.05,0);else speed_set(0,0,0);else;
 		
-		if(work_flag==11)if(location_set(0,0.83,-88.0f))							work_flag=0,chassis_work_flag=4;
+		if(work_flag==11)if(location_set(0,0.85,-88.0f))							work_flag=0,chassis_work_flag=4;
 
 	}
 	/*立桩*/
@@ -123,21 +123,22 @@ void chassis_work(void)
 	/*放球*/
 	if(chassis_work_flag == 4)
 	{
-		if(work_flag==0) if(location_set(-0.5,0.3,-88.0f))							work_flag=1;
-		if(work_flag==1) if(location_set(0,0,-270.0f)) 								work_flag=2;
+		if(work_flag==0) if(location_set(-0.5,0.28,-87.0f))							work_flag=1;
+		if(work_flag==1) if(location_set(0,0,-263.0f)) 								work_flag=2;
 //		if(work_flag==0) if(chassis_move.x<-0.2)									work_flag=1,chassis_odometry_reset(&chassis_move);else speed_set(-0.2,0,0);else;
 //		if(work_flag==1) if(location_set(0,0,-180.0f))								work_flag=2;
 //		if(work_flag==2) if(location_set(0,-0.4,-180.0f))							work_flag=3;
 //		if(work_flag==3) if(location_set(0,0,-260.0f))								work_flag=4;
-		if(work_flag==2) if(location_set(0.8f,0,-260.0f))							work_flag=3;
-		if(work_flag==3) if(location_set(0,0.3f,-260.0f))							work_flag=4;
+		if(work_flag==2) if(location_set(0.83f,0,-263.0f))							work_flag=3;
+		if(work_flag==3) if(location_set(0,0.585f,-263.0f))							work_flag=4;
 		if(work_flag==4) if(chassis_move.x>0.5f||gray_stop_flag)					work_flag=0,ball_out_flag=1,chassis_work_flag=0,gray_stop_flag=0,chassis_odometry_reset(&chassis_move);else speed_set(0.2,0,0);else;
 
 	}
 	/*回出发点*/
 	if(chassis_work_flag == 5)
 	{
-		if(work_flag==0) if(location_set(-0.6f,2.6f,-260.0f))						work_flag=0,chassis_work_flag=0;
+		if(work_flag==0) if(location_set(0,2.33f,-263.0f))						work_flag=1;
+		if(work_flag==1) if(location_set(-0.7f,0,-263.0f))					work_flag=0,chassis_work_flag=0;
 	}
 }
 //0.01秒定时器回调
@@ -147,7 +148,7 @@ void vTimerCallback(TimerHandle_t xTimer)
 	if(push_ball_mode == 1 && pos_frame_cnt == 2 )
 	{
 		color_time++;
-		if(color_time > 500)
+		if(color_time > 3000)
 			chassis_arm_comm_flag = 2;
 	}
 	if(color == 1 || color == 3)
@@ -157,7 +158,7 @@ void vTimerCallback(TimerHandle_t xTimer)
 	{
 		ballout_time++;
 	}
-	if(ballout_time>1000)
+	if(ballout_time>500)
 		chassis_work_flag = 5,ballout_time = 0,ball_out_flag=0;
 		
 	//chassis_move.yaw_speed = (chassis_move.yaw - chassis_move.yaw_last) / 0.01f;

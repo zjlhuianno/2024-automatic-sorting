@@ -48,6 +48,7 @@ void main_task(void const * argument)
 //		mode_openmv = 2;//打开openmv的识别球颜色模式。
 
 //		catch_object(7);//立桩抓球。
+		
 
 		//圆盘机拨球。
 		if (chassis_arm_comm_flag == 1 || chassis_arm_comm_flag == 2)
@@ -136,20 +137,20 @@ void main_task(void const * argument)
 		}		
 		
 		//立桩抓球。
-		if (chassis_arm_comm_flag == 4)
-		{
-			catch_object(7);//立桩抓球。
-		}
-/*		
-		//立桩拨球。
-		if (chassis_arm_comm_flag == 5 || chassis_arm_comm_flag == 6 || chassis_arm_comm_flag == 9)
-		{
-			push_ball(2);//立桩拨球。
-		}
+//		if (chassis_arm_comm_flag == 4)
+//		{
+//			catch_object(7);//立桩抓球。
+//		}
 		
-//		ball_out_flag=0;
+//		//立桩拨球。
+//		if (chassis_arm_comm_flag == 5 || chassis_arm_comm_flag == 6 || chassis_arm_comm_flag == 9)
+//		{
+//			push_ball(2);//立桩拨球。
+//		}
 		
-*/
+
+		
+
 		osDelay(1);
 	}
 }

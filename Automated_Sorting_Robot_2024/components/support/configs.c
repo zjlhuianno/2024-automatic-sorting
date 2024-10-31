@@ -155,6 +155,7 @@ uint8_t force_sensing_flag = 0;	//是否进行力控感知。
 int begin_look_flag = 0;//开始看动作的标志位。
 uint8_t arm_flag = 0;//控制机械臂阶梯平台动作衔接的标志位。
 uint8_t arm_flag_last = 0;//控制机械臂阶梯平台动作衔接的标志位。
+uint8_t just_once_flag = 0;//保证机械臂放回甜甜圈时只设置一次舵机的延时。（因为只有这个动作组需要舵机设置延时。）
 
 //直接控制舵机的标志位。
 uint8_t arm_catch_flag=99;//夹爪舵机姿态标志位。

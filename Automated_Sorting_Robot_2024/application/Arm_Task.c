@@ -174,17 +174,17 @@ void push_ball(uint8_t mode)
 			pile_approach_flag = 0;//塑料桩远离。
 			ball_out_flag = 2;//出口半打开。
 			
-			set_arm_pos_param_true(39.0f, 27.0f, 10.0f);//圆盘机上方。
+			set_arm_pos_param_true(37.0f, 25.0f, 10.0f);//圆盘机上方。
 			pos_stable_function(1, 0, 0);//不是最后一帧，且爪闭合。			
 		}
 		else if (pos_frame_cnt == 1)//机械臂伸到圆盘机平台，爪按需拨球。
 		{
-			set_arm_pos_param_true(39.0f, 21.0f, 0.0f);//圆盘机平台。
+			set_arm_pos_param_true(35.0f, 20.0f, 0.0f);//圆盘机平台。
 			pos_stable_function(1, 0, 0);//不是最后一帧，且爪闭合。
 		}
 		else if (pos_frame_cnt == 2)//机械臂保持圆盘机平台位置，并按需拨球。
 		{
-			set_arm_pos_param_true(39.0f, 21.0f, 0.0f);//圆盘机平台。
+			set_arm_pos_param_true(35.0f, 20.0f, 0.0f);//圆盘机平台。
 			
 			if (color == 1)//如果是红球。
 			{
@@ -675,32 +675,49 @@ void catch_object(uint8_t mode)
 
 		if (pos_frame_cnt == 0)//机械臂伸到甜甜圈仓库的上上方，爪张开。
 		{
-			ball_in_flag = 1;//铲子放平。
-			pile_approach_flag = 1;//塑料桩靠近。
-			osDelay(500);
-			ball_in_flag = 2;//铲子稍微立正一点。
+
+			if (just_once_flag == 0)
+			{
+				//ball_in_flag = 1;//铲子放平。
+				ball_out_flag = 0;//出口闭合。
+				pile_approach_flag = 1;//塑料桩靠近。
+				osDelay(2000);
+				ball_in_flag = 2;//铲子稍微立正一点。
+				
+				just_once_flag = 1;
+			}
 			
-			set_arm_pos_param_true(14.0f, 30.0f, 0.0f);//甜甜圈仓库的上上方。
+			set_arm_pos_param_true(14.0f, 20.0f, 0.0f);//甜甜圈仓库的上方。
 			pos_stable_function(0, 0, 1);//不是最后一帧，且爪张开。
+			
+
 		}
 		else if (pos_frame_cnt == 1)//机械臂伸到甜甜圈仓库内，爪取甜甜圈。
 		{
-			set_arm_pos_param_true(14.0f, 14.0f, 0.0f);//甜甜圈仓库内。
+			pile_approach_flag = 1;//塑料桩靠近。
+			
+			set_arm_pos_param_true(14.0f, 13.0f, 0.0f);//甜甜圈仓库内。
 			pos_stable_function(0, 0, 2);//不是最后一帧，且爪取甜甜圈。	
 		}
 		else if (pos_frame_cnt==2)//机械臂伸到甜甜圈仓库的上上方，爪仍保持抓甜甜圈的姿态，为的是防止爪放甜甜圈时会干涉到塑料桩。
 		{
-			set_arm_pos_param_true(14.0f, 30.0f, 0.0f);//甜甜圈仓库的上上方。
+			pile_approach_flag = 1;//塑料桩靠近。
+			
+			set_arm_pos_param_true(14.0f, 25.0f, 0.0f);//甜甜圈仓库的上上方。
 			pos_stable_function(0, 0, 2);//不是最后一帧，且爪取甜甜圈。
 		}			
 		else if (pos_frame_cnt==3)//机械臂伸到木桩上方，爪放甜甜圈。
 		{
-			set_arm_pos_param_true(32.0f, 30.0f, 0.0f);//木桩上方。
+			pile_approach_flag = 1;//塑料桩靠近。
+			
+			set_arm_pos_param_true(31.0f, 25.0f, 0.0f);//木桩上方。
 			pos_stable_function(0, 0, 1);//不是最后一帧，且爪张开。
 		}					
 		else if (pos_frame_cnt==4)//机械臂伸到甜甜圈仓库的上上方，爪闭合。
 		{
-			set_arm_pos_param_true(14.0f, 30.0f, 0.0f);//甜甜圈仓库的上上方。
+			pile_approach_flag = 1;//塑料桩靠近。
+			
+			set_arm_pos_param_true(14.0f, 25.0f, 0.0f);//甜甜圈仓库的上上方。
 			pos_stable_function(0, 1, 0);//是最后一帧，且爪闭合。
 		}			
 	}//mode == 8结束。						

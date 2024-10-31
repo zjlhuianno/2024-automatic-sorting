@@ -1360,7 +1360,7 @@ I (../Middlewares/Third_Party/FreeRTOS/Source/portable/RVDS/ARM_CM4F/portmacro.h
 I (../Middlewares/Third_Party/FreeRTOS/Source/include/mpu_wrappers.h)(0x66E6DF1C)
 I (../Middlewares/Third_Party/FreeRTOS/Source/include/task.h)(0x66E6DF1C)
 I (../Middlewares/Third_Party/FreeRTOS/Source/include/list.h)(0x66E6DF1C)
-F (..\application\main_task.c)(0x6722C91C)(--c99 -c --cpu Cortex-M4.fp.sp -D__MICROLIB -g -O1 --apcs=interwork --split_sections -I ../Core/Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I ../Middlewares/Third_Party/FreeRTOS/Source/include -I ../Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS -I ../Middlewares/Third_Party/FreeRTOS/Source/portable/RVDS/ARM_CM4F -I ../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I ../Drivers/CMSIS/Include -I ../application -I ../bsp -I ../components/algorithm -I ../components/controller -I ../components/devices -I ../components/support-I.\RTE\_Automated_Sorting_Robot_2024-ID:\KeilMDK\ARM\PACK\ARM\CMSIS-DSP\1.15.0\Include-ID:\KeilMDK\ARM\PACK\ARM\CMSIS-DSP\1.15.0\PrivateInclude-ID:\KeilMDK\ARM\PACK\ARM\CMSIS\6.1.0\CMSIS\Core\Include-ID:\KeilMDK\ARM\PACK\Keil\STM32F4xx_DFP\2.17.1\Drivers\CMSIS\Device\ST\STM32F4xx\Include-D__UVISION_VERSION="540" -DSTM32F407xx -D_RTE_ -DUSE_HAL_DRIVER -DSTM32F407xx-o automated_sorting_robot_2024\main_task.o --omf_browse automated_sorting_robot_2024\main_task.crf --depend automated_sorting_robot_2024\main_task.d)
+F (..\application\main_task.c)(0x67231424)(--c99 -c --cpu Cortex-M4.fp.sp -D__MICROLIB -g -O1 --apcs=interwork --split_sections -I ../Core/Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I ../Middlewares/Third_Party/FreeRTOS/Source/include -I ../Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS -I ../Middlewares/Third_Party/FreeRTOS/Source/portable/RVDS/ARM_CM4F -I ../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I ../Drivers/CMSIS/Include -I ../application -I ../bsp -I ../components/algorithm -I ../components/controller -I ../components/devices -I ../components/support-I.\RTE\_Automated_Sorting_Robot_2024-ID:\KeilMDK\ARM\PACK\ARM\CMSIS-DSP\1.15.0\Include-ID:\KeilMDK\ARM\PACK\ARM\CMSIS-DSP\1.15.0\PrivateInclude-ID:\KeilMDK\ARM\PACK\ARM\CMSIS\6.1.0\CMSIS\Core\Include-ID:\KeilMDK\ARM\PACK\Keil\STM32F4xx_DFP\2.17.1\Drivers\CMSIS\Device\ST\STM32F4xx\Include-D__UVISION_VERSION="540" -DSTM32F407xx -D_RTE_ -DUSE_HAL_DRIVER -DSTM32F407xx-o automated_sorting_robot_2024\main_task.o --omf_browse automated_sorting_robot_2024\main_task.crf --depend automated_sorting_robot_2024\main_task.d)
 I (..\application\main_task.h)(0x671CDE1A)
 I (../Core/Inc/main.h)(0x672218D1)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal.h)(0x66E6DF58)
@@ -1411,7 +1411,7 @@ I (../Middlewares/Third_Party/FreeRTOS/Source/include/timers.h)(0x66E6DF1C)
 I (../Middlewares/Third_Party/FreeRTOS/Source/include/queue.h)(0x66E6DF1C)
 I (../Middlewares/Third_Party/FreeRTOS/Source/include/semphr.h)(0x66E6DF1C)
 I (../Middlewares/Third_Party/FreeRTOS/Source/include/event_groups.h)(0x66E6DF1C)
-I (../components/support/configs.h)(0x672082DA)
+I (../components/support/configs.h)(0x67230C47)
 I (../application/struct_typedef.h)(0x671CDE1B)
 I (../components/controller/PID.h)(0x671CDE1B)
 I (../components/support/DM_Control.h)(0x671E0C97)
@@ -1424,7 +1424,7 @@ I (..\application\Arm_Task.h)(0x671F64B2)
 I (../Core/Inc/tim.h)(0x671CE19A)
 I (../components/support/remote_control.h)(0x671D2144)
 I (../bsp/bsp_rc.h)(0x671D06D7)
-F (..\application\Arm_Task.c)(0x6722C080)(--c99 -c --cpu Cortex-M4.fp.sp -D__MICROLIB -g -O1 --apcs=interwork --split_sections -I ../Core/Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I ../Middlewares/Third_Party/FreeRTOS/Source/include -I ../Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS -I ../Middlewares/Third_Party/FreeRTOS/Source/portable/RVDS/ARM_CM4F -I ../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I ../Drivers/CMSIS/Include -I ../application -I ../bsp -I ../components/algorithm -I ../components/controller -I ../components/devices -I ../components/support-I.\RTE\_Automated_Sorting_Robot_2024-ID:\KeilMDK\ARM\PACK\ARM\CMSIS-DSP\1.15.0\Include-ID:\KeilMDK\ARM\PACK\ARM\CMSIS-DSP\1.15.0\PrivateInclude-ID:\KeilMDK\ARM\PACK\ARM\CMSIS\6.1.0\CMSIS\Core\Include-ID:\KeilMDK\ARM\PACK\Keil\STM32F4xx_DFP\2.17.1\Drivers\CMSIS\Device\ST\STM32F4xx\Include-D__UVISION_VERSION="540" -DSTM32F407xx -D_RTE_ -DUSE_HAL_DRIVER -DSTM32F407xx-o automated_sorting_robot_2024\arm_task.o --omf_browse automated_sorting_robot_2024\arm_task.crf --depend automated_sorting_robot_2024\arm_task.d)
+F (..\application\Arm_Task.c)(0x67230D30)(--c99 -c --cpu Cortex-M4.fp.sp -D__MICROLIB -g -O1 --apcs=interwork --split_sections -I ../Core/Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I ../Middlewares/Third_Party/FreeRTOS/Source/include -I ../Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS -I ../Middlewares/Third_Party/FreeRTOS/Source/portable/RVDS/ARM_CM4F -I ../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I ../Drivers/CMSIS/Include -I ../application -I ../bsp -I ../components/algorithm -I ../components/controller -I ../components/devices -I ../components/support-I.\RTE\_Automated_Sorting_Robot_2024-ID:\KeilMDK\ARM\PACK\ARM\CMSIS-DSP\1.15.0\Include-ID:\KeilMDK\ARM\PACK\ARM\CMSIS-DSP\1.15.0\PrivateInclude-ID:\KeilMDK\ARM\PACK\ARM\CMSIS\6.1.0\CMSIS\Core\Include-ID:\KeilMDK\ARM\PACK\Keil\STM32F4xx_DFP\2.17.1\Drivers\CMSIS\Device\ST\STM32F4xx\Include-D__UVISION_VERSION="540" -DSTM32F407xx -D_RTE_ -DUSE_HAL_DRIVER -DSTM32F407xx-o automated_sorting_robot_2024\arm_task.o --omf_browse automated_sorting_robot_2024\arm_task.crf --depend automated_sorting_robot_2024\arm_task.d)
 I (../Core/Inc/main.h)(0x672218D1)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal.h)(0x66E6DF58)
 I (../Core/Inc/stm32f4xx_hal_conf.h)(0x671CE19B)
@@ -1482,12 +1482,12 @@ I (..\application\ins_task.h)(0x671CDE1A)
 I (..\application\struct_typedef.h)(0x671CDE1B)
 I (../components/devices/bmi088driver.h)(0x671CDE1B)
 I (../Core/Inc/usart.h)(0x671D0105)
-I (../components/support/configs.h)(0x672082DA)
+I (../components/support/configs.h)(0x67230C47)
 I (../components/controller/PID.h)(0x671CDE1B)
 I (..\application\Arm_Task.h)(0x671F64B2)
 I (D:\KeilMDK\ARM\ARMCC\include\math.h)(0x5CEB79D6)
 I (D:\KeilMDK\ARM\ARMCC\include\stdlib.h)(0x5CEB79E2)
-F (..\application\Grayscale_task.c)(0x6722CC7B)(--c99 -c --cpu Cortex-M4.fp.sp -D__MICROLIB -g -O1 --apcs=interwork --split_sections -I ../Core/Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I ../Middlewares/Third_Party/FreeRTOS/Source/include -I ../Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS -I ../Middlewares/Third_Party/FreeRTOS/Source/portable/RVDS/ARM_CM4F -I ../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I ../Drivers/CMSIS/Include -I ../application -I ../bsp -I ../components/algorithm -I ../components/controller -I ../components/devices -I ../components/support-I.\RTE\_Automated_Sorting_Robot_2024-ID:\KeilMDK\ARM\PACK\ARM\CMSIS-DSP\1.15.0\Include-ID:\KeilMDK\ARM\PACK\ARM\CMSIS-DSP\1.15.0\PrivateInclude-ID:\KeilMDK\ARM\PACK\ARM\CMSIS\6.1.0\CMSIS\Core\Include-ID:\KeilMDK\ARM\PACK\Keil\STM32F4xx_DFP\2.17.1\Drivers\CMSIS\Device\ST\STM32F4xx\Include-D__UVISION_VERSION="540" -DSTM32F407xx -D_RTE_ -DUSE_HAL_DRIVER -DSTM32F407xx-o automated_sorting_robot_2024\grayscale_task.o --omf_browse automated_sorting_robot_2024\grayscale_task.crf --depend automated_sorting_robot_2024\grayscale_task.d)
+F (..\application\Grayscale_task.c)(0x6722FC8B)(--c99 -c --cpu Cortex-M4.fp.sp -D__MICROLIB -g -O1 --apcs=interwork --split_sections -I ../Core/Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I ../Middlewares/Third_Party/FreeRTOS/Source/include -I ../Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS -I ../Middlewares/Third_Party/FreeRTOS/Source/portable/RVDS/ARM_CM4F -I ../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I ../Drivers/CMSIS/Include -I ../application -I ../bsp -I ../components/algorithm -I ../components/controller -I ../components/devices -I ../components/support-I.\RTE\_Automated_Sorting_Robot_2024-ID:\KeilMDK\ARM\PACK\ARM\CMSIS-DSP\1.15.0\Include-ID:\KeilMDK\ARM\PACK\ARM\CMSIS-DSP\1.15.0\PrivateInclude-ID:\KeilMDK\ARM\PACK\ARM\CMSIS\6.1.0\CMSIS\Core\Include-ID:\KeilMDK\ARM\PACK\Keil\STM32F4xx_DFP\2.17.1\Drivers\CMSIS\Device\ST\STM32F4xx\Include-D__UVISION_VERSION="540" -DSTM32F407xx -D_RTE_ -DUSE_HAL_DRIVER -DSTM32F407xx-o automated_sorting_robot_2024\grayscale_task.o --omf_browse automated_sorting_robot_2024\grayscale_task.crf --depend automated_sorting_robot_2024\grayscale_task.d)
 I (..\application\Grayscale_task.h)(0x671CDE1A)
 I (../Core/Inc/main.h)(0x672218D1)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal.h)(0x66E6DF58)
@@ -1539,11 +1539,11 @@ I (../Middlewares/Third_Party/FreeRTOS/Source/include/queue.h)(0x66E6DF1C)
 I (../Middlewares/Third_Party/FreeRTOS/Source/include/semphr.h)(0x66E6DF1C)
 I (../Middlewares/Third_Party/FreeRTOS/Source/include/event_groups.h)(0x66E6DF1C)
 I (../Core/Inc/i2c.h)(0x671CE19A)
-I (../components/support/configs.h)(0x672082DA)
+I (../components/support/configs.h)(0x67230C47)
 I (../application/struct_typedef.h)(0x671CDE1B)
 I (../components/controller/PID.h)(0x671CDE1B)
 I (../components/support/DM_Control.h)(0x671E0C97)
-F (..\application\chassis_task.c)(0x6722CCAD)(--c99 -c --cpu Cortex-M4.fp.sp -D__MICROLIB -g -O1 --apcs=interwork --split_sections -I ../Core/Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I ../Middlewares/Third_Party/FreeRTOS/Source/include -I ../Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS -I ../Middlewares/Third_Party/FreeRTOS/Source/portable/RVDS/ARM_CM4F -I ../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I ../Drivers/CMSIS/Include -I ../application -I ../bsp -I ../components/algorithm -I ../components/controller -I ../components/devices -I ../components/support-I.\RTE\_Automated_Sorting_Robot_2024-ID:\KeilMDK\ARM\PACK\ARM\CMSIS-DSP\1.15.0\Include-ID:\KeilMDK\ARM\PACK\ARM\CMSIS-DSP\1.15.0\PrivateInclude-ID:\KeilMDK\ARM\PACK\ARM\CMSIS\6.1.0\CMSIS\Core\Include-ID:\KeilMDK\ARM\PACK\Keil\STM32F4xx_DFP\2.17.1\Drivers\CMSIS\Device\ST\STM32F4xx\Include-D__UVISION_VERSION="540" -DSTM32F407xx -D_RTE_ -DUSE_HAL_DRIVER -DSTM32F407xx-o automated_sorting_robot_2024\chassis_task.o --omf_browse automated_sorting_robot_2024\chassis_task.crf --depend automated_sorting_robot_2024\chassis_task.d)
+F (..\application\chassis_task.c)(0x67230201)(--c99 -c --cpu Cortex-M4.fp.sp -D__MICROLIB -g -O1 --apcs=interwork --split_sections -I ../Core/Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I ../Middlewares/Third_Party/FreeRTOS/Source/include -I ../Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS -I ../Middlewares/Third_Party/FreeRTOS/Source/portable/RVDS/ARM_CM4F -I ../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I ../Drivers/CMSIS/Include -I ../application -I ../bsp -I ../components/algorithm -I ../components/controller -I ../components/devices -I ../components/support-I.\RTE\_Automated_Sorting_Robot_2024-ID:\KeilMDK\ARM\PACK\ARM\CMSIS-DSP\1.15.0\Include-ID:\KeilMDK\ARM\PACK\ARM\CMSIS-DSP\1.15.0\PrivateInclude-ID:\KeilMDK\ARM\PACK\ARM\CMSIS\6.1.0\CMSIS\Core\Include-ID:\KeilMDK\ARM\PACK\Keil\STM32F4xx_DFP\2.17.1\Drivers\CMSIS\Device\ST\STM32F4xx\Include-D__UVISION_VERSION="540" -DSTM32F407xx -D_RTE_ -DUSE_HAL_DRIVER -DSTM32F407xx-o automated_sorting_robot_2024\chassis_task.o --omf_browse automated_sorting_robot_2024\chassis_task.crf --depend automated_sorting_robot_2024\chassis_task.d)
 I (..\application\chassis_task.h)(0x671F84A3)
 I (../Core/Inc/main.h)(0x672218D1)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal.h)(0x66E6DF58)
@@ -1608,7 +1608,7 @@ I (../components/controller/pid.h)(0x671CDE1B)
 I (../application/struct_typedef.h)(0x671CDE1B)
 I (../application/INS_task.h)(0x671CDE1A)
 I (../components/devices/bmi088driver.h)(0x671CDE1B)
-I (../components/support/configs.h)(0x672082DA)
+I (../components/support/configs.h)(0x67230C47)
 I (../components/support/DM_Control.h)(0x671E0C97)
 I (../components/support/remote_control.h)(0x671D2144)
 I (../bsp/bsp_rc.h)(0x671D06D7)
@@ -1654,7 +1654,7 @@ I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_spi.h)(0x66E6DF58)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_tim.h)(0x66E6DF58)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_tim_ex.h)(0x66E6DF58)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_uart.h)(0x66E6DF58)
-I (../components/support/configs.h)(0x672082DA)
+I (../components/support/configs.h)(0x67230C47)
 I (../application/struct_typedef.h)(0x671CDE1B)
 I (../Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS/cmsis_os.h)(0x66E6DF1C)
 I (../Middlewares/Third_Party/FreeRTOS/Source/include/FreeRTOS.h)(0x66E6DF1C)
@@ -1733,7 +1733,7 @@ I (../components/devices/ist8310driver.h)(0x671CDE1B)
 I (../components/controller/pid.h)(0x671CDE1B)
 I (../components/algorithm/ahrs.h)(0x671CDE1B)
 I (../components/algorithm/AHRS_MiddleWare.h)(0x671CDE1B)
-I (../components/support/configs.h)(0x672082DA)
+I (../components/support/configs.h)(0x67230C47)
 I (../components/support/DM_Control.h)(0x671E0C97)
 F (..\bsp\bsp_can.c)(0x671CDE1B)(--c99 -c --cpu Cortex-M4.fp.sp -D__MICROLIB -g -O1 --apcs=interwork --split_sections -I ../Core/Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I ../Middlewares/Third_Party/FreeRTOS/Source/include -I ../Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS -I ../Middlewares/Third_Party/FreeRTOS/Source/portable/RVDS/ARM_CM4F -I ../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I ../Drivers/CMSIS/Include -I ../application -I ../bsp -I ../components/algorithm -I ../components/controller -I ../components/devices -I ../components/support-I.\RTE\_Automated_Sorting_Robot_2024-ID:\KeilMDK\ARM\PACK\ARM\CMSIS-DSP\1.15.0\Include-ID:\KeilMDK\ARM\PACK\ARM\CMSIS-DSP\1.15.0\PrivateInclude-ID:\KeilMDK\ARM\PACK\ARM\CMSIS\6.1.0\CMSIS\Core\Include-ID:\KeilMDK\ARM\PACK\Keil\STM32F4xx_DFP\2.17.1\Drivers\CMSIS\Device\ST\STM32F4xx\Include-D__UVISION_VERSION="540" -DSTM32F407xx -D_RTE_ -DUSE_HAL_DRIVER -DSTM32F407xx-o automated_sorting_robot_2024\bsp_can.o --omf_browse automated_sorting_robot_2024\bsp_can.crf --depend automated_sorting_robot_2024\bsp_can.d)
 I (..\bsp\bsp_can.h)(0x671CDE1B)
@@ -2111,7 +2111,7 @@ I (D:\KeilMDK\ARM\ARMCC\include\stdio.h)(0x5CEB79E2)
 I (D:\KeilMDK\ARM\ARMCC\include\stdarg.h)(0x5CEB79E4)
 I (../application/INS_task.h)(0x671CDE1A)
 I (../components/devices/bmi088driver.h)(0x671CDE1B)
-I (../components/support/configs.h)(0x672082DA)
+I (../components/support/configs.h)(0x67230C47)
 I (../Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS/cmsis_os.h)(0x66E6DF1C)
 I (../Middlewares/Third_Party/FreeRTOS/Source/include/FreeRTOS.h)(0x66E6DF1C)
 I (../Core/Inc/FreeRTOSConfig.h)(0x671CE199)
@@ -2222,7 +2222,7 @@ I (../Middlewares/Third_Party/FreeRTOS/Source/include/queue.h)(0x66E6DF1C)
 I (../Middlewares/Third_Party/FreeRTOS/Source/include/semphr.h)(0x66E6DF1C)
 I (../Middlewares/Third_Party/FreeRTOS/Source/include/event_groups.h)(0x66E6DF1C)
 I (../bsp/bsp_delay.h)(0x671CDE1B)
-I (../components/support/configs.h)(0x672082DA)
+I (../components/support/configs.h)(0x67230C47)
 I (../components/controller/PID.h)(0x671CDE1B)
 I (../components/support/DM_Control.h)(0x671E0C97)
 F (..\components\devices\ist8310driver.c)(0x671CDE1B)(--c99 -c --cpu Cortex-M4.fp.sp -D__MICROLIB -g -O1 --apcs=interwork --split_sections -I ../Core/Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I ../Middlewares/Third_Party/FreeRTOS/Source/include -I ../Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS -I ../Middlewares/Third_Party/FreeRTOS/Source/portable/RVDS/ARM_CM4F -I ../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I ../Drivers/CMSIS/Include -I ../application -I ../bsp -I ../components/algorithm -I ../components/controller -I ../components/devices -I ../components/support-I.\RTE\_Automated_Sorting_Robot_2024-ID:\KeilMDK\ARM\PACK\ARM\CMSIS-DSP\1.15.0\Include-ID:\KeilMDK\ARM\PACK\ARM\CMSIS-DSP\1.15.0\PrivateInclude-ID:\KeilMDK\ARM\PACK\ARM\CMSIS\6.1.0\CMSIS\Core\Include-ID:\KeilMDK\ARM\PACK\Keil\STM32F4xx_DFP\2.17.1\Drivers\CMSIS\Device\ST\STM32F4xx\Include-D__UVISION_VERSION="540" -DSTM32F407xx -D_RTE_ -DUSE_HAL_DRIVER -DSTM32F407xx-o automated_sorting_robot_2024\ist8310driver.o --omf_browse automated_sorting_robot_2024\ist8310driver.crf --depend automated_sorting_robot_2024\ist8310driver.d)
@@ -2282,7 +2282,7 @@ I (../Middlewares/Third_Party/FreeRTOS/Source/include/queue.h)(0x66E6DF1C)
 I (../Middlewares/Third_Party/FreeRTOS/Source/include/semphr.h)(0x66E6DF1C)
 I (../Middlewares/Third_Party/FreeRTOS/Source/include/event_groups.h)(0x66E6DF1C)
 I (../bsp/bsp_delay.h)(0x671CDE1B)
-I (../components/support/configs.h)(0x672082DA)
+I (../components/support/configs.h)(0x67230C47)
 I (../components/controller/PID.h)(0x671CDE1B)
 I (../components/support/DM_Control.h)(0x671E0C97)
 F (..\components\support\Arm_Posture_Calculate.c)(0x671CDE1B)(--c99 -c --cpu Cortex-M4.fp.sp -D__MICROLIB -g -O1 --apcs=interwork --split_sections -I ../Core/Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I ../Middlewares/Third_Party/FreeRTOS/Source/include -I ../Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS -I ../Middlewares/Third_Party/FreeRTOS/Source/portable/RVDS/ARM_CM4F -I ../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I ../Drivers/CMSIS/Include -I ../application -I ../bsp -I ../components/algorithm -I ../components/controller -I ../components/devices -I ../components/support-I.\RTE\_Automated_Sorting_Robot_2024-ID:\KeilMDK\ARM\PACK\ARM\CMSIS-DSP\1.15.0\Include-ID:\KeilMDK\ARM\PACK\ARM\CMSIS-DSP\1.15.0\PrivateInclude-ID:\KeilMDK\ARM\PACK\ARM\CMSIS\6.1.0\CMSIS\Core\Include-ID:\KeilMDK\ARM\PACK\Keil\STM32F4xx_DFP\2.17.1\Drivers\CMSIS\Device\ST\STM32F4xx\Include-D__UVISION_VERSION="540" -DSTM32F407xx -D_RTE_ -DUSE_HAL_DRIVER -DSTM32F407xx-o automated_sorting_robot_2024\arm_posture_calculate.o --omf_browse automated_sorting_robot_2024\arm_posture_calculate.crf --depend automated_sorting_robot_2024\arm_posture_calculate.d)
@@ -2332,7 +2332,7 @@ I (../Core/Inc/usart.h)(0x671D0105)
 I (D:\KeilMDK\ARM\ARMCC\include\stdio.h)(0x5CEB79E2)
 I (D:\KeilMDK\ARM\ARMCC\include\stdarg.h)(0x5CEB79E4)
 I (..\components\support\DM_Control.h)(0x671E0C97)
-I (..\components\support\configs.h)(0x672082DA)
+I (..\components\support\configs.h)(0x67230C47)
 I (../application/struct_typedef.h)(0x671CDE1B)
 I (../Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS/cmsis_os.h)(0x66E6DF1C)
 I (../Middlewares/Third_Party/FreeRTOS/Source/include/FreeRTOS.h)(0x66E6DF1C)
@@ -2398,7 +2398,7 @@ I (D:\KeilMDK\ARM\ARMCC\include\stdio.h)(0x5CEB79E2)
 I (D:\KeilMDK\ARM\ARMCC\include\stdarg.h)(0x5CEB79E4)
 I (../application/INS_task.h)(0x671CDE1A)
 I (../components/devices/bmi088driver.h)(0x671CDE1B)
-I (..\components\support\configs.h)(0x672082DA)
+I (..\components\support\configs.h)(0x67230C47)
 I (../Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS/cmsis_os.h)(0x66E6DF1C)
 I (../Middlewares/Third_Party/FreeRTOS/Source/include/FreeRTOS.h)(0x66E6DF1C)
 I (../Core/Inc/FreeRTOSConfig.h)(0x671CE199)
@@ -2416,8 +2416,8 @@ I (../Middlewares/Third_Party/FreeRTOS/Source/include/event_groups.h)(0x66E6DF1C
 I (..\components\support\DM_Control.h)(0x671E0C97)
 I (..\components\support\remote_control.h)(0x671D2144)
 I (../bsp/bsp_rc.h)(0x671D06D7)
-F (..\components\support\configs.c)(0x67224AC6)(--c99 -c --cpu Cortex-M4.fp.sp -D__MICROLIB -g -O1 --apcs=interwork --split_sections -I ../Core/Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I ../Middlewares/Third_Party/FreeRTOS/Source/include -I ../Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS -I ../Middlewares/Third_Party/FreeRTOS/Source/portable/RVDS/ARM_CM4F -I ../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I ../Drivers/CMSIS/Include -I ../application -I ../bsp -I ../components/algorithm -I ../components/controller -I ../components/devices -I ../components/support-I.\RTE\_Automated_Sorting_Robot_2024-ID:\KeilMDK\ARM\PACK\ARM\CMSIS-DSP\1.15.0\Include-ID:\KeilMDK\ARM\PACK\ARM\CMSIS-DSP\1.15.0\PrivateInclude-ID:\KeilMDK\ARM\PACK\ARM\CMSIS\6.1.0\CMSIS\Core\Include-ID:\KeilMDK\ARM\PACK\Keil\STM32F4xx_DFP\2.17.1\Drivers\CMSIS\Device\ST\STM32F4xx\Include-D__UVISION_VERSION="540" -DSTM32F407xx -D_RTE_ -DUSE_HAL_DRIVER -DSTM32F407xx-o automated_sorting_robot_2024\configs.o --omf_browse automated_sorting_robot_2024\configs.crf --depend automated_sorting_robot_2024\configs.d)
-I (..\components\support\configs.h)(0x672082DA)
+F (..\components\support\configs.c)(0x67230C24)(--c99 -c --cpu Cortex-M4.fp.sp -D__MICROLIB -g -O1 --apcs=interwork --split_sections -I ../Core/Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I ../Middlewares/Third_Party/FreeRTOS/Source/include -I ../Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS -I ../Middlewares/Third_Party/FreeRTOS/Source/portable/RVDS/ARM_CM4F -I ../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I ../Drivers/CMSIS/Include -I ../application -I ../bsp -I ../components/algorithm -I ../components/controller -I ../components/devices -I ../components/support-I.\RTE\_Automated_Sorting_Robot_2024-ID:\KeilMDK\ARM\PACK\ARM\CMSIS-DSP\1.15.0\Include-ID:\KeilMDK\ARM\PACK\ARM\CMSIS-DSP\1.15.0\PrivateInclude-ID:\KeilMDK\ARM\PACK\ARM\CMSIS\6.1.0\CMSIS\Core\Include-ID:\KeilMDK\ARM\PACK\Keil\STM32F4xx_DFP\2.17.1\Drivers\CMSIS\Device\ST\STM32F4xx\Include-D__UVISION_VERSION="540" -DSTM32F407xx -D_RTE_ -DUSE_HAL_DRIVER -DSTM32F407xx-o automated_sorting_robot_2024\configs.o --omf_browse automated_sorting_robot_2024\configs.crf --depend automated_sorting_robot_2024\configs.d)
+I (..\components\support\configs.h)(0x67230C47)
 I (../application/struct_typedef.h)(0x671CDE1B)
 I (../Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS/cmsis_os.h)(0x66E6DF1C)
 I (../Middlewares/Third_Party/FreeRTOS/Source/include/FreeRTOS.h)(0x66E6DF1C)
@@ -2511,7 +2511,7 @@ I (..\components\support\Arm_Posture_Calculate.h)(0x671CDE1B)
 I (..\components\support\Servo.h)(0x671CDE1B)
 I (D:\KeilMDK\ARM\ARMCC\include\math.h)(0x5CEB79D6)
 I (D:\KeilMDK\ARM\ARMCC\include\stdlib.h)(0x5CEB79E2)
-I (..\components\support\configs.h)(0x672082DA)
+I (..\components\support\configs.h)(0x67230C47)
 I (../application/struct_typedef.h)(0x671CDE1B)
 I (../Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS/cmsis_os.h)(0x66E6DF1C)
 I (../Middlewares/Third_Party/FreeRTOS/Source/include/FreeRTOS.h)(0x66E6DF1C)
@@ -2528,7 +2528,7 @@ I (../Middlewares/Third_Party/FreeRTOS/Source/include/queue.h)(0x66E6DF1C)
 I (../Middlewares/Third_Party/FreeRTOS/Source/include/semphr.h)(0x66E6DF1C)
 I (../Middlewares/Third_Party/FreeRTOS/Source/include/event_groups.h)(0x66E6DF1C)
 I (../components/controller/PID.h)(0x671CDE1B)
-F (..\components\support\Servo.c)(0x67227D3B)(--c99 -c --cpu Cortex-M4.fp.sp -D__MICROLIB -g -O1 --apcs=interwork --split_sections -I ../Core/Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I ../Middlewares/Third_Party/FreeRTOS/Source/include -I ../Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS -I ../Middlewares/Third_Party/FreeRTOS/Source/portable/RVDS/ARM_CM4F -I ../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I ../Drivers/CMSIS/Include -I ../application -I ../bsp -I ../components/algorithm -I ../components/controller -I ../components/devices -I ../components/support-I.\RTE\_Automated_Sorting_Robot_2024-ID:\KeilMDK\ARM\PACK\ARM\CMSIS-DSP\1.15.0\Include-ID:\KeilMDK\ARM\PACK\ARM\CMSIS-DSP\1.15.0\PrivateInclude-ID:\KeilMDK\ARM\PACK\ARM\CMSIS\6.1.0\CMSIS\Core\Include-ID:\KeilMDK\ARM\PACK\Keil\STM32F4xx_DFP\2.17.1\Drivers\CMSIS\Device\ST\STM32F4xx\Include-D__UVISION_VERSION="540" -DSTM32F407xx -D_RTE_ -DUSE_HAL_DRIVER -DSTM32F407xx-o automated_sorting_robot_2024\servo.o --omf_browse automated_sorting_robot_2024\servo.crf --depend automated_sorting_robot_2024\servo.d)
+F (..\components\support\Servo.c)(0x67230ABD)(--c99 -c --cpu Cortex-M4.fp.sp -D__MICROLIB -g -O1 --apcs=interwork --split_sections -I ../Core/Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I ../Middlewares/Third_Party/FreeRTOS/Source/include -I ../Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS -I ../Middlewares/Third_Party/FreeRTOS/Source/portable/RVDS/ARM_CM4F -I ../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I ../Drivers/CMSIS/Include -I ../application -I ../bsp -I ../components/algorithm -I ../components/controller -I ../components/devices -I ../components/support-I.\RTE\_Automated_Sorting_Robot_2024-ID:\KeilMDK\ARM\PACK\ARM\CMSIS-DSP\1.15.0\Include-ID:\KeilMDK\ARM\PACK\ARM\CMSIS-DSP\1.15.0\PrivateInclude-ID:\KeilMDK\ARM\PACK\ARM\CMSIS\6.1.0\CMSIS\Core\Include-ID:\KeilMDK\ARM\PACK\Keil\STM32F4xx_DFP\2.17.1\Drivers\CMSIS\Device\ST\STM32F4xx\Include-D__UVISION_VERSION="540" -DSTM32F407xx -D_RTE_ -DUSE_HAL_DRIVER -DSTM32F407xx-o automated_sorting_robot_2024\servo.o --omf_browse automated_sorting_robot_2024\servo.crf --depend automated_sorting_robot_2024\servo.d)
 I (..\components\support\Servo.h)(0x671CDE1B)
 I (../Core/Inc/main.h)(0x672218D1)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal.h)(0x66E6DF58)
@@ -2565,7 +2565,7 @@ I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_spi.h)(0x66E6DF58)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_tim.h)(0x66E6DF58)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_tim_ex.h)(0x66E6DF58)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_uart.h)(0x66E6DF58)
-I (..\components\support\configs.h)(0x672082DA)
+I (..\components\support\configs.h)(0x67230C47)
 I (../application/struct_typedef.h)(0x671CDE1B)
 I (../Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS/cmsis_os.h)(0x66E6DF1C)
 I (../Middlewares/Third_Party/FreeRTOS/Source/include/FreeRTOS.h)(0x66E6DF1C)
@@ -2675,7 +2675,7 @@ I (../Middlewares/Third_Party/FreeRTOS/Source/include/timers.h)(0x66E6DF1C)
 I (../Middlewares/Third_Party/FreeRTOS/Source/include/queue.h)(0x66E6DF1C)
 I (../Middlewares/Third_Party/FreeRTOS/Source/include/semphr.h)(0x66E6DF1C)
 I (../Middlewares/Third_Party/FreeRTOS/Source/include/event_groups.h)(0x66E6DF1C)
-I (..\components\support\configs.h)(0x672082DA)
+I (..\components\support\configs.h)(0x67230C47)
 I (../application/struct_typedef.h)(0x671CDE1B)
 I (../components/controller/PID.h)(0x671CDE1B)
 I (..\components\support\DM_Control.h)(0x671E0C97)
